@@ -1,0 +1,15 @@
+<mat-card (click)="goToGameDetails()" *ngIf="game" class="game-card">
+  <mat-card-header>
+    <mat-card-title>{{game.name}}</mat-card-title>
+    <mat-card-subtitle>{{game.released}}</mat-card-subtitle>
+  </mat-card-header>
+  <img width="400px" height="225px" mat-card-image src="{{game.background_image}}" alt="{{game.slug}}">
+  <div class="metacritic-position">{{game.metacritic}}</div>
+  <mat-card-content>
+    <div class="content-card">
+      <p>rating - {{game.rating}}</p>
+      <p>Rating Top - {{game.rating_top}}</p>
+    </div>
+  </mat-card-content>
+</mat-card>
+

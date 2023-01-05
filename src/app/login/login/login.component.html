@@ -1,0 +1,23 @@
+<section class="login">
+  <form [formGroup]="loginForm" class="login-form">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input formControlName="email" type="email" matInput  autocomplete="false"
+              placeholder="Ex. pat@example.com">
+      <mat-error *ngIf="!loginForm.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input formControlName="password" type="password" matInput  autocomplete="false"
+             placeholder="Ex. pat@example.com">
+      <mat-error *ngIf="!loginForm.hasError('required')">
+        Please enter a valid password
+      </mat-error>
+    </mat-form-field>
+  </form>
+  <div class="login-button">
+    <button mat-raised-button color="primary" [disabled]="!loginForm.valid" (click)="login()">Submit</button>
+  </div>
+</section>

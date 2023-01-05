@@ -1,0 +1,205 @@
+.position-game-datails{
+  display: flex;
+  justify-content: center;
+
+}
+.back-btn{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: beige;
+}
+.game-details {
+  width: 95%;
+  font-family: "Smooch Sans", sans-serif !important;
+  font-size: 30px;
+  background: #C4C4C4;
+  margin: 25px;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .stores-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+
+    h2 {
+      color: white;
+      font-family: "Smooch Sans", sans-serif !important;
+      font-size: 35px;
+    }
+  }
+
+  .stores {
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    div > a {
+      font-size: 15px;
+      text-decoration: none;
+      border-radius: 10px;
+      background: #1D1D1E;
+      border: 1px solid #1D1D1E;
+      padding: 10px;
+      color: #C4C4C4;
+      font-weight: 400;
+      margin-right: 20px;
+
+      &:hover {
+        color: black;
+        border: 1px solid white;
+        background: white;
+      }
+    }
+  }
+
+  ul {
+    padding-left: 0;
+
+    li {
+      list-style: none;
+    }
+  }
+
+  a {
+    font-size: 25px;
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      color: #C4C4C4;
+    }
+  }
+
+  .metacritic-position {
+    font-size: 24px;
+    font-weight: 400;
+    color: white;
+    background: #1D1D1E;
+    border: 1px solid #1D1D1E;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    top: -26px;
+    left: -26px;
+  }
+
+  .game-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      color: white;
+      padding-bottom: 5px;
+      font-family: "Smooch Sans", sans-serif !important;
+      font-size: 30px;
+      border-bottom: 1px solid white;
+    }
+
+    span {
+      margin-right: 10px;
+    }
+
+    .game-rating {
+      color: white;
+      font-size: 20px;
+      margin: 25px;
+    }
+  }
+
+  .game-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 40px;
+  }
+
+  .game-image {
+    margin: 25px;
+    position: relative;
+    img {
+      position: relative;
+      width: 600px;
+      border-radius: 10px;
+    }
+  }
+}
+
+.games-description {
+  color: white;
+  font-size: 15px;
+  letter-spacing: 1px;
+  max-width: 1200px;
+  padding: 25px;
+
+  .tags {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    img {
+      width: 450px;
+      margin: 25px;
+      border-radius: 15px;
+    }
+  }
+
+  .videos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 30px;
+    a {
+      &:hover{
+        color: #1D1D1E;
+      }
+    }
+    img {
+      width: 450px;
+      margin: 25px;
+      border-radius: 15px;
+    }
+  }
+
+  .platforms {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    img {
+      width: 450px;
+      margin: 25px;
+      border-radius: 15px;
+    }
+  }
+
+  .tabs {
+    ::ng-deep .mat-ink-bar {
+      background: #1D1D1E !important;
+    }
+
+    .tab-header {
+      color: beige;
+      font-size: 20px;
+      font-weight: 100;
+    }
+  }
+}

@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body {
+  margin: 0; font-family: Roboto,
+"Helvetica Neue", sans-serif;
+}
+.pagination .ngx-pagination .current {
+  background: #C4C4C4;
+  border-radius: 15px;
+  color: black;
+}
+
+
+.pagination .ngx-pagination {
+  font-size: 15px;
+
+  li {
+    margin-right: 10px;
+  }
+
+  a {
+    color: white !important;
+  }
+
+  li > a:hover {
+    background: #C4C4C4;
+    border-radius: 15px;
+    color: black;
+  }
+}

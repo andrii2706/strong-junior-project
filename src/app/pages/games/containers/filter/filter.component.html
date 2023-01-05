@@ -1,0 +1,32 @@
+<section class="filter-form">
+  <form [formGroup]="filterForm">
+    <mat-form-field  fxFlex>
+      <mat-label>Developers</mat-label>
+      <mat-select formControlName="developers" placeholder="Developers">
+        <mat-option [value]="'ea'">
+          EA games
+        </mat-option>
+        <mat-option [value]="'ubisoft'">
+          Ubisoft
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field  fxFlex>
+      <mat-label>Genres</mat-label>
+      <mat-select formControlName="genres" placeholder="Genres">
+        <mat-option [value]="'action'">
+          Action
+        </mat-option>
+        <mat-option [value]="'indie'">
+          Indie
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input formControlName="search" type="text" matInput  autocomplete="false">
+    </mat-form-field>
+  </form>
+  <button mat-icon-button *ngIf="filterForm.value" (click)="filterForm.reset()"><mat-icon>delete</mat-icon></button>
+  <button (click)="submitFilter()" mat-icon-button><mat-icon>search</mat-icon></button>
+</section>

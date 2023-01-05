@@ -1,0 +1,17 @@
+<app-loader *ngIf="!games"></app-loader>
+<section>
+  <div class="filter-btn">
+    <mat-accordion >
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header><mat-icon>filter</mat-icon></mat-expansion-panel-header>
+        <app-filter (filter)="getFilterQuery($event)"></app-filter>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div class="games-grid">
+    <app-game *ngFor="let game of games | paginate :{ itemsPerPage: 25, currentPage: page, totalItems: totalGames }" [game]="game"></app-game>
+  </div>
+  <div class="pagination-controllers">
+    <pagination-controls class="pagination" (pageChange)="navigateTo($event)"></pagination-controls>
+  </div>
+</section>
