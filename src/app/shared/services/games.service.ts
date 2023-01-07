@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
-import {GameDetails, Games, GameTrailers, IAchivments, ScreenShots} from "../interfaces/games.interface";
+import {GameDetails, Games } from "../interfaces/games.interface";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {FilterParams, Genres} from "../interfaces/filter.interface";
+import {FilterParams} from "../interfaces/filter.interface";
 
-class Achivments {
-}
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +11,7 @@ class Achivments {
 export class GamesService {
   url = 'https://api.rawg.io/api'
   games ='/games'
-  screenShot = '/screenshots'
-  movies = '/movies'
-  achievements = '/achievements'
   key = '75680a18d0894f90a57b6e2070349042'
-  private genres = 'https://api.rawg.io/api/genres';
   constructor(private httpClient: HttpClient) { }
 
 
@@ -34,18 +28,35 @@ export class GamesService {
     })
   }
 
-  filterGames(page:number, filterInfo:  FilterParams ): Observable<Games>{
-    const filterParam = (filter: FilterParams) => new HttpParams({
-      fromObject: {
-        key: this.key,
-        page,
-        search: filter.search,
-        developers: filter.developers,
-        genre: filter.genres
-      }
-    })
-    return this.httpClient.get<Games>(`${this.url}${this.games}`, {
-      params: filterParam(filterInfo)
+  filterGames(page:number, filterParams: FilterParams ): Observable<Games>{
+    let paramsForFilter = new HttpParams()
+    if(filterParams.genres.length && filterParams.developers.length && filterParams.search.length && filterParams.dates.length) {
+      debugger
+      paramsForFilter = new HttpParams({
+        fromObject:{
+          search: filterParams.search,
+          developers: filterParams.developers,
+          genres: filterParams.genres,
+          dates: filterParams.dates
+        }
+      })
+    }else if(filterParams.genres.length){
+      debugger
+      paramsForFilter = paramsForFilter.append('genres', filterParams.genres)
+    }else if(filterParams.developers.length){
+      debugger
+      paramsForFilter = paramsForFilter.append('developers', filterParams.developers)
+    }else if(filterParams.search.length){
+      debugger
+      paramsForFilter = paramsForFilter.append('search', filterParams.search)
+    }else if(filterParams.dates.length){
+      debugger
+      paramsForFilter = paramsForFilter.append('dates', filterParams.dates)
+    }
+
+
+    return this.httpClient.get<Games>(`${this.url}${this.games}?key=${this.key}&page=${page}`, {
+      params: paramsForFilter
     })
   }
 

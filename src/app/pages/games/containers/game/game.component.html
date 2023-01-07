@@ -4,7 +4,7 @@
     <mat-card-subtitle>{{game.released}}</mat-card-subtitle>
   </mat-card-header>
   <img width="400px" height="225px" mat-card-image src="{{game.background_image}}" alt="{{game.slug}}">
-  <div class="metacritic-position">{{game.metacritic}}</div>
+  <div *ngIf="game.metacritic" class="metacritic-position">{{game.metacritic}}</div>
   <mat-card-content>
     <div class="content-card">
       <p>rating - {{game.rating}}</p>

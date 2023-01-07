@@ -19,6 +19,7 @@ export class GamesComponent implements OnInit, OnDestroy{
   page: number;
   totalGames: number;
   showFormStatus: boolean;
+  filterParams: FilterParams
   public games: Game[];
   public genres: Genre[];
   public developers: Developer[]
@@ -27,7 +28,6 @@ export class GamesComponent implements OnInit, OnDestroy{
   constructor(private gamesService: GamesService, private store: Store<AppState>, private snackbar: MatSnackBar) {
   }
   ngOnInit():void {
-
     this.allGames(1)
   }
 
@@ -38,7 +38,7 @@ export class GamesComponent implements OnInit, OnDestroy{
         this.totalGames = games.count;
         this.games = games.results
       }), takeUntil(this.destroy$)).subscribe(
-      ()=>{},error => this.snackbar.openFromComponent(SnackbarComponent, {
+      ()=>{},() => this.snackbar.openFromComponent(SnackbarComponent, {
         duration: 4000,
         data: 'Server Error',
         verticalPosition:"top",
@@ -47,22 +47,34 @@ export class GamesComponent implements OnInit, OnDestroy{
     );
   }
   getFilterQuery(e:FilterParams) {
-    const filterParametrs: FilterParams = e
-    if(e.genres === null || e.search === null || e.developers === null){
-      this.allGames(1)
-    }else {
-      this.gamesService.filterGames(1, filterParametrs).pipe(takeUntil(this.destroy$)).subscribe(
-        games => {
-          this.games = games.results
-        }
-      )
+    this.filterParams = e
+    console.log(this.filterParams)
+    if(this.filterParams.search === '' &&
+      this.filterParams.genres === '' &&
+      this.filterParams.platforms === '' &&
+      this.filterParams.developers === '' &&
+      this.filterParams.dates === ''
+    ){
+     return this.allGames(1)
+    } else{
+     return this.filteredGames(1, this.filterParams)
     }
   }
-
+  filteredGames(page:number, filter: FilterParams){
+    this.gamesService.filterGames(page, filter).pipe(takeUntil(this.destroy$)).subscribe(
+      games => {
+        this.totalGames = games.count
+        this.games = games.results
+      }
+    )
+}
   navigateTo(PageNumber: number){
     this.page = PageNumber;
-    this.allGames(PageNumber)
-
+    if(this.filterParams){
+      this.filteredGames(PageNumber, this.filterParams)
+    }else{
+      this.allGames(1)
+    }
   }
 
   showForm(){

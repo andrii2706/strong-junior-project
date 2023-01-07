@@ -14,11 +14,9 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.authService.LoginStatus){
-      debugger
      void state.url
       return true
     }else{
-      debugger
       this.snackbar.openFromComponent(SnackbarComponent, {
         duration: 5000,
         data:'You are not login yet.',

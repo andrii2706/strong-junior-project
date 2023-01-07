@@ -1,1 +1,48 @@
 export const FILTER_CONSTANT = {search: '', publishers: '', genres: '', developers: ''}
+ export const genresFilter = [
+   {genreName: 'Action', slug: 'action'},
+   {genreName: 'Adventure', slug: 'adventure'},
+   {genreName: 'Arcade', slug: 'arcade'},
+   {genreName: 'Indie', slug: 'indie'},
+   {genreName: 'RPG', slug: 'role-playing-games-rpg'},
+   {genreName: 'Strategy', slug: 'strategy'},
+   {genreName: 'Shooter', slug: 'shooter'},
+   {genreName: 'Casual', slug: 'casual'},
+   {genreName: 'Simulation', slug: 'simulation'},
+   {genreName: 'Puzzle', slug: 'puzzle'},
+   {genreName: 'Platformer', slug: 'platformer'},
+   {genreName: 'Massively Multiplayer', slug: 'massively-multiplayer'},
+   {genreName: 'Sports', slug: 'sports'},
+   {genreName: 'Fighting', slug: 'fighting'},
+   {genreName: 'Family', slug: 'family'},
+   {genreName: 'Board Games', slug: 'board-games'},
+   {genreName: 'Educational', slug: 'educational'},
+   {genreName: 'Card', slug: 'card'}
+ ]
+export const platformsFilter = [
+  {platformssName: 'PC' , slug: 'pc'},
+  {platformsName: 'PlayStation' , slug: 'playStation'},
+  {platformsName: 'Xbox' , slug: 'xbox'},
+  {platformsName: 'IOS' , slug: 'ios'},
+  {platformsName: 'Android' , slug: 'android'},
+]
+export const developersFilter = [
+  {developersName: 'Ubisoft', slug: 'ubisoft'},
+  {developersName: 'Valve Software', slug: 'valve-software'},
+  {developersName: 'Feral Interactive', slug: 'feral-interactive'},
+  {developersName: 'Electronic Arts', slug: 'electronic-arts'},
+  {developersName: 'Ubisoft Montreal', slug: 'ubisoft-montreal'},
+  {developersName: 'Sony Interactive Entertainment', slug: 'sony-interactive-entertainment'},
+  {developersName: 'Square Enix', slug: 'square-enix'},
+  {developersName: 'Capcom', slug: 'capcom'},
+  {developersName: 'Aspyr Media', slug: 'aspyr-media'},
+  {developersName: 'Bethesda Softworks', slug: 'bethesda-softworks'},
+  {developersName: 'Warner Bros. Interactive', slug: 'warner-bros-interactive'},
+  {developersName: 'SEGA', slug: 'sega'},
+  {developersName: 'Devolver Digital', slug: 'devolver-digital'},
+  {developersName: 'BANDAI NAMCO Entertainment America', slug: 'bandai-namco-entertainment-america-inc'},
+  {developersName: 'Telltale Games', slug: 'telltale-games'},
+  {developersName: '2K', slug: '2k'},
+  {developersName: 'Capcom U.S.A', slug: 'capcom-usa-inc'},
+  {developersName: 'NVIDIA Lightspeed Studios', slug: 'nvidia-lightspeed-studios'},
+]
