@@ -1,12 +1,12 @@
 import {Component,  OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../shared/services/auth.service";
+import {AuthService} from "../../../shared/services/auth.service";
 import {noop, take, tap} from "rxjs";
-import {UserInteface} from "../../shared/interfaces/user.inteface";
+import {UserInteface} from "../../../shared/interfaces/user.inteface";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {SnackbarComponent} from "../../shared/components/snackbar/snackbar.component";
+import {SnackbarComponent} from "../../../shared/components/snackbar/snackbar.component";
 import {Store} from "@ngrx/store";
-import {AppState} from "../../reducers";
+import {AppState} from "../../../reducers";
 import {LoginActions} from "./login.actions";
 import {Router} from "@angular/router";
 

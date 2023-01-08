@@ -7,7 +7,8 @@
 }
 
 .sidenav .mat-toolbar {
-  background: inherit;
+  background: #1D1D1E;
+  color: beige;
 }
 
 .mat-toolbar.mat-primary {
@@ -23,3 +24,15 @@
   justify-content: center;
   align-items: center;
 }
+::ng-deep .mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #1D1D1E;
+  color: beige;
+}
+::ng-deep .mat-drawer{
+  background: #1D1D1E;
+}
+
+

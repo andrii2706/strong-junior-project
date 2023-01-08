@@ -7,10 +7,9 @@
       Menu
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="">Home page</a>
-      <a mat-list-item routerLink="games">Games
-      </a>
-      <a mat-list-item target="_blank" href="https://github.com/andrii2706">Creator</a>
+      <a mat-list-item  routerLink="">Home page</a>
+      <a mat-list-item  routerLink="games">Games</a>
+      <a mat-list-item  target="_blank" href="https://github.com/andrii2706">Creator</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -27,8 +26,7 @@
         <span>{{title}}</span>
       </div>
       <div class="block">
-        <button *ngIf="userLoged === false" mat-button (click)="loginPage()"><span>Sing in</span></button>
-        <a mat-icon-button routerLink="profile" *ngIf="userLoged === true"><mat-icon>account_circle</mat-icon></a>
+        <a mat-icon-button routerLink="profile" ><mat-icon>account_circle</mat-icon></a>
       </div>
     </mat-toolbar>
     <ng-content></ng-content>

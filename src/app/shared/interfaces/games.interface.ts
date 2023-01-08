@@ -139,7 +139,7 @@ export interface GameDetails {
       image_background: string
       games_count: number
     }
-  ]
+  ],
 }
 
 export interface ScreenShots {

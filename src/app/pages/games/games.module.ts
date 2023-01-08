@@ -13,19 +13,22 @@ import { GameDatailsComponent } from './containers/game-datails/game-datails.com
 
 
 @NgModule({
-  declarations: [
-    GamesComponent,
-    GameComponent,
-    FilterComponent,
-    GameDatailsComponent
-  ],
-  imports: [
-    CommonModule,
-    GamesRoutingModule,
-    SharedModule,
-    NgxPaginationModule,
-    AppMaterialModule,
-    ReactiveFormsModule
-  ]
+    declarations: [
+        GamesComponent,
+        GameComponent,
+        FilterComponent,
+        GameDatailsComponent
+    ],
+    exports: [
+        GameComponent
+    ],
+    imports: [
+        CommonModule,
+        GamesRoutingModule,
+        SharedModule,
+        NgxPaginationModule,
+        AppMaterialModule,
+        ReactiveFormsModule
+    ]
 })
 export class GamesModule { }

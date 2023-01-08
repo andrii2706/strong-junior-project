@@ -8,7 +8,7 @@
   <div class="game-details">
     <div class="game-header">
       <div class="game-image">
-        <div class="metacritic-position">
+        <div class="metacritic-position" *ngIf="gameDetails.metacritic">
           <span [innerText]="gameDetails.metacritic"></span>
         </div>
         <img src="{{gameDetails.background_image}}" alt="Image Poster" width="450px">

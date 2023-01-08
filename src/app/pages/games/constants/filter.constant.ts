@@ -1,4 +1,3 @@
-export const FILTER_CONSTANT = {search: '', publishers: '', genres: '', developers: ''}
  export const genresFilter = [
    {genreName: 'Action', slug: 'action'},
    {genreName: 'Adventure', slug: 'adventure'},
@@ -20,11 +19,16 @@ export const FILTER_CONSTANT = {search: '', publishers: '', genres: '', develope
    {genreName: 'Card', slug: 'card'}
  ]
 export const platformsFilter = [
-  {platformssName: 'PC' , slug: 'pc'},
-  {platformsName: 'PlayStation' , slug: 'playStation'},
-  {platformsName: 'Xbox' , slug: 'xbox'},
-  {platformsName: 'IOS' , slug: 'ios'},
-  {platformsName: 'Android' , slug: 'android'},
+  {platformsName: 'PC' , slug: '4'},
+  {platformsName: 'PlayStation5' , slug: '187'},
+  {platformsName: 'PlayStation4' , slug: '18'},
+  {platformsName: 'PlayStation3' , slug: '16'},
+  {platformsName: 'PlayStation2' , slug: '15'},
+  {platformsName: 'PlayStation' , slug: '27'},
+  {platformsName: 'Xbox One' , slug: '1'},
+  {platformsName: 'Xbox Series S/X' , slug: '186'},
+  {platformsName: 'IOS' , slug: '3'},
+  {platformsName: 'Android' , slug: '21'},
 ]
 export const developersFilter = [
   {developersName: 'Ubisoft', slug: 'ubisoft'},

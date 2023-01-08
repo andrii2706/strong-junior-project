@@ -1,6 +1,7 @@
 export interface FilterParams {
   search: string,
   platforms: string,
+
   developers: string
   dates: string,
   genres: string,

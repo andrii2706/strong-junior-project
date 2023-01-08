@@ -8,10 +8,22 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field >
+    <mat-form-field>
       <mat-label>Genres</mat-label>
       <mat-select formControlName="genres" placeholder="Genres" [value]="''">
         <mat-option [value]="genre.slug" *ngFor="let genre of genres">{{genre.genreName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Platforms</mat-label>
+      <mat-select formControlName="platforms" placeholder="Platforms" [value]="''">
+        <mat-option [value]="platform.slug" *ngFor="let platform of platforms">{{platform.platformsName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Order By:</mat-label>
+      <mat-select formControlName="platforms" placeholder="Platforms" [value]="''">
+        <mat-option [value]="platform.slug" *ngFor="let platform of platforms">{{platform.platformsName}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>

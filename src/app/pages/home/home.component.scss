@@ -1,0 +1,19 @@
+h2{
+  color: beige;
+}
+.home-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+.filter-buttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+  button{
+    margin: 0 5px;
+  }
+}

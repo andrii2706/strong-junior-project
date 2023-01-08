@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {FilterParams} from "../../../../shared/interfaces/filter.interface";
-import {developersFilter, genresFilter} from "../../constants/filter.contant";
+import {developersFilter, genresFilter, platformsFilter} from "../../constants/filter.constant";
 import * as moment from "moment";
 
 @Component({
@@ -14,6 +14,7 @@ export class FilterComponent  implements OnInit{
   dates: string = ''
   genres: {genreName:string, slug: string}[] = genresFilter
   developers: {developersName: string, slug: string}[] =  developersFilter
+  platforms: {platformsName: string, slug: string}[] = platformsFilter
   @Output()
   filter = new EventEmitter<FilterParams>()
   constructor() {

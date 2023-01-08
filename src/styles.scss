@@ -11,7 +11,6 @@ body {
   color: black;
 }
 
-
 .pagination .ngx-pagination {
   font-size: 15px;
 
@@ -29,3 +28,7 @@ body {
     color: black;
   }
 }
+.mat-mdc-list-item .mdc-list-item__primary-text{
+  color: beige !important;
+}
+

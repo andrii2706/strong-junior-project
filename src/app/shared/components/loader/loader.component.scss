@@ -6,4 +6,8 @@
   justify-content: center;
   align-items: center;
   color: #1D1D1E;
+  ::ng-deep .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic {
+    stroke: white !important;
+  }
 }
+

@@ -7,12 +7,14 @@ import { StoreModule } from '@ngrx/store';
 import { HomeComponent } from './pages/home/home.component';
 import {AppMaterialModule} from "./app-material/app-material.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {LoginModule} from "./login/login.module";
+import {LoginModule} from "./auth/login/login.module";
 import {HttpClientModule} from "@angular/common/http";
-import { RegistrationComponent } from './registration/registration/registration.component';
+import { RegistrationComponent } from './auth/registration/registration/registration.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {SharedModule} from "./shared/shared.module";
 import * as fromState from './reducers';
+import {GamesModule} from "./pages/games/games.module";
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import * as fromState from './reducers';
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
     SharedModule,
-    StoreModule.forFeature(fromState.stateFeatureKey, fromState.reducers)
+    StoreModule.forFeature(fromState.stateFeatureKey, fromState.reducers),
+    GamesModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
