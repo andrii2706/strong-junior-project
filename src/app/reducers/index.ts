@@ -1,20 +1,19 @@
-import { isDevMode } from '@angular/core';
 import {
   ActionReducer,
   ActionReducerMap,
-  createFeatureSelector,
+  createFeatureSelector, createReducer,
   createSelector,
   MetaReducer
 } from '@ngrx/store';
-
-export const stateFeatureKey = 'store';
+import {UserInteface} from "../shared/interfaces/user.inteface";
 
 export interface AppState {
-
+  auth:{
+    user: UserInteface[]
+  }
 }
 
-export const reducers: ActionReducerMap<AppState> = {
 
-};
+
 
 

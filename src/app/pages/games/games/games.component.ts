@@ -48,11 +48,11 @@ export class GamesComponent implements OnInit, OnDestroy{
   }
   getFilterQuery(e:FilterParams) {
     this.filterParams = e
-    console.log(this.filterParams)
     if(this.filterParams.search === '' &&
       this.filterParams.genres === '' &&
       this.filterParams.platforms === '' &&
       this.filterParams.developers === '' &&
+      this.filterParams.ordering === '' &&
       this.filterParams.dates === ''
     ){
      return this.allGames(1)

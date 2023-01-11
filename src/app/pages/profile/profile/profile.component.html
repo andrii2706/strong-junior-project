@@ -1,12 +1,14 @@
-<section>
+<section *ngIf="!!userInfo">
   <div class="profile">
-    <h2>User Name</h2>
-    <p>user info</p>
-
-
+    <div class="user-info">
+      <div>
+        <h2>{{userInfo.firstName}} {{userInfo.lastName}}</h2>
+        <p>{{userInfo.email}}</p>
+        <p>{{userInfo.phoneNumber}}</p>
+      </div>
+    </div>
     <div>
       <h2>User List of Games</h2>
     </div>
-
   </div>
 </section>

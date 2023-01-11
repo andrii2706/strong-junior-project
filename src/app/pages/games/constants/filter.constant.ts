@@ -50,3 +50,10 @@ export const developersFilter = [
   {developersName: 'Capcom U.S.A', slug: 'capcom-usa-inc'},
   {developersName: 'NVIDIA Lightspeed Studios', slug: 'nvidia-lightspeed-studios'},
 ]
+export const orderByInfos = [
+  {name: 'Date added', slug: '-created'},
+  {name: 'Popularity', slug:'-added'},
+  {name: 'Released date', slug:'-released'},
+  {name: 'Name', slug:'name'},
+  {name: 'Average rating', slug:'-rating'},
+]

@@ -35,7 +35,6 @@ export class GameDatailsComponent implements OnInit{
   gameDetailsById(id: string){
     this.gamesService.getGameById(id).pipe(take(1)).subscribe(gameDetails => {
       this.gameDetails = gameDetails;
-      console.log(gameDetails)
     })
   }
   backButton(){

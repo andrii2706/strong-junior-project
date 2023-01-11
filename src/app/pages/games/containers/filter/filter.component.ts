@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {FilterParams} from "../../../../shared/interfaces/filter.interface";
-import {developersFilter, genresFilter, platformsFilter} from "../../constants/filter.constant";
+import {developersFilter, genresFilter, orderByInfos, platformsFilter} from "../../constants/filter.constant";
 import * as moment from "moment";
 
 @Component({
@@ -12,9 +12,10 @@ import * as moment from "moment";
 export class FilterComponent  implements OnInit{
   filterForm: FormGroup;
   dates: string = ''
-  genres: {genreName:string, slug: string}[] = genresFilter
-  developers: {developersName: string, slug: string}[] =  developersFilter
-  platforms: {platformsName: string, slug: string}[] = platformsFilter
+  genres: {genreName:string, slug: string}[] = genresFilter;
+  developers: {developersName: string, slug: string}[] =  developersFilter;
+  platforms: {platformsName: string, slug: string}[] = platformsFilter;
+  orderByInfos: {name: string, slug: string}[] = orderByInfos
   @Output()
   filter = new EventEmitter<FilterParams>()
   constructor() {
@@ -26,6 +27,7 @@ export class FilterComponent  implements OnInit{
       genres: new FormControl(''),
       platforms: new FormControl(''),
       developers: new FormControl(''),
+      ordering: new FormControl(''),
       dates: new FormControl('')
     })
   }
@@ -41,7 +43,6 @@ export class FilterComponent  implements OnInit{
     const firstDate = moment().startOf('year').format('YYYY-MM-DD');
     const lastDate = moment().add(1, 'year').endOf('year').format('YYYY-MM-DD');
     this.dates = `${firstDate},${lastDate}`;
-    console.log(this.dates)
   }
   clearFilterForm(e: MouseEvent){
     this.dates = ''
@@ -50,6 +51,7 @@ export class FilterComponent  implements OnInit{
         genres: '',
         platforms: '',
         developers: '',
+        ordering: '',
         dates: ''
       })
   }

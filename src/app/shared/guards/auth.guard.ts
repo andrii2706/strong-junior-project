@@ -9,6 +9,7 @@ import {SnackbarComponent} from "../components/snackbar/snackbar.component";
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+   isLogin: boolean;
   constructor( private authService: AuthService, private router: Router, private snackbar: MatSnackBar) {}
   canActivate(
     route: ActivatedRouteSnapshot,

@@ -15,6 +15,7 @@ import {SharedModule} from "./shared/shared.module";
 import * as fromState from './reducers';
 import {GamesModule} from "./pages/games/games.module";
 import {NgxPaginationModule} from "ngx-pagination";
+import {authReducer} from "./auth/login/login/reducer";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import {NgxPaginationModule} from "ngx-pagination";
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
     SharedModule,
-    StoreModule.forFeature(fromState.stateFeatureKey, fromState.reducers),
+    StoreModule.forFeature("auth", authReducer),
     GamesModule,
     NgxPaginationModule
   ],

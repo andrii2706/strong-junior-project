@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "./shared/services/auth.service";
+import {map, Observable} from "rxjs";
+import {Store} from "@ngrx/store";
+import {AppState} from "./reducers";
 
 @Component({
   selector: 'app-root',
@@ -8,9 +10,10 @@ import {AuthService} from "./shared/services/auth.service";
 })
 export class AppComponent implements OnInit{
   title = 'strong-junior-project';
-constructor(private authService: AuthService) {
-  this.authService.setLoginStatus(false)
-}
+
+  constructor() {
+
+  }
 ngOnInit(){
 
 }

@@ -16,21 +16,22 @@ export class AuthService {
 
   setLoginStatus(value: boolean) {
     this.loggedInStatus = value;
-    sessionStorage.setItem('loggedIn', 'false');
+    localStorage.setItem('loggedIn', 'false');
   }
 
   changeLoginStatus(status: boolean){
     this.loggedInStatus = status;
-    sessionStorage.setItem('loggedIn', `${this.loggedInStatus}`)
+    localStorage.setItem('loggedIn', `${this.loggedInStatus}`)
   }
 
   get LoginStatus() {
-    return JSON.parse(sessionStorage.getItem('loggedIn') ||
+
+    return JSON.parse(localStorage.getItem('loggedIn') ||
       this.loggedInStatus.toString());
   }
 
   setUser(userInfo: UserInteface): Observable<UserInteface[]>{
-    this.changeLoginStatus(userInfo.isLogged)
+    this.changeLoginStatus(true);
     const params = (userCreds: UserInteface) => new HttpParams({
       fromObject: {
         email: userCreds.email,

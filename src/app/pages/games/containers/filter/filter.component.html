@@ -22,8 +22,8 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Order By:</mat-label>
-      <mat-select formControlName="platforms" placeholder="Platforms" [value]="''">
-        <mat-option [value]="platform.slug" *ngFor="let platform of platforms">{{platform.platformsName}}</mat-option>
+      <mat-select formControlName="ordering" placeholder="Platforms" [value]="''">
+        <mat-option [value]="orderByInfo.slug" *ngFor="let orderByInfo of orderByInfos">{{orderByInfo.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>

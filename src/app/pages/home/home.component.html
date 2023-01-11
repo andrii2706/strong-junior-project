@@ -9,8 +9,9 @@
   <div class="home-content">
     <app-game *ngFor="let game of games | paginate :{ itemsPerPage: 25, currentPage: page, totalItems: total } " [game]="game"></app-game>
   </div>
-  <div class="pagination-controllers">
-    <pagination-controls class="pagination" (pageChange)="navigateTo($event)"></pagination-controls>
+  <div class="pagination">
+    <div class="pagination-controllers">
+      <pagination-controls class="pagination" (pageChange)="navigateTo($event)"></pagination-controls>
+    </div>
   </div>
-
 </section>

@@ -15,13 +15,19 @@ const routes: Routes = [
   },
   {
     path:'login',
-    loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule)
+    loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule),
+    title: 'Login'
   },
   {
     path:'profile',
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),
     title: 'Profile',
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'registration',
+    loadChildren: () => import('./auth/registration/registration/registration.module').then(m => m.RegistrationModule),
+    title: 'Registration'
   }
 
 ];

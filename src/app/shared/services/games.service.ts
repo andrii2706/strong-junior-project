@@ -41,38 +41,20 @@ export class GamesService {
   }
 
   filterGames(page:number, filterParams: FilterParams ): Observable<Games>{
-    let paramsForFilter = new HttpParams()
-    if(filterParams.genres.length && filterParams.developers.length && filterParams.search.length && filterParams.dates.length) {
-      debugger
-      paramsForFilter = new HttpParams({
-        fromObject:{
-          search: filterParams.search,
-          developers: filterParams.developers,
-          platforms: filterParams.platforms,
-          genres: filterParams.genres,
-          dates: filterParams.dates
-        }
-      })
-    }else if(filterParams.genres.length){
-      debugger
-      paramsForFilter = paramsForFilter.append('genres', filterParams.genres)
-    }else if(filterParams.developers.length){
-      debugger
-      paramsForFilter = paramsForFilter.append('developers', filterParams.developers)
-    }else if(filterParams.search.length){
-      debugger
-      paramsForFilter = paramsForFilter.append('search', filterParams.search)
-    }else if(filterParams.dates.length){
-      debugger
-      paramsForFilter = paramsForFilter.append('dates', filterParams.dates)
-    }else if(filterParams.platforms.length){
-      debugger
-      paramsForFilter = paramsForFilter.append('platforms', filterParams.platforms)
-    }
-
+    const paramsForFilter = this.getFilterQueryParameter(filterParams)
     return this.httpClient.get<Games>(`${this.url}${this.games}?key=${this.key}&page=${page}`, {
       params: paramsForFilter
     })
+  }
+  private getFilterQueryParameter(filterParams: FilterParams): HttpParams{
+  return  Object.entries(filterParams).reduce<HttpParams>((acc, item) => {
+      const key = item[0];
+      const value = item[1];
+    if(value !== '' ){
+      return acc.append(key, value)
+    }
+    return acc
+    }, new HttpParams())
   }
 
   getGameById(id: string): Observable<GameDetails>{

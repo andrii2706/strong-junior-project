@@ -7,7 +7,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {SnackbarComponent} from "../../../shared/components/snackbar/snackbar.component";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../reducers";
-import {LoginActions} from "./login.actions";
+import {login} from "./login.actions";
 import {Router} from "@angular/router";
 
 @Component({
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   }
   errorSnackbar():void {
     this.snackBar.openFromComponent(SnackbarComponent, {
-      duration: 2000,
+      duration: 1000,
       data: 'Check Your Credentials',
       horizontalPosition: "end",
       verticalPosition: "top"
@@ -44,13 +44,14 @@ export class LoginComponent implements OnInit {
     this.authService.setUser(loginCredentials).pipe(take(1),
       tap(user => {
       if(user.length !== 0){
-          this.store.dispatch(LoginActions({user}))
-        void this.router.navigateByUrl('/profile')
+        const loginAction = login({user})
+        this.store.dispatch(loginAction)
       }else {
         this.errorSnackbar()
       }
-      console.log(user)
-    }) ,take(1))
-      .subscribe(noop)
+      }) ,take(1)).subscribe(noop,
+      void this.router.navigateByUrl('/profile')
+    )
   }
+
 }
