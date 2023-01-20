@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShowAndHidePasswordComponent } from './show-and-hide-password.component';
+import {NO_ERRORS_SCHEMA} from "@angular/core";
 
 describe('ShowAndHidePasswordComponent', () => {
   let component: ShowAndHidePasswordComponent;
@@ -8,7 +9,9 @@ describe('ShowAndHidePasswordComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShowAndHidePasswordComponent ]
+      declarations: [ ShowAndHidePasswordComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
+
     })
     .compileComponents();
 

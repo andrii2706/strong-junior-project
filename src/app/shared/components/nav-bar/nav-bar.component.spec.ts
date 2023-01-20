@@ -8,6 +8,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NavBarComponent } from './nav-bar.component';
+import {HttpClientModule} from "@angular/common/http";
+import {NO_ERRORS_SCHEMA} from "@angular/core";
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
@@ -24,7 +26,10 @@ describe('NavBarComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
-      ]
+      ],
+      providers: [HttpClientModule],
+      schemas: [NO_ERRORS_SCHEMA]
+
     }).compileComponents();
   }));
 

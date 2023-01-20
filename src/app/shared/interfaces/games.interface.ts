@@ -24,13 +24,15 @@ export interface Game {
   id: number,
   slug: string,
   name: string,
+  name_original: string
+  description: string
   released: string,
   background_image: string
   tba: boolean,
   rating: number,
   rating_top: number,
   metacritic: number,
-  platforms: Platforms[]
+  platforms?: Platforms[]
 }
 export interface GameDetails {
   id: number,

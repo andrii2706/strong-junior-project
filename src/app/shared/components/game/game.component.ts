@@ -13,7 +13,7 @@ import {AppState} from "../../../reducers";
 export class GameComponent {
   @Input()game : Game
   storedGames: any
-  constructor(private router : Router, private activatedRoute: ActivatedRoute, private store: Store<AppState>) {
+  constructor(private router : Router, private activatedRoute: ActivatedRoute) {
   }
 
   goToGameDetails() {
@@ -22,7 +22,7 @@ export class GameComponent {
     }else void this.router.navigate([this.game.id], {relativeTo: this.activatedRoute} )
   }
 
-  buyAGame(){
-    this.store.dispatch(addGame({ game :this.game}));
-  }
+  // buyAGame(){
+  //   this.store.dispatch(addGame({ game :this.game}));
+  // }
 }
