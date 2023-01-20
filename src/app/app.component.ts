@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {map, Observable} from "rxjs";
-import {Store} from "@ngrx/store";
-import {AppState} from "./reducers";
 
 @Component({
   selector: 'app-root',
@@ -12,7 +9,6 @@ export class AppComponent implements OnInit{
   title = 'strong-junior-project';
 
   constructor() {
-
   }
 ngOnInit(){
 

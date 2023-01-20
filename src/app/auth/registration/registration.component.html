@@ -1,0 +1,51 @@
+<section>
+<div class="page-container">
+  <h2>Registration form</h2>
+  <form [formGroup]="registrationForm">
+    <mat-form-field>
+      <mat-label>Firstname</mat-label>
+      <input formControlName="firstName" type="text" matInput  autocomplete="false"
+             placeholder="Dominik">
+      <mat-error *ngIf="!registrationForm.hasError('required')">
+       Please fill the form
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Lastname</mat-label>
+      <input formControlName="lastName" type="text" matInput  autocomplete="false"
+             placeholder="Torreto">
+      <mat-error *ngIf="!registrationForm.hasError('required')">
+        Please fill the form
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>PhoneNumber</mat-label>
+      <span matPrefix>+380 &nbsp;</span>
+      <input formControlName="phoneNumber" type="tel" matInput  autocomplete="false"
+             placeholder="+3809876578">
+      <mat-error *ngIf="!registrationForm.hasError('required')">
+        Please fill the form
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Emal</mat-label>
+      <input formControlName="email" type="email" matInput  autocomplete="false"
+             placeholder="Ex. pat@example.com">
+      <mat-error *ngIf="!registrationForm.hasError('required')">
+        Please enter a valid email
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input formControlName="password" type="password" matInput  autocomplete="false"
+             >
+      <mat-error *ngIf="!registrationForm.hasError('required')">
+        Please enter a valid password
+      </mat-error>
+    </mat-form-field>
+  </form>
+  <div class="submit-btn">
+    <button mat-raised-button [color]="'primary'" [disabled]="registrationForm.invalid" (click)="submitForm()">Register</button>
+  </div>
+</div>
+</section>

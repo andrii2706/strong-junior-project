@@ -9,19 +9,18 @@ import {AppMaterialModule} from "./app-material/app-material.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {LoginModule} from "./auth/login/login.module";
 import {HttpClientModule} from "@angular/common/http";
-import { RegistrationComponent } from './auth/registration/registration/registration.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {SharedModule} from "./shared/shared.module";
 import * as fromState from './reducers';
 import {GamesModule} from "./pages/games/games.module";
 import {NgxPaginationModule} from "ngx-pagination";
 import {authReducer} from "./auth/login/login/reducer";
+import { EffectsModule } from '@ngrx/effects';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    RegistrationComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +34,8 @@ import {authReducer} from "./auth/login/login/reducer";
     SharedModule,
     StoreModule.forFeature("auth", authReducer),
     GamesModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]

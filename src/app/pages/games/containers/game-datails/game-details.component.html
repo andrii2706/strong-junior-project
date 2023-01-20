@@ -5,7 +5,7 @@
       <mat-icon>arrow_back</mat-icon>
     </button>
   </div>
-  <div class="game-details">
+  <div class="game-details page-container">
     <div class="game-header">
       <div class="game-image">
         <div class="metacritic-position" *ngIf="gameDetails.metacritic">
@@ -17,7 +17,7 @@
         <h1>{{gameDetails.name_original}}</h1>
         <div class="game-rating">
           <div>
-            <h2>Genres</h2>
+            <h2>Genres:</h2>
             <ul>
               <li *ngFor="let genre of gameDetails.genres">{{genre.name}}</li>
             </ul>

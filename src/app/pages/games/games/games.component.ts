@@ -5,7 +5,6 @@ import {Game} from "../../../shared/interfaces/games.interface";
 import {Subject, takeUntil, tap} from "rxjs";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../reducers";
-import {gamesActions} from "./games.actions";
 import {SnackbarComponent} from "../../../shared/components/snackbar/snackbar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -34,13 +33,12 @@ export class GamesComponent implements OnInit, OnDestroy{
   allGames(page: number){
     this.gamesService.getAllGames(page)
       .pipe(tap( games => {
-        this.store.dispatch(gamesActions({games: games.results }))
         this.totalGames = games.count;
         this.games = games.results
       }), takeUntil(this.destroy$)).subscribe(
-      ()=>{},() => this.snackbar.openFromComponent(SnackbarComponent, {
+      ()=>{},error => this.snackbar.openFromComponent(SnackbarComponent, {
         duration: 4000,
-        data: 'Server Error',
+        data: { text: error.messageerror, status: 'error'},
         verticalPosition:"top",
         horizontalPosition: 'end'
       })
@@ -73,7 +71,7 @@ export class GamesComponent implements OnInit, OnDestroy{
     if(this.filterParams){
       this.filteredGames(PageNumber, this.filterParams)
     }else{
-      this.allGames(1)
+      this.allGames(PageNumber)
     }
   }
 

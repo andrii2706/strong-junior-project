@@ -1,6 +1,7 @@
 <section>
   <div class="snackBar">
-    <mat-icon>error</mat-icon>
+    <mat-icon *ngIf="data.status === 'success'" >bell</mat-icon>
+    <mat-icon *ngIf="data.status === 'error'" >error</mat-icon>
     <p>{{dataSnackbar}}</p>
   </div>
 </section>

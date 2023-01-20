@@ -6,11 +6,13 @@ import {AppMaterialModule} from "../app-material/app-material.module";
 import {RouterModule} from "@angular/router";
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import {GameComponent} from "./components/game/game.component";
 
 
 
 @NgModule({
   declarations: [
+    GameComponent,
     NavBarComponent,
     SnackbarComponent,
     LoaderComponent
@@ -25,7 +27,8 @@ import { LoaderComponent } from './components/loader/loader.component';
   exports: [
 
     NavBarComponent,
-    LoaderComponent
+    LoaderComponent,
+    GameComponent
   ],
   providers: []
 })

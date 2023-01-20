@@ -1,14 +1,18 @@
-<mat-card (click)="goToGameDetails()" *ngIf="game" class="game-card">
+<mat-card *ngIf="game" class="game-card">
   <mat-card-header>
     <mat-card-title>{{game.name}}</mat-card-title>
     <mat-card-subtitle>{{game.released}}</mat-card-subtitle>
   </mat-card-header>
+  <mat-spinner *ngIf="!game.background_image"></mat-spinner>
   <img width="400px" height="225px" mat-card-image src="{{game.background_image}}" alt="{{game.slug}}">
   <div *ngIf="game.metacritic" class="metacritic-position">{{game.metacritic}}</div>
   <mat-card-content>
     <div class="content-card">
       <p>rating - {{game.rating}}</p>
       <p>Rating Top - {{game.rating_top}}</p>
+
+      <button mat-raised-button class="goToDetails" [color]="'primary'" (click)="goToGameDetails()" >To game detail</button>
+      <button mat-raised-button [color]="'primary'" (click)="buyAGame()" ><mat-icon>add_shopping_cart</mat-icon> Buy Game </button>
     </div>
   </mat-card-content>
 </mat-card>

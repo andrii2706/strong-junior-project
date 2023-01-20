@@ -1,9 +1,9 @@
 .game-card{
   max-width: 400px;
-  height: 400px;
+  min-height: 400px;
   border-radius: 10px;
   background: #C4C4C4;
-
+  transition: 500ms;
   &:hover {
     cursor: pointer;
     transform: scale(1.1);
@@ -37,6 +37,7 @@
   left: -10px;
 }
   .content-card{
+    padding-top: 10px;
   h2{
     margin-bottom: 0;
   }
@@ -48,4 +49,7 @@
   span{
     padding: 6px 0;
   }
+}
+.goToDetails{
+  margin-right: 10px;
 }

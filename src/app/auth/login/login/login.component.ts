@@ -34,23 +34,31 @@ export class LoginComponent implements OnInit {
   errorSnackbar():void {
     this.snackBar.openFromComponent(SnackbarComponent, {
       duration: 1000,
-      data: 'Check Your Credentials',
-      horizontalPosition: "end",
-      verticalPosition: "top"
+      data: {text: 'Check Your Credentials', status: 'error'} ,
+      verticalPosition: "bottom",
+      horizontalPosition: "end"
     })
   }
   login(){
   const loginCredentials = Object.assign( {isLogged: true} , this.loginForm.value)
     this.authService.setUser(loginCredentials).pipe(take(1),
       tap(user => {
+
       if(user.length !== 0){
-        const loginAction = login({user})
+        user.map(user  => this.user = user)
+        const loginAction = login({user: this.user})
         this.store.dispatch(loginAction)
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          data: {text: 'Welcome to Games Store', status: 'success'},
+          verticalPosition: 'top',
+          horizontalPosition: 'end',
+          duration: 3000
+        })
       }else {
-        this.errorSnackbar()
+        this.errorSnackbar();
       }
       }) ,take(1)).subscribe(noop,
-      void this.router.navigateByUrl('/profile')
+      void this.router.navigateByUrl('/home')
     )
   }
 

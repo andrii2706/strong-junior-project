@@ -13,8 +13,9 @@
 
 .login-button{
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
+  gap: 20px;
    button {
      &:disabled{
        background: #C4C4C4;
@@ -22,4 +23,6 @@
      }
    }
 }
-
+.registration-notification{
+  color: beige;
+}

@@ -12,7 +12,7 @@ export class ProfileComponent implements OnInit{
   userInfo: UserInteface
   constructor(private  store: Store<AppState>) {
     this.store.subscribe(state => {
-      this.userInfo = state.auth.user[0];
+      this.userInfo = state.auth.user;
     })
   }
 

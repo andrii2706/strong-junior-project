@@ -4,6 +4,8 @@ import {Game} from "../../shared/interfaces/games.interface";
 import * as moment from "moment";
 import {Subject, takeUntil} from "rxjs";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {SnackbarComponent} from "../../shared/components/snackbar/snackbar.component";
 
 @Component({
   selector: 'app-home',
@@ -17,7 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy{
   total: number;
   dates: string = '';
   isLoading: boolean;
-  constructor(private gamesService: GamesService, private router: Router) {
+  constructor(private gamesService: GamesService, private router: Router, private snackBar : MatSnackBar) {
   }
   ngOnInit():void {
     this.getNewGames(1)
@@ -54,7 +56,12 @@ export class HomeComponent implements OnInit, OnDestroy{
     this.gamesService.getLastReleasedGames(1, this.dates).pipe(takeUntil(this.destroy$)).subscribe(games => {
       this.total = games.count;
       this.games = games.results;
-    })
+    }, error => this.snackBar.openFromComponent(SnackbarComponent, {
+      data: error.messageerror,
+      verticalPosition: "top",
+      horizontalPosition: "end",
+      duration: 3000
+    }))
   }
 
   goToAllGames(){

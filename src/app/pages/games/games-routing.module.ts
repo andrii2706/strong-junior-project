@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {GamesComponent} from "./games/games.component";
-import {GameDatailsComponent} from "./containers/game-datails/game-datails.component";
+import {GameDetailsComponent} from "./containers/game-datails/game-details.component";
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component:  GameDatailsComponent
+    component:  GameDetailsComponent
   }
 ];
 

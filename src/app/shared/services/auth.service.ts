@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 export class AuthService {
 
- private url = 'http://localhost:3000/user'
+ private url = 'http://localhost:3000/users'
 
   private loggedInStatus = JSON.parse(sessionStorage.getItem('loggedIn') || ('false'));
 
@@ -24,8 +24,8 @@ export class AuthService {
     localStorage.setItem('loggedIn', `${this.loggedInStatus}`)
   }
 
-  get LoginStatus() {
 
+  get LoginStatus() {
     return JSON.parse(localStorage.getItem('loggedIn') ||
       this.loggedInStatus.toString());
   }

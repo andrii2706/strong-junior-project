@@ -20,11 +20,11 @@ export class AuthGuard implements CanActivate {
     }else{
       this.snackbar.openFromComponent(SnackbarComponent, {
         duration: 5000,
-        data:'You are not login yet.',
+        data: {text: 'You are not login yet.', status: 'error' } ,
         verticalPosition: 'top',
         horizontalPosition: "center"
       })
-      void this.router.navigateByUrl('/login')
+      void this.router.navigateByUrl('')
       return false
     }
   }

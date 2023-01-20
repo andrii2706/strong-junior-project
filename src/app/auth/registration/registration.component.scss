@@ -1,0 +1,16 @@
+form{
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  ::ng-deep mat-form-field {
+    width: 75%;
+  }
+}
+.submit-btn{
+  width: 75%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

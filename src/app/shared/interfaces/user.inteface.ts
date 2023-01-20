@@ -1,3 +1,5 @@
+import {Game} from "./games.interface";
+
 export interface UserInteface {
   firstName?: string,
   lastName?: string,
@@ -5,4 +7,5 @@ export interface UserInteface {
   email: string,
   password: string,
   isLogged: boolean,
+  games: Game[]
 }
