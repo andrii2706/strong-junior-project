@@ -1,7 +1,7 @@
 <app-loader *ngIf="isLoading || !gameDetails" ></app-loader>
 <section *ngIf="gameDetails !== undefined" >
   <div class="back-btn">
-    <button mat-icon-button (click)="backButton()">
+    <button mat-flat-button [color]="'primary'" (click)="backButton()">
       <mat-icon>arrow_back</mat-icon>
     </button>
   </div>

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
 import {ClearObservable} from "../../classes";
+import {takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-nav-bar',
@@ -21,13 +22,19 @@ export class NavBarComponent extends ClearObservable implements OnInit {
   }
 
   ngOnInit() {
-    this.isLogin$ = this.authService.UserStatus;
+    if (this.isLogin$) {
+      this.authService.userService$.pipe(takeUntil(this.destroy$)).subscribe(userStatus => {
+        this.isLogin$ = userStatus;
+      });
+    } else {
+      this.isLogin$ = true;
+    }
   }
 
 
   logOut() {
     this.authService.setLoginStatus(false);
     void this.router.navigateByUrl("");
-    this.isLogin$ = this.authService.UserStatus;
+    this.isLogin$ = this.authService.LoginStatus;
   }
 }

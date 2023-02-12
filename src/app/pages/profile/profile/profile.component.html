@@ -1,14 +1,26 @@
 <section *ngIf="!!userInfo">
-  <div class="page-container">
+  <div>
     <div class="user-info">
       <div>
         <h2>{{userInfo.firstName}} {{userInfo.lastName}}</h2>
         <p>{{userInfo.email}}</p>
         <p>{{userInfo.phoneNumber}}</p>
       </div>
+      <div class="avatar">
+        <h2>Avatar</h2>
+        <mat-icon [color]="'primary'">account_circle</mat-icon>
+      </div>
     </div>
-    <div>
-      <h2>User List of Games</h2>
+    <div class="wishList">
+      <div *ngIf="userInfo.games">
+        <h2>User List of Games</h2>
+        <div *ngFor="let game of userInfo.games">
+          {{game.name}}
+        </div>
+      </div>
+      <div *ngIf="!userInfo.games">
+        <h2>Chose your game </h2>
+      </div>
     </div>
   </div>
 </section>

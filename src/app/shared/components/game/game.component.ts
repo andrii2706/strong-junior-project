@@ -15,7 +15,7 @@ export class GameComponent implements OnInit {
   @Input() game: Game
   storedGames: Game[] = []
   userStatus: boolean;
-
+  disabled: boolean;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService, private store: Store<AppState>) {
   }
 
@@ -35,9 +35,6 @@ export class GameComponent implements OnInit {
 
   buyAGame(game: Game) {
     this.store.dispatch(addGame({game: game}));
-    this.store.subscribe(state => {
-      console.log("user games from store:", state.auth.user.games)
-    })
   }
 
 }

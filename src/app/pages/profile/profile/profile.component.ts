@@ -2,21 +2,27 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {UserInteface} from "../../../shared/interfaces/user.inteface";
 import {AppState} from "../../../reducers";
+import {takeUntil} from "rxjs";
+import {ClearObservable} from "../../../shared/classes";
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit{
+export class ProfileComponent extends ClearObservable implements OnInit {
   userInfo: UserInteface
-  constructor(private  store: Store<AppState>) {
-    this.store.subscribe(state => {
-      this.userInfo = state.auth.user;
-    })
+  isLoading: boolean;
+
+  constructor(private store: Store<AppState>) {
+    super()
   }
 
-  ngOnInit()
-{
-}
+  ngOnInit() {
+    this.store.pipe(takeUntil(this.destroy$)).subscribe(state => {
+      this.userInfo = state.auth.user;
+      console.log("user :", this.userInfo.games);
+      this.isLoading = false;
+    })
+  }
 }
