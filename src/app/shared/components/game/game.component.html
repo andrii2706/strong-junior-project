@@ -12,7 +12,10 @@
       <p>Rating Top - {{game.rating_top}}</p>
 
       <button mat-raised-button class="goToDetails" [color]="'primary'" (click)="goToGameDetails()" >To game detail</button>
-      <button mat-raised-button [color]="'primary'" (click)="buyAGame()" ><mat-icon>add_shopping_cart</mat-icon> Buy Game </button>
+      <button mat-raised-button [disabled]="userStatus === false" [color]="'primary'" (click)="buyAGame(game)">
+        <mat-icon>add_shopping_cart</mat-icon>
+        Buy Game
+      </button>
     </div>
   </mat-card-content>
 </mat-card>

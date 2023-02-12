@@ -1,20 +1,20 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GamesService} from "../../../shared/services/games.service";
 import {Developer, FilterParams, Genre} from "../../../shared/interfaces/filter.interface";
 import {Game} from "../../../shared/interfaces/games.interface";
-import {Subject, takeUntil, tap} from "rxjs";
+import {finalize, takeUntil, tap} from "rxjs";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../reducers";
 import {SnackbarComponent} from "../../../shared/components/snackbar/snackbar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {ClearObservable} from "../../../shared/classes";
 
 @Component({
   selector: 'app-games',
   templateUrl: './games.component.html',
   styleUrls: ['./games.component.scss']
 })
-export class GamesComponent implements OnInit, OnDestroy{
-  destroy$ = new Subject();
+export class GamesComponent extends ClearObservable implements OnInit {
   page: number;
   totalGames: number;
   showFormStatus: boolean;
@@ -23,25 +23,33 @@ export class GamesComponent implements OnInit, OnDestroy{
   public genres: Genre[];
   public developers: Developer[]
   public filter: FilterParams;
+  public isLoading: boolean;
 
   constructor(private gamesService: GamesService, private store: Store<AppState>, private snackbar: MatSnackBar) {
+    super()
   }
   ngOnInit():void {
     this.allGames(1)
   }
 
   allGames(page: number){
+    this.isLoading = true;
     this.gamesService.getAllGames(page)
-      .pipe(tap( games => {
+      .pipe(tap(games => {
         this.totalGames = games.count;
         this.games = games.results
-      }), takeUntil(this.destroy$)).subscribe(
-      ()=>{},error => this.snackbar.openFromComponent(SnackbarComponent, {
-        duration: 4000,
-        data: { text: error.messageerror, status: 'error'},
-        verticalPosition:"top",
-        horizontalPosition: 'end'
-      })
+      }), takeUntil(this.destroy$), finalize(() => this.isLoading = false)).subscribe(
+      () => {
+        this.isLoading = false
+      }, error => {
+        this.isLoading = false
+        this.snackbar.openFromComponent(SnackbarComponent, {
+          duration: 4000,
+          data: {text: error.messageerror, status: 'error'},
+          verticalPosition: "top",
+          horizontalPosition: 'end'
+        })
+      }
     );
   }
   getFilterQuery(e:FilterParams) {
@@ -58,14 +66,18 @@ export class GamesComponent implements OnInit, OnDestroy{
      return this.filteredGames(1, this.filterParams)
     }
   }
-  filteredGames(page:number, filter: FilterParams){
-    this.gamesService.filterGames(page, filter).pipe(takeUntil(this.destroy$)).subscribe(
+  filteredGames(page:number, filter: FilterParams) {
+    this.isLoading = true;
+    this.gamesService.filterGames(page, filter).pipe(takeUntil(this.destroy$), finalize(() => {
+      this.isLoading = false;
+    })).subscribe(
       games => {
         this.totalGames = games.count
         this.games = games.results
+        this.isLoading = false;
       }
     )
-}
+  }
   navigateTo(PageNumber: number){
     this.page = PageNumber;
     if(this.filterParams){
@@ -79,7 +91,4 @@ export class GamesComponent implements OnInit, OnDestroy{
     this.showFormStatus = !this.showFormStatus;
   }
 
-  ngOnDestroy(){
-    this.destroy$.complete();
-  }
 }

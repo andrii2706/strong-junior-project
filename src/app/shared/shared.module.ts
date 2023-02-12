@@ -7,6 +7,7 @@ import {RouterModule} from "@angular/router";
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import {GameComponent} from "./components/game/game.component";
+import {ClearObservable} from './classes';
 
 
 
@@ -15,7 +16,8 @@ import {GameComponent} from "./components/game/game.component";
     GameComponent,
     NavBarComponent,
     SnackbarComponent,
-    LoaderComponent
+    LoaderComponent,
+    ClearObservable
   ],
   imports: [
     CommonModule,

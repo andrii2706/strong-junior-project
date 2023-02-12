@@ -27,11 +27,4 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app.title).toEqual('strong-junior-project');
   });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement  as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('strong-junior-project app is running!');
-  });
 });

@@ -28,21 +28,23 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Emal</mat-label>
-      <input formControlName="email" type="email" matInput  autocomplete="false"
+      <mat-label>Email</mat-label>
+      <input formControlName="email" type="email" matInput autocomplete="false"
              placeholder="Ex. pat@example.com">
       <mat-error *ngIf="!registrationForm.hasError('required')">
         Please enter a valid email
       </mat-error>
     </mat-form-field>
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input formControlName="password" type="password" matInput  autocomplete="false"
-             >
-      <mat-error *ngIf="!registrationForm.hasError('required')">
-        Please enter a valid password
-      </mat-error>
-    </mat-form-field>
+    <app-show-and-hide-password>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input formControlName="password" type="password" matInput autocomplete="false"
+        >
+        <mat-error *ngIf="!registrationForm.hasError('required')">
+          Please enter a valid password
+        </mat-error>
+      </mat-form-field>
+    </app-show-and-hide-password>
   </form>
   <div class="submit-btn">
     <button mat-raised-button [color]="'primary'" [disabled]="registrationForm.invalid" (click)="submitForm()">Register</button>

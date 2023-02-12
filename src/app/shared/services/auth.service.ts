@@ -30,14 +30,18 @@ export class AuthService {
       this.loggedInStatus.toString());
   }
 
-  setUser(userInfo: UserInteface): Observable<UserInteface[]>{
+  get UserStatus() {
+    return JSON.parse(localStorage.getItem('loggedIn') || "false")
+  }
+
+  setUser(userInfo: UserInteface): Observable<UserInteface[]> {
     this.changeLoginStatus(true);
     const params = (userCreds: UserInteface) => new HttpParams({
-      fromObject: {
-        email: userCreds.email,
-        password:  userCreds.password
+        fromObject: {
+          email: userCreds.email,
+          password: userCreds.password
+        }
       }
-    }
     )
     return this.httpClient.get<UserInteface[]>(this.url, {
      params: params(userInfo),

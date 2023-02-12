@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SnackbarComponent } from './snackbar.component';
 import {NO_ERRORS_SCHEMA} from "@angular/core";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 describe('SnackbarComponent', () => {
   let component: SnackbarComponent;
@@ -9,9 +10,9 @@ describe('SnackbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SnackbarComponent ],
+      declarations: [SnackbarComponent],
+      imports: [MatSnackBarModule],
       schemas: [NO_ERRORS_SCHEMA]
-
     })
     .compileComponents();
 

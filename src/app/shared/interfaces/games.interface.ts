@@ -1,7 +1,7 @@
 export interface Games {
   count: number,
-  next: string,
-  previous: string,
+  next: string | null,
+  previous: string | null,
   results: Game[],
   seo_title: string,
   seo_h1: string,
@@ -13,8 +13,8 @@ interface Platforms {
     name: string,
     slug: string,
     image: string | null,
-    year_end:number | null,
-    year_start: number,
+    year_end: number | null,
+    year_start: number | null,
     games_count: number,
     image_background: string
   },
@@ -32,7 +32,7 @@ export interface Game {
   rating: number,
   rating_top: number,
   metacritic: number,
-  platforms?: Platforms[]
+  platforms: Platforms[]
 }
 export interface GameDetails {
   id: number,

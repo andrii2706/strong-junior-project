@@ -4,7 +4,6 @@ import {GameDetails, Games } from "../interfaces/games.interface";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {FilterParams} from "../interfaces/filter.interface";
 
-
 @Injectable({
   providedIn: 'root'
 })

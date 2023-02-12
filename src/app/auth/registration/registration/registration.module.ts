@@ -5,6 +5,7 @@ import { RegistrationRoutingModule } from './registration-routing.module';
 import {RegistrationComponent} from "../registration.component";
 import {AppMaterialModule} from "../../../app-material/app-material.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {LoginModule} from "../../login/login.module";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     AppMaterialModule,
     RegistrationRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoginModule
   ]
 })
 export class RegistrationModule { }

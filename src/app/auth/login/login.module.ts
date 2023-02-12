@@ -4,15 +4,20 @@ import { LoginComponent } from './login/login.component';
 import {AppMaterialModule} from "../../app-material/app-material.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {LoginRoutingModule} from "./login-routing.module";
+import {
+  ShowAndHidePasswordComponent
+} from "../../shared/components/show-and-hide-password/show-and-hide-password.component";
 
 
 
 @NgModule({
     declarations: [
-        LoginComponent,
+      LoginComponent,
+      ShowAndHidePasswordComponent,
     ],
   exports: [
     LoginComponent,
+    ShowAndHidePasswordComponent,
   ],
   imports: [
     CommonModule,

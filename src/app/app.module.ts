@@ -10,7 +10,6 @@ import {LoginModule} from "./auth/login/login.module";
 import {HttpClientModule} from "@angular/common/http";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {SharedModule} from "./shared/shared.module";
-import * as fromState from './reducers';
 import {GamesModule} from "./pages/games/games.module";
 import {NgxPaginationModule} from "ngx-pagination";
 import {authReducer} from "./auth/login/login/reducer";

@@ -7,9 +7,10 @@
       Menu
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item  routerLink="home">Home page</a>
-      <a mat-list-item  routerLink="games">Games</a>
-      <a mat-list-item  target="_blank" href="https://github.com/andrii2706">Creator</a>
+      <a mat-list-item routerLink="home">Home page</a>
+      <a mat-list-item routerLink="games">Games</a>
+      <a mat-list-item (click)="logOut()">Log out</a>
+      <a mat-list-item target="_blank" href="https://github.com/andrii2706">Creator</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -20,7 +21,7 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isOpen === false">
+        >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
         <span>{{title}}</span>
