@@ -2,8 +2,8 @@
   <div>
     <div class="profile-navigation">
       <button mat-raised-button [color]="'primary'" (click)="logOut()">Log Out</button>
-      <button mat-raised-button routerLink="home">Home</button>
-      <button mat-raised-button routerLink="games">Games</button>
+      <button mat-raised-button (click)="redirectToHome()">Home</button>
+      <button mat-raised-button (click)="redirectToGames()">Games</button>
     </div>
 
     <div class="user-info">
@@ -14,18 +14,19 @@
       </div>
       <div class="avatar">
         <img *ngIf="userInfo.avatar" [src]="userInfo.avatar" alt="avatar">
-        <mat-icon *ngIf="!userInfo.avatar" [color]="'primary'">account_circle</mat-icon>
+        <img *ngIf="!userInfo.avatar" class="default-avatar" [src]="userInfo.avatar | replaceNullImg" alt="avatar">
       </div>
     </div>
     <div class="wishList">
       <div *ngIf="userInfo.games">
         <h2>User List of Games</h2>
         <div *ngFor="let game of userInfo.games">
-          {{game.name}}
+          <app-game-wishlist [gameInfo]="game"></app-game-wishlist>
         </div>
       </div>
-      <div *ngIf="!userInfo.games">
+      <div *ngIf="userInfo.games.length < 0">
         <h2>Chose your game </h2>
+        <button mat-raised-button [color]="'primary'" (click)="redirectToGames()">Games</button>
       </div>
     </div>
   </div>

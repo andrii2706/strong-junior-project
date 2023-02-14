@@ -16,6 +16,5 @@ export class SnackbarComponent implements OnInit {
   ngOnInit(): void {
     this.matSnackBarRef._open()
     this.dataSnackbar = this.data.text
-    console.log(this.data.status);
   }
 }

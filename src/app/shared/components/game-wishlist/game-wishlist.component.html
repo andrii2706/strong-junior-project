@@ -1,0 +1,15 @@
+<section>
+  <div class="game-wishListCard">
+    <div>
+      <img class="img-card" src="{{gameInfo.background_image}}" alt="">
+    </div>
+    <div>
+      <h2>{{gameInfo.name | replaceNull}}</h2>
+      <p>Original Name: {{gameInfo.name_original | replaceNull}}</p>
+      <p>Metacritic: {{gameInfo.metacritic | replaceNull}}</p>
+      <p>Rating: {{gameInfo.rating | replaceNull}}</p>
+      <p>Release data: {{gameInfo.released | date}}</p>
+      <p>Description: {{gameInfo.description | replaceNull}}</p>
+    </div>
+  </div>
+</section>

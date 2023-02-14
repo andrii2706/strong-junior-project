@@ -5,6 +5,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import {ProfileComponent} from './profile/profile.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {SharedModule} from "../../shared/shared.module";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {MatButtonModule} from "@angular/material/button";
     CommonModule,
     ProfileRoutingModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    SharedModule
   ]
 })
 export class ProfileModule { }

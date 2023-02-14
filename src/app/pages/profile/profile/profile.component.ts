@@ -23,9 +23,17 @@ export class ProfileComponent extends ClearObservable implements OnInit {
   ngOnInit() {
     this.store.pipe(takeUntil(this.destroy$)).subscribe(state => {
       this.userInfo = state.auth.user;
-      console.log("user :", this.userInfo.games);
       this.isLoading = false;
     })
+  }
+
+  redirectToHome() {
+    void this.router.navigateByUrl("home")
+
+  }
+
+  redirectToGames() {
+    void this.router.navigateByUrl("games")
   }
 
   logOut() {
