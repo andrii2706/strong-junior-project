@@ -7,6 +7,7 @@ section {
   display: flex;
   background: #C4C4C4;
   color: #1D1D1E;
+  margin-top: 20px;
   padding: 20px;
   justify-content: space-between;
   align-items: center;
@@ -22,6 +23,16 @@ section {
     justify-content: center;
     align-items: flex-end;
     flex-direction: column;
+
+    > img {
+      width: 40rem;
+      border-radius: 10px;
+    }
+
+    > mat-icon {
+      width: 60px;
+      height: 60px;
+    }
   }
 }
 
@@ -39,4 +50,15 @@ section {
   h2 {
     color: blueviolet;
   }
+}
+
+.profile-navigation {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  > button {
+    margin-right: 10px;
+  }
+
 }

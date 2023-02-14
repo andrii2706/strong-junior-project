@@ -9,7 +9,8 @@
     <mat-nav-list>
       <a mat-list-item routerLink="home">Home page</a>
       <a mat-list-item routerLink="games">Games</a>
-      <a mat-list-item *ngIf="isLogin$" (click)="logOut()">Log out</a>
+      <a mat-list-item *ngIf="isLogin$ === false" routerLink="">Login</a>
+      <a mat-list-item *ngIf="isLogin$ === true" (click)="logOut()">Log Out</a>
       <a mat-list-item target="_blank" href="https://github.com/andrii2706">Creator</a>
     </mat-nav-list>
   </mat-sidenav>

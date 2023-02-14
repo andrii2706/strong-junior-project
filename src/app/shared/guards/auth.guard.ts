@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
         duration: 5000,
         data: {text: 'You are not login yet.', status: 'error' } ,
         verticalPosition: 'top',
-        horizontalPosition: "center"
+        horizontalPosition: "end"
       })
       void this.router.navigateByUrl('')
       return false

@@ -7,5 +7,6 @@ export interface UserInteface {
   email: string,
   password: string,
   isLogged: boolean,
+  avatar: string,
   games: Game[]
 }

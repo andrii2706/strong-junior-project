@@ -1,15 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {AuthService} from "../../services/auth.service";
+import {Component, DoCheck} from '@angular/core';
 import {ClearObservable} from "../../classes";
-import {takeUntil} from "rxjs";
+import {AuthService} from "../../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent extends ClearObservable implements OnInit {
+export class NavBarComponent extends ClearObservable implements DoCheck {
 
   isOpen: boolean
 
@@ -17,24 +16,17 @@ export class NavBarComponent extends ClearObservable implements OnInit {
 
   isLogin$: boolean;
 
-  constructor(private router: Router, private authService: AuthService) {
-    super()
+  constructor(private authService: AuthService, private router: Router) {
+    super();
   }
 
-  ngOnInit() {
-    if (this.isLogin$) {
-      this.authService.userService$.pipe(takeUntil(this.destroy$)).subscribe(userStatus => {
-        this.isLogin$ = userStatus;
-      });
-    } else {
-      this.isLogin$ = true;
-    }
+  ngDoCheck() {
+    this.isLogin$ = this.authService.LoginStatus;
   }
-
 
   logOut() {
+    this.isLogin$ = false;
     this.authService.setLoginStatus(false);
     void this.router.navigateByUrl("");
-    this.isLogin$ = this.authService.LoginStatus;
   }
 }

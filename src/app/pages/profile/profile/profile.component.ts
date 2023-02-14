@@ -4,6 +4,8 @@ import {UserInteface} from "../../../shared/interfaces/user.inteface";
 import {AppState} from "../../../reducers";
 import {takeUntil} from "rxjs";
 import {ClearObservable} from "../../../shared/classes";
+import {AuthService} from "../../../shared/services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +16,7 @@ export class ProfileComponent extends ClearObservable implements OnInit {
   userInfo: UserInteface
   isLoading: boolean;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private authService: AuthService, private router: Router) {
     super()
   }
 
@@ -24,5 +26,10 @@ export class ProfileComponent extends ClearObservable implements OnInit {
       console.log("user :", this.userInfo.games);
       this.isLoading = false;
     })
+  }
+
+  logOut() {
+    this.authService.setLoginStatus(false);
+    void this.router.navigateByUrl("")
   }
 }

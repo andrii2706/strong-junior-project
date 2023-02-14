@@ -28,7 +28,7 @@ export class AuthService {
   }
 
 
-  get LoginStatus() {
+  get LoginStatus(): boolean {
     return JSON.parse(localStorage.getItem('loggedIn') ||
       this.loggedInStatus.toString());
   }
@@ -47,7 +47,7 @@ export class AuthService {
       }
     )
     return this.httpClient.get<UserInteface[]>(this.url, {
-     params: params(userInfo),
-   })
+      params: params(userInfo),
+    });
   }
 }

@@ -31,14 +31,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.minLength(8)] ),
     })
   }
-  errorSnackbar():void {
-    this.snackBar.openFromComponent(SnackbarComponent, {
-      duration: 1000,
-      data: {text: 'Check Your Credentials', status: 'error'} ,
-      verticalPosition: "bottom",
-      horizontalPosition: "end"
-    })
-  }
+
   login(){
   const loginCredentials = Object.assign( {isLogged: true} , this.loginForm.value)
     this.authService.setUser(loginCredentials).pipe(take(1),
@@ -51,11 +44,15 @@ export class LoginComponent implements OnInit {
         this.snackBar.openFromComponent(SnackbarComponent, {
           data: {text: 'Welcome to Games Store', status: 'success'},
           verticalPosition: 'top',
-          horizontalPosition: 'end',
+          horizontalPosition: 'center',
           duration: 3000
         })
       }else {
-        this.errorSnackbar();
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          data: {text: 'Check Your Credentials', status: 'error'},
+          verticalPosition: "top",
+          horizontalPosition: "center"
+        })
       }
       }) ,take(1)).subscribe(noop,
       void this.router.navigateByUrl('/home')

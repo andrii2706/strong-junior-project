@@ -1,5 +1,11 @@
 <section *ngIf="!!userInfo">
   <div>
+    <div class="profile-navigation">
+      <button mat-raised-button [color]="'primary'" (click)="logOut()">Log Out</button>
+      <button mat-raised-button routerLink="home">Home</button>
+      <button mat-raised-button routerLink="games">Games</button>
+    </div>
+
     <div class="user-info">
       <div>
         <h2>{{userInfo.firstName}} {{userInfo.lastName}}</h2>
@@ -7,8 +13,8 @@
         <p>{{userInfo.phoneNumber}}</p>
       </div>
       <div class="avatar">
-        <h2>Avatar</h2>
-        <mat-icon [color]="'primary'">account_circle</mat-icon>
+        <img *ngIf="userInfo.avatar" [src]="userInfo.avatar" alt="avatar">
+        <mat-icon *ngIf="!userInfo.avatar" [color]="'primary'">account_circle</mat-icon>
       </div>
     </div>
     <div class="wishList">

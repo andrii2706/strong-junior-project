@@ -37,4 +37,13 @@ export class GameComponent implements OnInit {
     this.store.dispatch(addGame({game: game}));
   }
 
+//Нехай смакує Emily
+//   Emily(замовлення){
+//     const нове_замовлення = замовлення;
+//     if(нове_замовлення  === замовлення.впроцесі){
+//       return Нехай смакує Emily
+//     }else {
+//       return Замов ще
+//     }
+//   }
 }
