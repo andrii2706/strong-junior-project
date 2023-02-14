@@ -11,6 +11,7 @@ import {ClearObservable} from './classes';
 import {GameWishlistComponent} from './components/game-wishlist/game-wishlist.component';
 import {ReplaceNullPipe} from './pipes/replace-null.pipe';
 import {ReplaceNullImgPipe} from './pipes/replace-null-img.pipe';
+import {ConfirmationModalComponent} from './components/confirmation-modal/confirmation-modal.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {ReplaceNullImgPipe} from './pipes/replace-null-img.pipe';
     ClearObservable,
     GameWishlistComponent,
     ReplaceNullPipe,
-    ReplaceNullImgPipe
+    ReplaceNullImgPipe,
+    ConfirmationModalComponent
   ],
   imports: [
     CommonModule,

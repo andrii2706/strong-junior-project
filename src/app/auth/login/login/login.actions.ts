@@ -4,9 +4,13 @@ import {Game} from "../../../shared/interfaces/games.interface";
 
 export const login = createAction(
   '[Login page action] User Login',
-  props<{user: UserInteface}>()
+  props<{ user: UserInteface }>()
 )
- export const addGame = createAction(
-   '[Add games action] Add games to card',
-   props<{game: Game}>()
+export const addGame = createAction(
+  '[Add games action] Add games to card',
+  props<{ game: Game }>()
+)
+export const removeGame = createAction(
+  "Remove game",
+  props<{ game: Game }>()
 )

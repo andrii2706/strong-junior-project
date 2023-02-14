@@ -10,6 +10,8 @@
       <p>Rating: {{gameInfo.rating | replaceNull}}</p>
       <p>Release data: {{gameInfo.released | date}}</p>
       <p>Description: {{gameInfo.description | replaceNull}}</p>
+      <button mat-raised-button [color]="'primary'" (click)="goToGame(gameInfo.id)">See game details</button>
+      <button mat-raised-button [color]="'primary'" (click)="removeGames(gameInfo)">Delete Game from list</button>
     </div>
   </div>
 </section>
