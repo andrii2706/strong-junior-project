@@ -30,7 +30,7 @@
     padding-top: 40px;
 
     h2 {
-      color: white;
+      color: #1D1D1E;
       font-family: "Smooch Sans", sans-serif !important;
       font-size: 35px;
     }
@@ -55,7 +55,7 @@
       transition: 800ms;
 
       &:hover {
-        color: black;
+        color: #333333;
         border: 1px solid white;
         background: white;
       }
@@ -72,18 +72,18 @@
 
   a {
     font-size: 25px;
-    color: white;
+    color: #1D1D1E;
     text-decoration: none;
 
     &:hover {
-      color: #C4C4C4;
+      color: #333333;
     }
   }
 
   .metacritic-position {
     font-size: 24px;
     font-weight: 400;
-    color: white;
+    color: #1D1D1E;
     background: #1D1D1E;
     border: 1px solid #1D1D1E;
     border-radius: 50%;
@@ -117,7 +117,7 @@
     }
 
     h1 {
-      color: white;
+      color: #1D1D1E;
       padding-bottom: 5px;
       font-family: "Smooch Sans", sans-serif !important;
       font-size: 30px;
@@ -129,7 +129,7 @@
     }
 
     .game-rating {
-      color: white;
+      color: #1D1D1E;
       font-size: 20px;
       margin: 25px;
     }
@@ -154,7 +154,7 @@
 }
 
 .games-description {
-  color: white;
+  color: #1D1D1E;
   font-size: 15px;
   letter-spacing: 1px;
   max-width: 1200px;
@@ -180,8 +180,8 @@
     flex-direction: column;
     padding-top: 30px;
     a {
-      &:hover{
-        color: #1D1D1E;
+      &:hover {
+        color: #333333;
       }
     }
     img {
@@ -207,6 +207,10 @@
   .tabs {
     ::ng-deep .mat-ink-bar {
       background: #1D1D1E !important;
+    }
+
+    ::ng-deep .tab-header {
+      color: #1D1D1E !important;
     }
 
     .tab-header {
