@@ -1,7 +1,13 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {FilterParams} from "../../../../shared/interfaces/filter.interface";
-import {developersFilter, genresFilter, orderByInfos, platformsFilter} from "../../constants/filter.constant";
+import {
+  developersFilter,
+  genresFilter,
+  metacriticNumbers,
+  orderByInfos,
+  platformsFilter
+} from "../../constants/filter.constant";
 import * as moment from "moment";
 
 @Component({
@@ -9,25 +15,28 @@ import * as moment from "moment";
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })
-export class FilterComponent  implements OnInit{
+export class FilterComponent implements OnInit {
   filterForm: FormGroup;
   dates: string = ''
-  genres: {genreName:string, slug: string}[] = genresFilter;
-  developers: {developersName: string, slug: string}[] =  developersFilter;
-  platforms: {platformsName: string, slug: string}[] = platformsFilter;
-  orderByInfos: {name: string, slug: string}[] = orderByInfos
+  genres: { genreName: string, slug: string }[] = genresFilter;
+  developers: { developersName: string, slug: string }[] = developersFilter;
+  platforms: { platformsName: string, slug: string }[] = platformsFilter;
+  orderByInfos: { name: string, slug: string }[] = orderByInfos;
+  metacritics: { name: string, slug: string }[] = metacriticNumbers;
   @Output()
   filter = new EventEmitter<FilterParams>()
+
   constructor() {
   }
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.filterForm = new FormGroup({
       search: new FormControl(''),
       genres: new FormControl(''),
       platforms: new FormControl(''),
       developers: new FormControl(''),
       ordering: new FormControl(''),
+      metacritic: new FormControl(''),
       dates: new FormControl('')
     })
   }
@@ -52,6 +61,7 @@ export class FilterComponent  implements OnInit{
         platforms: '',
         developers: '',
         ordering: '',
+        metacritic: '',
         dates: ''
       })
   }

@@ -23,12 +23,19 @@
     <mat-form-field>
       <mat-label>Order By:</mat-label>
       <mat-select formControlName="ordering" placeholder="Platforms" [value]="''">
-        <mat-option [value]="orderByInfo.slug" *ngFor="let orderByInfo of orderByInfos">{{orderByInfo.name}}</mat-option>
+        <mat-option [value]="orderByInfo.slug"
+                    *ngFor="let orderByInfo of orderByInfos">{{orderByInfo.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Metacritic:</mat-label>
+      <mat-select formControlName="metacritic" placeholder="Metacritic" [value]="''">
+        <mat-option [value]="metacritic.slug" *ngFor="let metacritic of metacritics">{{metacritic.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Search</mat-label>
-      <input formControlName="search" type="text" matInput  autocomplete="false">
+      <input formControlName="search" type="text" matInput autocomplete="false">
     </mat-form-field>
     <button mat-button mat-flat-button [color]="'primary'" (click)="lastGames()">Last released games</button>
   </form>

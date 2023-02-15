@@ -9,11 +9,13 @@ import {FilterParams} from "../interfaces/filter.interface";
 })
 export class GamesService {
   url = 'https://api.rawg.io/api'
-  games ='/games'
-  key = '75680a18d0894f90a57b6e2070349042'
-  constructor(private httpClient: HttpClient) { }
+  games = '/games'
+  key = '85d9905e7cd7443c8983e54b4733abf5'
 
-  getLastReleasedGames(page: number, dates:string): Observable<Games>{
+  constructor(private httpClient: HttpClient) {
+  }
+
+  getLastReleasedGames(page: number, dates: string): Observable<Games> {
     const query = (dates: string) => new HttpParams({
       fromObject: {
         key: this.key,

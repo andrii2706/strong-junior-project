@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {GamesService} from "../../../shared/services/games.service";
 import {Developer, FilterParams, Genre} from "../../../shared/interfaces/filter.interface";
 import {Game} from "../../../shared/interfaces/games.interface";
-import {finalize, takeUntil, tap} from "rxjs";
+import {finalize, takeUntil} from "rxjs";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../reducers";
 import {SnackbarComponent} from "../../../shared/components/snackbar/snackbar.component";
@@ -23,7 +23,7 @@ export class GamesComponent extends ClearObservable implements OnInit {
   public genres: Genre[];
   public developers: Developer[]
   public filter: FilterParams;
-  public isLoading: boolean;
+  isLoading: boolean;
 
   constructor(private gamesService: GamesService, private store: Store<AppState>, private snackbar: MatSnackBar) {
     super()
@@ -35,11 +35,10 @@ export class GamesComponent extends ClearObservable implements OnInit {
   allGames(page: number){
     this.isLoading = true;
     this.gamesService.getAllGames(page)
-      .pipe(tap(games => {
+      .pipe(takeUntil(this.destroy$), finalize(() => this.isLoading = false)).subscribe(
+      (games) => {
         this.totalGames = games.count;
         this.games = games.results
-      }), takeUntil(this.destroy$), finalize(() => this.isLoading = false)).subscribe(
-      () => {
         this.isLoading = false
       }, error => {
         this.isLoading = false
@@ -59,7 +58,8 @@ export class GamesComponent extends ClearObservable implements OnInit {
       this.filterParams.platforms === '' &&
       this.filterParams.developers === '' &&
       this.filterParams.ordering === '' &&
-      this.filterParams.dates === ''
+      this.filterParams.dates === '' &&
+      this.filterParams.metacritic === ''
     ){
      return this.allGames(1)
     } else{

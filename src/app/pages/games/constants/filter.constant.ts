@@ -50,10 +50,23 @@ export const developersFilter = [
   {developersName: 'Capcom U.S.A', slug: 'capcom-usa-inc'},
   {developersName: 'NVIDIA Lightspeed Studios', slug: 'nvidia-lightspeed-studios'},
 ]
-export const orderByInfos = [
-  {name: 'Date added', slug: '-created'},
-  {name: 'Popularity', slug:'-added'},
-  {name: 'Released date', slug:'-released'},
-  {name: 'Name', slug:'name'},
-  {name: 'Average rating', slug:'-rating'},
-]
+ export const orderByInfos = [
+   {name: 'Date added', slug: '-created'},
+   {name: 'Popularity', slug: '-added'},
+   {name: 'Released date', slug: '-released'},
+   {name: 'Name', slug: 'name'},
+   {name: 'Average rating', slug: '-rating'},
+ ]
+
+ export const metacriticNumbers = [
+   {name: 'from 0 to 10', slug: '0,10'},
+   {name: 'from 10 to 20', slug: '10,20'},
+   {name: 'from 20 to 30', slug: '20,30'},
+   {name: 'from 30 to 40', slug: '30,40'},
+   {name: 'from 40 to 50', slug: '40,50'},
+   {name: 'from 50 to 60', slug: '50,60'},
+   {name: 'from 60 to 70', slug: '60,70'},
+   {name: 'from 70 to 80', slug: '70,80'},
+   {name: 'from 80 to 90', slug: '80,90'},
+   {name: 'from 90 to 100', slug: '90,100'},
+ ]
