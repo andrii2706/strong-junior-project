@@ -33,7 +33,8 @@ import { EffectsModule } from '@ngrx/effects';
     StoreModule.forFeature("auth", authReducer),
     GamesModule,
     NgxPaginationModule,
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([])
   ],
   providers: [],
   bootstrap: [AppComponent]
