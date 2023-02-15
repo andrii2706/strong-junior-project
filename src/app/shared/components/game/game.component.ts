@@ -5,6 +5,7 @@ import {addGame} from "../../../auth/login/login/login.actions";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../reducers";
 import {AuthService} from "../../services/auth.service";
+import {map, Observable} from "rxjs";
 
 @Component({
   selector: 'app-game',
@@ -12,10 +13,18 @@ import {AuthService} from "../../services/auth.service";
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
-  @Input() game: Game
+  game: Game
+
+  @Input() set gameInfo(_game: Game) {
+    if (_game) {
+      this.game = _game
+    }
+  }
+
   storedGames: Game[] = []
   userStatus: boolean;
-  disabled: boolean;
+  buttonStatus$: Observable<boolean>;
+
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService, private store: Store<AppState>) {
   }
 
@@ -24,7 +33,7 @@ export class GameComponent implements OnInit {
   }
 
   getUserStatus() {
-    this.userStatus = this.authService.LoginStatus
+    this.userStatus = this.authService.LoginStatus;
   }
 
   goToGameDetails() {
@@ -34,7 +43,9 @@ export class GameComponent implements OnInit {
   }
 
   buyAGame(game: Game) {
-    this.store.dispatch(addGame({game: game}));
+    const selectedGame = Object.assign({isBought: true}, game)
+    this.store.dispatch(addGame({game: selectedGame}));
+    this.buttonStatus$ = this.store.pipe(map(state => state.auth.user.games.some(game => game.isBought === true)));
   }
 
 }

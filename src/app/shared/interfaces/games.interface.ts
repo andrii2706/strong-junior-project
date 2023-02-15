@@ -24,6 +24,7 @@ export interface Game {
   id: number,
   slug: string,
   name: string,
+  isBought?: boolean
   name_original: string
   description: string
   released: string,

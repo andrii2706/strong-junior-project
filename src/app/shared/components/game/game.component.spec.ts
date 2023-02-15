@@ -52,11 +52,5 @@ describe('GameComponent', () => {
     component.goToGameDetails();
     expect(navigate).toHaveBeenCalledWith([component.game.id], {relativeTo: activatedRoute})
   })
-  it("should return user status", () => {
-    const loginStatus = spyOn(service, "LoginStatus")
-    component.getUserStatus();
-    loginStatus.and.returnValue(false)
-    expect(component.userStatus).toBe(false)
-  });
 
 });

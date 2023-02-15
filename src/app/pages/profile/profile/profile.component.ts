@@ -6,6 +6,7 @@ import {takeUntil} from "rxjs";
 import {ClearObservable} from "../../../shared/classes";
 import {AuthService} from "../../../shared/services/auth.service";
 import {Router} from "@angular/router";
+import {login} from "../../../auth/login/login/login.actions";
 
 @Component({
   selector: 'app-profile',
@@ -27,9 +28,15 @@ export class ProfileComponent extends ClearObservable implements OnInit {
     })
   }
 
+  getDataFromLocal() {
+    if (this.userInfo) {
+      const userData = this.authService.getUserInfoFromSessionStorage()
+      this.store.dispatch(login({user: userData}));
+    }
+  }
+
   redirectToHome() {
     void this.router.navigateByUrl("home")
-
   }
 
   redirectToGames() {
