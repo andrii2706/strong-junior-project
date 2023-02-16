@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {UserInteface} from "../../../shared/interfaces/user.inteface";
 import {AppState} from "../../../reducers";
-import {takeUntil} from "rxjs";
+import {map, Observable, takeUntil} from "rxjs";
 import {ClearObservable} from "../../../shared/classes";
 import {AuthService} from "../../../shared/services/auth.service";
 import {Router} from "@angular/router";
-import {login} from "../../../auth/login/login/login.actions";
+import {login, logout} from "../../../auth/login/login/login.actions";
 
 @Component({
   selector: 'app-profile',
@@ -15,10 +15,12 @@ import {login} from "../../../auth/login/login/login.actions";
 })
 export class ProfileComponent extends ClearObservable implements OnInit {
   userInfo: UserInteface
+  isStorageEmpty$: Observable<boolean>;
   isLoading: boolean;
 
   constructor(private store: Store<AppState>, private authService: AuthService, private router: Router) {
-    super()
+    super();
+
   }
 
   ngOnInit() {
@@ -28,12 +30,6 @@ export class ProfileComponent extends ClearObservable implements OnInit {
     })
   }
 
-  getDataFromLocal() {
-    if (this.userInfo) {
-      const userData = this.authService.getUserInfoFromSessionStorage()
-      this.store.dispatch(login({user: userData}));
-    }
-  }
 
   redirectToHome() {
     void this.router.navigateByUrl("home")
@@ -45,6 +41,7 @@ export class ProfileComponent extends ClearObservable implements OnInit {
 
   logOut() {
     this.authService.setLoginStatus(false);
+    this.store.dispatch(logout({user: null}))
     void this.router.navigateByUrl("")
   }
 }

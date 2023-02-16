@@ -18,13 +18,13 @@
       </div>
     </div>
     <div class="wishList">
-      <div *ngIf="userInfo.games">
+      <div *ngIf="userInfo.games.length > 0">
         <h2>User List of Games</h2>
         <div *ngFor="let game of userInfo.games">
           <app-game-wishlist [gameInfo]="game"></app-game-wishlist>
         </div>
       </div>
-      <div *ngIf="userInfo.games.length < 0">
+      <div *ngIf="userInfo.games.length === 0">
         <h2>Chose your game </h2>
         <button mat-raised-button [color]="'primary'" (click)="redirectToGames()">Games</button>
       </div>

@@ -13,7 +13,8 @@ import {SharedModule} from "./shared/shared.module";
 import {GamesModule} from "./pages/games/games.module";
 import {NgxPaginationModule} from "ngx-pagination";
 import {authReducer} from "./auth/login/login/reducer";
-import { EffectsModule } from '@ngrx/effects';
+import {EffectsModule} from '@ngrx/effects';
+import {UserEffects} from "./auth/login/login/user.effects";
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { EffectsModule } from '@ngrx/effects';
     GamesModule,
     NgxPaginationModule,
     EffectsModule.forRoot([]),
-    EffectsModule.forFeature([])
+    EffectsModule.forFeature([UserEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

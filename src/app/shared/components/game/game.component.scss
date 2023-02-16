@@ -11,6 +11,13 @@
   }
   ::ng-deep .mat-mdc-card-header{
     justify-content: flex-end;
+
+    > div > mat-card-title {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 330px;
+      white-space: nowrap;
+    }
   }
   ::ng-deep .mat-mdc-card-subtitle{
     display: flex;

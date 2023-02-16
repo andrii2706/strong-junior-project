@@ -6,30 +6,38 @@ import {Store} from "@ngrx/store";
 import {AppState} from "../../../reducers";
 import {AuthService} from "../../services/auth.service";
 import {map, Observable} from "rxjs";
+import {ClearObservable} from "../../classes";
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
-export class GameComponent implements OnInit {
-  game: Game
-
+export class GameComponent extends ClearObservable implements OnInit {
   @Input() set gameInfo(_game: Game) {
     if (_game) {
       this.game = _game
     }
   }
 
+  game: Game
   storedGames: Game[] = []
+  showLabel: boolean;
   userStatus: boolean;
   buttonStatus$: Observable<boolean>;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService, private store: Store<AppState>) {
+    super()
   }
 
   ngOnInit() {
     this.getUserStatus();
+    this.store.subscribe(state => {
+      const index = state.auth.user.games.findIndex(game => game.id === this.game.id)
+      if (index !== -1) {
+        this.showLabel = true
+      }
+    })
   }
 
   getUserStatus() {
@@ -45,7 +53,11 @@ export class GameComponent implements OnInit {
   buyAGame(game: Game) {
     const selectedGame = Object.assign({isBought: true}, game)
     this.store.dispatch(addGame({game: selectedGame}));
-    this.buttonStatus$ = this.store.pipe(map(state => state.auth.user.games.some(game => game.isBought === true)));
+    this.store.pipe(map(state => state.auth.user.games.map(game => {
+      if (game.isBought === true) {
+        this.showLabel = true;
+      }
+    })));
   }
 
 }

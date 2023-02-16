@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
         user.map(user  => this.user = user)
         const loginAction = login({user: this.user})
         this.store.dispatch(loginAction)
-        this.authService.userInfoToLocalSessionStorage(this.user)
         this.snackBar.openFromComponent(SnackbarComponent, {
           data: {text: 'Welcome to Games Store', status: 'success'},
           verticalPosition: 'top',

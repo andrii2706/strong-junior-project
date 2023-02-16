@@ -10,10 +10,11 @@
       <p>rating - {{game.rating}}</p>
       <p>Rating Top - {{game.rating_top}}</p>
       <button mat-raised-button class="goToDetails" [color]="'primary'" (click)="goToGameDetails()" >To game detail</button>
-      <button mat-raised-button [disabled]="userStatus === false" [hidden]="buttonStatus$ | async" [color]="'primary'"
+      <button mat-raised-button [disabled]="userStatus === false || showLabel" [color]="'primary'"
               (click)="buyAGame(game)">
-        <mat-icon>add_shopping_cart</mat-icon>
-        Buy Game
+        <mat-icon *ngIf="!showLabel">add_shopping_cart</mat-icon>
+        <span *ngIf="!showLabel">Push to WishList</span>
+        <span *ngIf="showLabel">Game Has been bought</span>
       </button>
     </div>
   </mat-card-content>

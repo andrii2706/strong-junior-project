@@ -6,6 +6,10 @@ export const login = createAction(
   '[Login page action] User Login',
   props<{ user: UserInteface }>()
 )
+export const logout = createAction(
+  '[Logout]- kill user from store and localStorage',
+  props<{ user: null }>()
+)
 export const addGame = createAction(
   '[Add games action] Add games to card',
   props<{ game: Game }>()

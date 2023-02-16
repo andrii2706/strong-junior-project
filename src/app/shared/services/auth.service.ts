@@ -27,15 +27,6 @@ export class AuthService {
     localStorage.setItem('loggedIn', `${this.loggedInStatus}`)
   }
 
-  userInfoToLocalSessionStorage(userInfo: UserInteface | null) {
-    localStorage.setItem("user", JSON.stringify(userInfo));
-  }
-
-  getUserInfoFromSessionStorage() {
-    return JSON.parse(localStorage.getItem("user") || "");
-  }
-
-
   get LoginStatus(): boolean {
     return JSON.parse(localStorage.getItem('loggedIn') ||
       this.loggedInStatus.toString());
