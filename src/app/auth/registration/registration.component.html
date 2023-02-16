@@ -35,6 +35,14 @@
         Please enter a valid email
       </mat-error>
     </mat-form-field>
+    <mat-form-field *ngIf="customAvatar">
+      <mat-label>Avatar</mat-label>
+      <input formControlName="avatar" type="text" matInput autocomplete="false"
+             placeholder="Your Avatar">
+      <mat-error *ngIf="!registrationForm.hasError('required')">
+        Please enter a avatar
+      </mat-error>
+    </mat-form-field>
     <app-show-and-hide-password>
       <mat-form-field>
         <mat-label>Password</mat-label>
@@ -47,6 +55,7 @@
     </app-show-and-hide-password>
   </form>
   <div class="submit-btn">
+    <mat-slide-toggle [color]="'primary'" (change)="changeDefaultAvatar()"> Custom Avatar</mat-slide-toggle>
     <button mat-raised-button [color]="'primary'" [disabled]="registrationForm.invalid" (click)="submitForm()">Register</button>
   </div>
 </div>

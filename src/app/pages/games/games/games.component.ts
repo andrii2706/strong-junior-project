@@ -61,9 +61,9 @@ export class GamesComponent extends ClearObservable implements OnInit {
       this.filterParams.dates === '' &&
       this.filterParams.metacritic === ''
     ){
-     return this.allGames(1)
+     return this.allGames(1);
     } else{
-     return this.filteredGames(1, this.filterParams)
+      return this.filteredGames(1, this.filterParams);
     }
   }
   filteredGames(page:number, filter: FilterParams) {

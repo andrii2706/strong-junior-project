@@ -19,6 +19,12 @@ export const authReducer = createReducer(
     }
   }),
 
+  on(LoginActions.register, (state, action) => {
+    return {
+      user: action.user
+    }
+  }),
+
   on(LoginActions.addGame, (state, action) => {
     const user = JSON.parse(JSON.stringify(state.user))
     if (user.games) {

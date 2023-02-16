@@ -49,4 +49,8 @@ export class AuthService {
       params: params(userInfo),
     });
   }
+
+  registerUser(userInfo: UserInteface): Observable<UserInteface> {
+    return this.httpClient.post<UserInteface>(this.url, userInfo);
+  }
 }

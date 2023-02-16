@@ -23,11 +23,11 @@ export class NavBarComponent extends ClearObservable implements DoCheck {
 
   constructor(private authService: AuthService, private router: Router, private store: Store<AppState>) {
     super();
-    this.userAvatar = JSON.parse(localStorage.getItem("user") || "null");
   }
 
   ngDoCheck() {
     this.isLogin$ = this.authService.LoginStatus;
+    this.userAvatar = JSON.parse(localStorage.getItem("user") || "null");
   }
 
   logOut() {

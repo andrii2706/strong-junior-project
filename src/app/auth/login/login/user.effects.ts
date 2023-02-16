@@ -23,10 +23,27 @@ export class UserEffects {
       ),
     {dispatch: false}
   );
+  registration$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(LoginActions.register),
+        tap(action => {
+          const userInfo = {
+            firstName: action.user.firstName,
+            lastName: action.user.lastName,
+            email: action.user.email,
+            phoneNumber: action.user.phoneNumber,
+            avatar: action.user.avatar,
+            games: action.user.games
+          }
+          localStorage.setItem("user", JSON.stringify(userInfo))
+        })
+      ),
+    {dispatch: false}
+  )
   logout$ = createEffect(() =>
       this.actions$.pipe(
         ofType(LoginActions.logout),
-        tap(action => {
+        tap(() => {
           localStorage.removeItem("user");
           void this.router.navigateByUrl("")
         })
