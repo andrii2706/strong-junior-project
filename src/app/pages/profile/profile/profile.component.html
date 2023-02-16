@@ -14,7 +14,7 @@
       </div>
       <div class="avatar">
         <img *ngIf="userInfo.avatar" [src]="userInfo.avatar" alt="avatar">
-        <img *ngIf="!userInfo.avatar" class="default-avatar" [src]="userInfo.avatar | replaceNullImg" alt="avatar">
+       <mat-icon *ngIf="!userInfo.avatar">account_circle</mat-icon>
       </div>
     </div>
     <div class="wishList">

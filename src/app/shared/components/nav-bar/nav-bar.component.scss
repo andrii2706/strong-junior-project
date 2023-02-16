@@ -23,6 +23,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  > a ::ng-deep .mdc-button__label {
+    > img {
+      border-radius: 50%;
+    }
+  }
 }
 ::ng-deep .mat-toolbar {
   position: sticky;

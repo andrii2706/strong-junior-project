@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {logout} from "../../../auth/login/login/login.actions";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../reducers";
+import {UserInteface} from "../../interfaces/user.inteface";
 
 @Component({
   selector: 'app-nav-bar',
@@ -18,9 +19,11 @@ export class NavBarComponent extends ClearObservable implements DoCheck {
   title: string = 'Strong Junior project';
 
   isLogin$: boolean;
+  userAvatar: UserInteface | null;
 
   constructor(private authService: AuthService, private router: Router, private store: Store<AppState>) {
     super();
+    this.userAvatar = JSON.parse(localStorage.getItem("user") || "null");
   }
 
   ngDoCheck() {
