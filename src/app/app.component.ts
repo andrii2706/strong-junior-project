@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ClearObservable} from "./shared/classes";
 import {Store} from "@ngrx/store";
 import {AppState} from "./reducers";
-import {addGame, login} from "./auth/login/login/login.actions";
+import {login} from "./auth/login/login/login.actions";
 
 @Component({
   selector: 'app-root',
@@ -17,9 +17,9 @@ export class AppComponent extends ClearObservable implements OnInit {
   }
 
   ngOnInit() {
-    const userProfile = localStorage.getItem("user");
+    const userProfile = JSON.parse(localStorage.getItem("user") || "null");
     if (userProfile) {
-      this.store.dispatch(login({user: JSON.parse(userProfile)}))
+      this.store.dispatch(login({user: userProfile}))
     }
   }
 }

@@ -7,6 +7,8 @@ import {AppState} from "../../../reducers";
 import {AuthService} from "../../services/auth.service";
 import {map, Observable} from "rxjs";
 import {ClearObservable} from "../../classes";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {SnackbarComponent} from "../snackbar/snackbar.component";
 
 @Component({
   selector: 'app-game',
@@ -26,7 +28,12 @@ export class GameComponent extends ClearObservable implements OnInit {
   userStatus: boolean;
   buttonStatus$: Observable<boolean>;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService, private store: Store<AppState>) {
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
+    private store: Store<AppState>) {
     super()
   }
 
@@ -51,6 +58,7 @@ export class GameComponent extends ClearObservable implements OnInit {
   }
 
   buyAGame(game: Game) {
+
     const selectedGame = Object.assign({isBought: true}, game)
     this.store.dispatch(addGame({game: selectedGame}));
     this.store.pipe(map(state => state.auth.user.games.map(game => {
@@ -58,6 +66,19 @@ export class GameComponent extends ClearObservable implements OnInit {
         this.showLabel = true;
       }
     })));
+
+    this.showLabel ? this.snackBar.openFromComponent(SnackbarComponent, {
+      duration: 4000,
+      data: {text: "The game has been added to your list", status: 'success'},
+      verticalPosition: "bottom",
+      horizontalPosition: 'center'
+    }) : this.snackBar.openFromComponent(SnackbarComponent, {
+      duration: 4000,
+      data: {text: "Check your wishlist", status: 'error'},
+      verticalPosition: "bottom",
+      horizontalPosition: 'center'
+    })
+
   }
 
 }

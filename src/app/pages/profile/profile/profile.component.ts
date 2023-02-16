@@ -1,12 +1,12 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {UserInteface} from "../../../shared/interfaces/user.inteface";
 import {AppState} from "../../../reducers";
-import {map, Observable, takeUntil} from "rxjs";
+import {Observable, takeUntil} from "rxjs";
 import {ClearObservable} from "../../../shared/classes";
 import {AuthService} from "../../../shared/services/auth.service";
 import {Router} from "@angular/router";
-import {login, logout} from "../../../auth/login/login/login.actions";
+import {logout} from "../../../auth/login/login/login.actions";
 
 @Component({
   selector: 'app-profile',

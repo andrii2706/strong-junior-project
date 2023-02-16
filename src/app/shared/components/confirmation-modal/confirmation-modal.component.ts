@@ -20,6 +20,6 @@ export class ConfirmationModalComponent extends ClearObservable {
   }
 
   confirmDeleting() {
-    this.store.dispatch(removeGame({game: this.data}))
+    this.store.dispatch(removeGame({game: this.data}));
   }
 }
