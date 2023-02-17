@@ -15,8 +15,8 @@ export class GameWishlistComponent extends ClearObservable {
   @Input() gameInfo: Game;
 
   constructor(
-    private router: Router,
-    private dialog: MatDialog,
+    public router: Router,
+    public dialog: MatDialog,
     private activatedRoute: ActivatedRoute
   ) {
     super();

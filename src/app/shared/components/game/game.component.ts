@@ -13,7 +13,7 @@ import {SnackbarComponent} from "../snackbar/snackbar.component";
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+  styleUrls: ['./game.component.scss'],
 })
 export class GameComponent extends ClearObservable implements OnInit {
   @Input() set gameInfo(_game: Game) {
@@ -29,11 +29,11 @@ export class GameComponent extends ClearObservable implements OnInit {
   buttonStatus$: Observable<boolean>;
 
   constructor(
-    private router: Router,
+    public router: Router,
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
-    private snackBar: MatSnackBar,
-    private store: Store<AppState>) {
+    public snackBar: MatSnackBar,
+    public store: Store<AppState>) {
     super()
   }
 
@@ -66,18 +66,13 @@ export class GameComponent extends ClearObservable implements OnInit {
         this.showLabel = true;
       }
     })));
-
-    this.showLabel ? this.snackBar.openFromComponent(SnackbarComponent, {
-      duration: 4000,
-      data: {text: "The game has been added to your list", status: 'success'},
-      verticalPosition: "bottom",
-      horizontalPosition: 'center'
-    }) : this.snackBar.openFromComponent(SnackbarComponent, {
-      duration: 4000,
-      data: {text: "Check your wishlist", status: 'error'},
-      verticalPosition: "bottom",
-      horizontalPosition: 'center'
-    })
+    if (this.showLabel)
+      this.snackBar.openFromComponent(SnackbarComponent, {
+        duration: 900,
+        data: {text: "The game has been added to your list", status: 'success'},
+        verticalPosition: "bottom",
+        horizontalPosition: 'center'
+      })
 
   }
 

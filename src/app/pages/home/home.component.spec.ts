@@ -32,9 +32,4 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it("should get last games", () => {
-    spyOn(service, "getLastReleasedGames").and.returnValue(of());
-
-    expect()
-  })
 });

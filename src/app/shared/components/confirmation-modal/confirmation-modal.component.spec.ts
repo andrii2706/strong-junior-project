@@ -7,6 +7,7 @@ import {GameForMock} from "../../../../assets/mocks/test-mocks/game";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {NO_ERRORS_SCHEMA} from "@angular/core";
 import {of} from "rxjs";
+import {removeGame} from "../../../auth/login/login/login.actions";
 
 describe('ConfirmationModalComponent', () => {
   let component: ConfirmationModalComponent;
@@ -14,8 +15,9 @@ describe('ConfirmationModalComponent', () => {
   let dialogRefSpyObj = jasmine.createSpyObj({afterClosed: of({}), close: null});
   dialogRefSpyObj.componentInstance = {body: ''};
   let fixture: ComponentFixture<ConfirmationModalComponent>;
-  let store: MockStore<{ game: Game }>
-  let initialState = GameForMock;
+  let store: MockStore;
+  const game: Game = GameForMock;
+  let initialState = game;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ConfirmationModalComponent],
@@ -25,7 +27,7 @@ describe('ConfirmationModalComponent', () => {
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
-
+    store = TestBed.inject(MockStore)
     fixture = TestBed.createComponent(ConfirmationModalComponent);
     dialogSpy = spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
     component = fixture.componentInstance;
@@ -38,7 +40,9 @@ describe('ConfirmationModalComponent', () => {
   it("should remove game from wishList", () => {
     const storeSpy = spyOn(component.store, "dispatch").and.callThrough();
     component.confirmDeleting();
+    component.data = game
     fixture.detectChanges();
-    expect(storeSpy).toHaveBeenCalledTimes(1)
+    store.dispatch(removeGame({game: game}))
+    expect(storeSpy).toHaveBeenCalledWith(removeGame({game: game}))
   })
 });

@@ -21,7 +21,7 @@ export class NavBarComponent extends ClearObservable implements DoCheck {
   isLogin$: boolean;
   userAvatar: UserInteface | null;
 
-  constructor(private authService: AuthService, private router: Router, private store: Store<AppState>) {
+  constructor(private authService: AuthService, public router: Router, public store: Store<AppState>) {
     super();
   }
 

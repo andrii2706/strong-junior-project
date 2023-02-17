@@ -51,11 +51,11 @@ export const developersFilter = [
   {developersName: 'NVIDIA Lightspeed Studios', slug: 'nvidia-lightspeed-studios'},
 ]
  export const orderByInfos = [
-   {name: 'Date added', slug: '-created'},
-   {name: 'Popularity', slug: '-added'},
-   {name: 'Released date', slug: '-released'},
+   {name: 'Date added', slug: 'created'},
+   {name: 'Popularity', slug: 'added'},
+   {name: 'Released date', slug: 'released'},
    {name: 'Name', slug: 'name'},
-   {name: 'Average rating', slug: '-rating'},
+   {name: 'Average rating', slug: 'rating'},
  ]
 
  export const metacriticNumbers = [

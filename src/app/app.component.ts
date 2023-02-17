@@ -3,6 +3,7 @@ import {ClearObservable} from "./shared/classes";
 import {Store} from "@ngrx/store";
 import {AppState} from "./reducers";
 import {login} from "./auth/login/login/login.actions";
+import {UserInteface} from "./shared/interfaces/user.inteface";
 
 @Component({
   selector: 'app-root',
@@ -11,21 +12,25 @@ import {login} from "./auth/login/login/login.actions";
 })
 export class AppComponent extends ClearObservable implements OnInit {
   title = 'strong-junior-project';
+  userProfile: UserInteface;
 
-  constructor(private store: Store<AppState>) {
+  constructor(public store: Store<AppState>) {
     super()
   }
 
   ngOnInit() {
-    const userProfile = JSON.parse(localStorage.getItem("user") || "null");
-    if (userProfile) {
-      this.store.dispatch(login({user: userProfile}))
-    }
-    //  TODO add this script to angular.json
-    //  // "allowedCommonJsDependencies": [
-    // //              "rxjs-compat",
-    // //              "moment"
-    // //            ],
+    this.preventBrowserReload();
   }
+
+  preventBrowserReload() {
+    this.userProfile = JSON.parse(localStorage.getItem("user") || "null");
+    this.store.dispatch(login({user: this.userProfile}))
+  }
+
+  //  TODO add this script to angular.json
+  //  // "allowedCommonJsDependencies": [
+  // //              "rxjs-compat",
+  // //              "moment"
+  // //            ],
 }
 

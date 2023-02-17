@@ -18,7 +18,7 @@ export class ProfileComponent extends ClearObservable implements OnInit {
   isStorageEmpty$: Observable<boolean>;
   isLoading: boolean;
 
-  constructor(private store: Store<AppState>, private authService: AuthService, private router: Router) {
+  constructor(public store: Store<AppState>, private authService: AuthService, public router: Router) {
     super();
 
   }
@@ -44,4 +44,6 @@ export class ProfileComponent extends ClearObservable implements OnInit {
     this.store.dispatch(logout({user: null}))
     void this.router.navigateByUrl("")
   }
+
+// TODO create functionality for saving games after reload browser page
 }

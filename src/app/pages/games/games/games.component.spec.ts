@@ -31,7 +31,4 @@ describe('GamesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it("should return data", () => {
-    spyOn(service, "getAllGames").and.returnValue(of())
-  })
 });

@@ -11,15 +11,15 @@ import {NavBarComponent} from './nav-bar.component';
 import {HttpClientModule} from "@angular/common/http";
 import {NO_ERRORS_SCHEMA} from "@angular/core";
 import {RouterTestingModule} from "@angular/router/testing";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {MockStore, provideMockStore} from "@ngrx/store/testing";
 import {Game} from "../../interfaces/games.interface";
 import {GameForMock} from "../../../../assets/mocks/test-mocks/game";
+import {logout} from "../../../auth/login/login/login.actions";
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
   let fixture: ComponentFixture<NavBarComponent>;
-  let router: Router;
   let activatedRoute: ActivatedRoute;
   let store: MockStore<{ game: Game }>
   let initialState = GameForMock;
@@ -41,9 +41,9 @@ describe('NavBarComponent', () => {
       providers: [provideMockStore({initialState})],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
+    store = TestBed.inject(MockStore)
     fixture = TestBed.createComponent(NavBarComponent);
     component = fixture.componentInstance;
-    router = TestBed.get(Router);
     activatedRoute = TestBed.get(ActivatedRoute);
     fixture.detectChanges();
     component.isOpen = false;
@@ -54,6 +54,12 @@ describe('NavBarComponent', () => {
     expect(component).toBeTruthy();
   });
   it("should logout user", () => {
-
+    const storeSpy = spyOn(component.store, "dispatch").and.callThrough();
+    const navigate = spyOn(component.router, "navigateByUrl").and.callThrough();
+    component.logOut();
+    component.isLogin$ = false;
+    store.dispatch(logout({user: null}));
+    expect(navigate).toHaveBeenCalledWith('');
+    expect(storeSpy).toHaveBeenCalledWith(logout({user: null}));
   })
 });

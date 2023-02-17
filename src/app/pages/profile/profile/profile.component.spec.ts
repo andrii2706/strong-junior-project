@@ -7,14 +7,14 @@ import {Game} from "../../../shared/interfaces/games.interface";
 import {GameForMock} from "../../../../assets/mocks/test-mocks/game";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {RouterTestingModule} from "@angular/router/testing";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
+import {logout} from "../../../auth/login/login/login.actions";
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
   let store: MockStore<{ game: Game }>
   let initialState = GameForMock;
-  let router: Router;
   let activatedRoute: ActivatedRoute;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -26,10 +26,9 @@ describe('ProfileComponent', () => {
 
     })
       .compileComponents();
-
+    store = TestBed.inject(MockStore)
     fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
-    router = TestBed.get(Router);
     activatedRoute = TestBed.get(ActivatedRoute);
     fixture.detectChanges();
   });
@@ -37,4 +36,22 @@ describe('ProfileComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it("should redirect to games page", () => {
+    const navigateByUrl = spyOn(component.router, "navigateByUrl")
+    component.redirectToGames();
+    expect(navigateByUrl).toHaveBeenCalledWith("games")
+  });
+  it("should redirect to home page", () => {
+    const navigateByUrl = spyOn(component.router, "navigateByUrl")
+    component.redirectToHome();
+    expect(navigateByUrl).toHaveBeenCalledWith("home")
+  });
+  it("should logout user", () => {
+    const navigateByUrl = spyOn(component.router, "navigateByUrl")
+    const storeSpy = spyOn(store, "dispatch").and.callThrough();
+    component.logOut();
+    store.dispatch(logout({user: null}))
+    expect(navigateByUrl).toHaveBeenCalledWith('');
+    expect(storeSpy).toHaveBeenCalledWith(logout({user: null}));
+  })
 });
