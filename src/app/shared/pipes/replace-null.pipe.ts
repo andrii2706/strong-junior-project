@@ -5,7 +5,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class ReplaceNullPipe implements PipeTransform {
 
-  transform(value: string | number | object | null | undefined, replaceText: string = 'No Info '): string | number | object {
+  transform(value: string | number | object | null | undefined, replaceText = 'No Info '): string | number | object {
     if (typeof value === "undefined" || value === null) {
       return replaceText
     }

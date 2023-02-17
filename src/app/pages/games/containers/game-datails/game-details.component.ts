@@ -12,7 +12,7 @@ import {SnackbarComponent} from "../../../../shared/components/snackbar/snackbar
   styleUrls: ['./game-details.component.scss']
 })
 export class GameDetailsComponent {
-    isLoading: boolean = false
+  isLoading = false
   gameDetails: GameDetails;
     games: GameDetails[];
 
