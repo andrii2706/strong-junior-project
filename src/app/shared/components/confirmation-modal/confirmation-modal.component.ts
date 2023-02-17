@@ -15,7 +15,7 @@ export class ConfirmationModalComponent extends ClearObservable {
 
   constructor(public dialogRef: MatDialogRef<ConfirmationModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Game,
-              private store: Store<AppState>) {
+              public store: Store<AppState>) {
     super();
   }
 

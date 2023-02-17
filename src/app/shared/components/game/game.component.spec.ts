@@ -11,6 +11,7 @@ import {StoreModule} from "@ngrx/store";
 import {MockStore, provideMockStore} from "@ngrx/store/testing";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 describe('GameComponent', () => {
   let component: GameComponent;
@@ -25,6 +26,7 @@ describe('GameComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [GameComponent],
       imports: [HttpClientModule,
+        MatSnackBarModule,
         RouterTestingModule.withRoutes([]),
         StoreModule.forRoot(provideMockStore),
       ],

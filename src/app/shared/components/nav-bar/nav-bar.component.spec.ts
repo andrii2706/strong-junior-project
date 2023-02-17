@@ -12,12 +12,17 @@ import {HttpClientModule} from "@angular/common/http";
 import {NO_ERRORS_SCHEMA} from "@angular/core";
 import {RouterTestingModule} from "@angular/router/testing";
 import {ActivatedRoute, Router} from "@angular/router";
+import {MockStore, provideMockStore} from "@ngrx/store/testing";
+import {Game} from "../../interfaces/games.interface";
+import {GameForMock} from "../../../../assets/mocks/test-mocks/game";
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
   let fixture: ComponentFixture<NavBarComponent>;
   let router: Router;
   let activatedRoute: ActivatedRoute;
+  let store: MockStore<{ game: Game }>
+  let initialState = GameForMock;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -33,7 +38,7 @@ describe('NavBarComponent', () => {
         HttpClientModule,
         RouterTestingModule.withRoutes([]),
       ],
-      providers: [],
+      providers: [provideMockStore({initialState})],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
     fixture = TestBed.createComponent(NavBarComponent);
@@ -48,7 +53,7 @@ describe('NavBarComponent', () => {
   it('should compile', () => {
     expect(component).toBeTruthy();
   });
-  it("should navigate to login", () => {
+  it("should logout user", () => {
 
   })
 });

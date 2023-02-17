@@ -3,8 +3,6 @@ import {GamesService} from "../../../shared/services/games.service";
 import {Developer, FilterParams, Genre} from "../../../shared/interfaces/filter.interface";
 import {Game} from "../../../shared/interfaces/games.interface";
 import {finalize, takeUntil} from "rxjs";
-import {Store} from "@ngrx/store";
-import {AppState} from "../../../reducers";
 import {SnackbarComponent} from "../../../shared/components/snackbar/snackbar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ClearObservable} from "../../../shared/classes";
@@ -25,14 +23,15 @@ export class GamesComponent extends ClearObservable implements OnInit {
   public filter: FilterParams;
   isLoading: boolean;
 
-  constructor(private gamesService: GamesService, private store: Store<AppState>, private snackbar: MatSnackBar) {
+  constructor(private gamesService: GamesService, private snackbar: MatSnackBar) {
     super()
   }
-  ngOnInit():void {
+
+  ngOnInit(): void {
     this.allGames(1)
   }
 
-  allGames(page: number){
+  allGames(page: number) {
     this.isLoading = true;
     this.gamesService.getAllGames(page)
       .pipe(takeUntil(this.destroy$), finalize(() => this.isLoading = false)).subscribe(
