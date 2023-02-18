@@ -45,5 +45,6 @@ export class ProfileComponent extends ClearObservable implements OnInit {
     void this.router.navigateByUrl("")
   }
 
+
 // TODO create functionality for saving games after reload browser page
 }

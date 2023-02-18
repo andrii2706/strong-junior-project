@@ -24,7 +24,8 @@ export class AppComponent extends ClearObservable implements OnInit {
 
   preventBrowserReload() {
     this.userProfile = JSON.parse(localStorage.getItem("user") || "null");
-    this.store.dispatch(login({user: this.userProfile}))
+    if (this.userProfile)
+      this.store.dispatch(login({user: this.userProfile}))
   }
 
   //  TODO add this script to angular.json

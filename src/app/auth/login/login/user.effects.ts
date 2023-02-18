@@ -40,6 +40,17 @@ export class UserEffects {
       ),
     {dispatch: false}
   )
+  addGames = createEffect(() =>
+      this.actions$.pipe(
+        ofType(LoginActions.addGame),
+        tap(action => {
+          const user = JSON.parse(localStorage.getItem("user") || "null")
+          user.games.push(action.game)
+          localStorage.setItem("user", JSON.stringify(user));
+        })
+      )
+    , {dispatch: false}
+  )
   logout$ = createEffect(() =>
       this.actions$.pipe(
         ofType(LoginActions.logout),

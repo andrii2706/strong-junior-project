@@ -32,7 +32,7 @@ export class AuthService {
       this.loggedInStatus.toString());
   }
 
-  get UserStatus() {
+  UserStatus() {
     return JSON.parse(localStorage.getItem('loggedIn') || this.loggedInStatus.toString());
   }
 
