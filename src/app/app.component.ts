@@ -27,11 +27,5 @@ export class AppComponent extends ClearObservable implements OnInit {
     if (this.userProfile)
       this.store.dispatch(login({user: this.userProfile}))
   }
-
-  //  TODO add this script to angular.json
-  //  // "allowedCommonJsDependencies": [
-  // //              "rxjs-compat",
-  // //              "moment"
-  // //            ],
 }
 

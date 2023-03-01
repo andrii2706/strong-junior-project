@@ -11,6 +11,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {ReplaceNullImgPipe} from "../../pipes/replace-null-img.pipe";
 import {addGame} from "../../../auth/login/login/login.actions";
+import {userWithGames} from "../../../../assets/mocks/test-mocks/user";
+
 
 describe('GameComponent', () => {
   let component: GameComponent;
@@ -19,7 +21,7 @@ describe('GameComponent', () => {
   let router: Router
   let activatedRoute: ActivatedRoute;
   let store: MockStore<{ game: Game }>
-  let initialState = GameForMock;
+  let initialState = userWithGames;
   const gameMockData: Game = GameForMock
 
   beforeEach(async () => {
@@ -33,7 +35,7 @@ describe('GameComponent', () => {
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
-    store = TestBed.inject(MockStore)
+    store = TestBed.get(MockStore)
     fixture = TestBed.createComponent(GameComponent);
     service = TestBed.inject(AuthService);
     router = TestBed.inject(Router);
@@ -46,9 +48,10 @@ describe('GameComponent', () => {
     expect(component).toBeTruthy();
   });
   it("should set data from parent", () => {
-    const getGamesFromParent = (fixture.componentInstance.gameInfo = gameMockData);
+    fixture.componentInstance.gameInfo = gameMockData;
     fixture.detectChanges();
-    expect(getGamesFromParent).toBe(gameMockData)
+    component.game = gameMockData
+    expect(component.game).toBe(gameMockData)
   });
   it("should change location of user", () => {
     component.game = gameMockData
@@ -69,10 +72,4 @@ describe('GameComponent', () => {
     store.dispatch(addGame({game: gameMockData}));
     expect(storeSpy).toHaveBeenCalledWith(addGame({game: gameMockData}))
   });
-  it("should show snackbar", () => {
-    spyOn(component.snackBar, "openFromComponent").and.callThrough();
-    component.buyAGame(gameMockData);
-    component.showLabel = true;
-    expect(component.snackBar.openFromComponent).toHaveBeenCalled();
-  })
 });

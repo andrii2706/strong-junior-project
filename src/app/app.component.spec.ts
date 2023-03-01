@@ -40,9 +40,14 @@ describe('AppComponent', () => {
   it('should get into if ', () => {
     app.preventBrowserReload();
     fixture.detectChanges();
-    app.userProfile = user
-    const storeSpy = spyOn(app.store, "dispatch").and.callThrough();
-    store.dispatch(login({user: user}))
-    expect(storeSpy).toHaveBeenCalledWith(login({user: user}))
+    app.userProfile = user;
+    expect(app.userProfile).toBe(user);
   });
+  it("should dispatch user", () => {
+    app.userProfile = user;
+    app.preventBrowserReload();
+    spyOn(app.store, "dispatch");
+    app.store.dispatch(login({user}));
+    expect(app.store.dispatch).toHaveBeenCalledWith(login({user}));
+  })
 });
