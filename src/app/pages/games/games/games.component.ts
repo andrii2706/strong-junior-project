@@ -16,14 +16,14 @@ export class GamesComponent extends ClearObservable implements OnInit {
   page: number;
   totalGames: number;
   showFormStatus: boolean;
-  filterParams: FilterParams
+  filterParams: FilterParams | null
   public games: Game[];
   public genres: Genre[];
   public developers: Developer[]
   public filter: FilterParams;
   isLoading: boolean;
 
-  constructor(private gamesService: GamesService, private snackbar: MatSnackBar) {
+  constructor(private gamesService: GamesService, public snackbar: MatSnackBar) {
     super()
   }
 
@@ -39,11 +39,11 @@ export class GamesComponent extends ClearObservable implements OnInit {
         this.totalGames = games.count;
         this.games = games.results
         this.isLoading = false
-      }, error => {
+      }, () => {
         this.isLoading = false
         this.snackbar.openFromComponent(SnackbarComponent, {
           duration: 4000,
-          data: {text: error.messageerror, status: 'error'},
+          data: {text: "Your request is not working but need wait some time ", status: 'error'},
           verticalPosition: "top",
           horizontalPosition: 'end'
         })

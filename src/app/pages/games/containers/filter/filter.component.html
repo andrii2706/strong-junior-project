@@ -40,7 +40,9 @@
     <button mat-button mat-flat-button [color]="'primary'" (click)="lastGames()">Last released games</button>
   </form>
   <div>
-    <button mat-icon-button (click)="clearFilterForm($event)"><mat-icon>delete</mat-icon></button>
+    <button mat-icon-button (click)="clearFilterForm()">
+      <mat-icon>delete</mat-icon>
+    </button>
   </div>
   <button (click)="submitFilter()" mat-icon-button><mat-icon>search</mat-icon></button>
 </section>

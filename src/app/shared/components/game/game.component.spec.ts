@@ -10,8 +10,8 @@ import {MockStore, provideMockStore} from "@ngrx/store/testing";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {ReplaceNullImgPipe} from "../../pipes/replace-null-img.pipe";
-import {addGame} from "../../../auth/login/login/login.actions";
 import {userWithGames} from "../../../../assets/mocks/test-mocks/user";
+import {addGame} from "../../../auth/login/login/login.actions";
 
 
 describe('GameComponent', () => {

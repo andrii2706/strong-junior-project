@@ -9,13 +9,14 @@ import {
   platformsFilter
 } from "../../constants/filter.constant";
 import * as moment from "moment";
+import {ClearObservable} from "../../../../shared/classes";
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent extends ClearObservable implements OnInit {
   filterForm: FormGroup;
   dates: string = ''
   genres: { genreName: string, slug: string }[] = genresFilter;
@@ -27,6 +28,7 @@ export class FilterComponent implements OnInit {
   filter = new EventEmitter<FilterParams>()
 
   constructor() {
+    super();
   }
 
   ngOnInit(): void {
@@ -53,16 +55,17 @@ export class FilterComponent implements OnInit {
     const lastDate = moment().add(1, 'year').endOf('year').format('YYYY-MM-DD');
     this.dates = `${firstDate},${lastDate}`;
   }
-  clearFilterForm(e: MouseEvent){
+
+  clearFilterForm() {
     this.dates = ''
-      this.filterForm.patchValue({
-        search: '',
-        genres: '',
-        platforms: '',
-        developers: '',
-        ordering: '',
-        metacritic: '',
-        dates: ''
-      })
+    this.filterForm.patchValue({
+      search: '',
+      genres: '',
+      platforms: '',
+      developers: '',
+      ordering: '',
+      metacritic: '',
+      dates: ''
+    })
   }
 }

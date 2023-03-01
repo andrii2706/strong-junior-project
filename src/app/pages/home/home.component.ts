@@ -20,7 +20,7 @@ export class HomeComponent extends ClearObservable implements OnInit {
   dates: string = '';
   isLoading: boolean;
 
-  constructor(private gamesService: GamesService, private router: Router, private snackBar: MatSnackBar) {
+  constructor(private gamesService: GamesService, public router: Router, private snackBar: MatSnackBar) {
     super();
   }
 

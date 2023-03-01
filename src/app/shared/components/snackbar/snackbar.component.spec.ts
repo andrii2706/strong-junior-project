@@ -17,7 +17,7 @@ describe('SnackbarComponent', () => {
       providers: [
         {
           provide: MatSnackBarRef, useValue: {
-            open: () => {
+            _open: () => {
             }
           }
         },
