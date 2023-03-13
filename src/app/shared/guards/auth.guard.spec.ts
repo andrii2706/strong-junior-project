@@ -6,12 +6,13 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {NO_ERRORS_SCHEMA} from "@angular/core";
 import {NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {CommonModule} from "@angular/common";
+import {SnackbarComponent} from "../components/snackbar/snackbar.component";
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
   let routeMock: any = {snapshot: {}};
   let routeStateMock: any = {snapshot: {}, url: ''};
-  let routerMock = {navigate: jasmine.createSpy('navigate')}
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, RouterTestingModule.withRoutes([]), MatSnackBarModule, NoopAnimationsModule],
@@ -24,9 +25,21 @@ describe('AuthGuard', () => {
     expect(guard).toBeTruthy();
   });
   it("should make audit", () => {
-    expect(guard.canActivate(routeMock, routeStateMock)).toEqual(true);
+    spyOn(guard.snackbar, "openFromComponent")
     spyOn(guard.router, 'navigateByUrl')
-    guard.router.navigateByUrl('')
+    guard.snackbar.openFromComponent(SnackbarComponent, {
+      duration: 5000,
+      data: {text: 'You are not login yet.', status: 'error'},
+      verticalPosition: 'top',
+      horizontalPosition: "end"
+    })
+    expect(guard.canActivate(routeMock, routeStateMock)).toEqual(false);
     expect(guard.router.navigateByUrl).toHaveBeenCalledWith('')
-  })
+    expect(guard.snackbar.openFromComponent).toHaveBeenCalledWith(SnackbarComponent, {
+      duration: 5000,
+      data: {text: 'You are not login yet.', status: 'error'},
+      verticalPosition: 'top',
+      horizontalPosition: "end"
+    });
+  });
 });

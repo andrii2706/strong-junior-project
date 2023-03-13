@@ -26,7 +26,7 @@ describe('RegistrationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RegistrationComponent],
+      declarations: [RegistrationComponent, SnackbarComponent],
       providers: [provideMockStore({initialState})],
       imports: [HttpClientModule, MatSnackBarModule, NoopAnimationsModule,
         RouterTestingModule.withRoutes([{path: 'home', component: HomeComponent}])],
@@ -63,6 +63,12 @@ describe('RegistrationComponent', () => {
     })
     component.store.dispatch(login({user: dispatchUser}));
     expect(component.router.navigateByUrl).toHaveBeenCalledWith('home');
+    expect(component.snackBar.openFromComponent).toHaveBeenCalledWith(SnackbarComponent, {
+      data: {text: 'Welcome to Games Store', status: 'success'},
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      duration: 3000
+    });
   });
 
 });

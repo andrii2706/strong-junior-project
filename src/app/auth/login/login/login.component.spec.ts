@@ -23,7 +23,7 @@ describe('LoginComponent', () => {
   const dispatchUser = userMockData
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LoginComponent],
+      declarations: [LoginComponent, SnackbarComponent],
       providers: [provideMockStore({initialState})],
       imports: [HttpClientModule, MatSnackBarModule, NoopAnimationsModule,
         RouterTestingModule.withRoutes([{path: 'home', component: HomeComponent}])],
@@ -55,5 +55,11 @@ describe('LoginComponent', () => {
     })
     component.store.dispatch(login({user: dispatchUser}));
     expect(component.router.navigateByUrl).toHaveBeenCalledWith('/home');
+    expect(component.snackBar.openFromComponent).toHaveBeenCalledWith(SnackbarComponent, {
+      data: {text: 'Welcome to Games Store', status: 'success'},
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      duration: 3000
+    });
   });
 });
