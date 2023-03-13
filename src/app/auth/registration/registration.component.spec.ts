@@ -10,18 +10,25 @@ import {GameForMock} from "../../../assets/mocks/test-mocks/game";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {RouterTestingModule} from "@angular/router/testing";
 import {HomeComponent} from "../../pages/home/home.component";
+import {of} from "rxjs";
+import {SnackbarComponent} from "../../shared/components/snackbar/snackbar.component";
+import {login} from "../login/login/login.actions";
+import {loginUser, userMockData} from "../../../assets/mocks/test-mocks/user";
+import {NoopAnimationsModule} from "@angular/platform-browser/animations";
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;
   let service: AuthService;
   let initialState = GameForMock;
+  const user = loginUser;
+  const dispatchUser = userMockData
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RegistrationComponent],
       providers: [provideMockStore({initialState})],
-      imports: [HttpClientModule, MatSnackBarModule,
+      imports: [HttpClientModule, MatSnackBarModule, NoopAnimationsModule,
         RouterTestingModule.withRoutes([{path: 'home', component: HomeComponent}])],
       teardown: {destroyAfterEach: false},
       schemas: [NO_ERRORS_SCHEMA]
@@ -41,6 +48,21 @@ describe('RegistrationComponent', () => {
     component.changeDefaultAvatar()
     component.customAvatar = true;
     expect(component.customAvatar).toBe(true);
+  });
+  it("should register user ", () => {
+    spyOn(service, "setUser").and.returnValue(of(user));
+    spyOn(component.store, "dispatch").and.callThrough();
+    spyOn(component.router, "navigateByUrl");
+    spyOn(component.snackBar, "openFromComponent").and.callThrough()
+    component.registerUser();
+    component.snackBar.openFromComponent(SnackbarComponent, {
+      data: {text: 'Welcome to Games Store', status: 'success'},
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      duration: 3000
+    })
+    component.store.dispatch(login({user: dispatchUser}));
+    expect(component.router.navigateByUrl).toHaveBeenCalledWith('home');
   });
 
 });

@@ -20,10 +20,11 @@ export class LoginComponent implements OnInit {
   public userInfo: UserInteface[] = []
   public user!: UserInteface
   constructor(
-    private authService: AuthService,
-    private snackBar: MatSnackBar,
-    private router:Router,
-    private store : Store<AppState>) {}
+      private authService: AuthService,
+      public snackBar: MatSnackBar,
+      public router: Router,
+      public store: Store<AppState>) {
+  }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -36,7 +37,6 @@ export class LoginComponent implements OnInit {
   const loginCredentials = Object.assign( {isLogged: true} , this.loginForm.value)
     this.authService.setUser(loginCredentials).pipe(take(1),
       tap(user => {
-
       if(user.length !== 0){
         user.map(user  => this.user = user)
         const loginAction = login({user: this.user})
@@ -51,7 +51,8 @@ export class LoginComponent implements OnInit {
         this.snackBar.openFromComponent(SnackbarComponent, {
           data: {text: 'Check Your Credentials', status: 'error'},
           verticalPosition: "top",
-          horizontalPosition: "center"
+          horizontalPosition: "center",
+          duration: 3000
         })
       }
       }) ,take(1)).subscribe(noop,

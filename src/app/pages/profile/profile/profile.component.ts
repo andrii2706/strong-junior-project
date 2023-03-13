@@ -30,11 +30,6 @@ export class ProfileComponent extends ClearObservable implements OnInit {
     })
   }
 
-
-  redirectToHome() {
-    void this.router.navigateByUrl("home")
-  }
-
   redirectToGames() {
     void this.router.navigateByUrl("games")
   }

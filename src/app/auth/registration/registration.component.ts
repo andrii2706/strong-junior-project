@@ -20,9 +20,9 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private store: Store<AppState>,
-    private snackBar: MatSnackBar,
-    private router: Router) {
+    public store: Store<AppState>,
+    public snackBar: MatSnackBar,
+    public router: Router) {
   }
 
   ngOnInit() {
@@ -44,7 +44,7 @@ export class RegistrationComponent implements OnInit {
     })
   }
 
-  submitForm() {
+  registerUser() {
     const user = Object.assign({games: [], isLogged: false}, this.registrationForm.value)
     this.authService.registerUser(user).pipe(take(1),
       tap(user => {

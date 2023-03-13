@@ -31,4 +31,8 @@ describe('GameDatailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it("should test backBtn", () => {
+    component.backButton();
+
+  })
 });

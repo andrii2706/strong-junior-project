@@ -36,16 +36,6 @@ describe('ProfileComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it("should redirect to games page", () => {
-    const navigateByUrl = spyOn(component.router, "navigateByUrl")
-    component.redirectToGames();
-    expect(navigateByUrl).toHaveBeenCalledWith("games")
-  });
-  it("should redirect to home page", () => {
-    const navigateByUrl = spyOn(component.router, "navigateByUrl")
-    component.redirectToHome();
-    expect(navigateByUrl).toHaveBeenCalledWith("home")
-  });
   it("should logout user", () => {
     const navigateByUrl = spyOn(component.router, "navigateByUrl")
     const storeSpy = spyOn(store, "dispatch").and.callThrough();

@@ -56,7 +56,9 @@
   </form>
   <div class="submit-btn">
     <mat-slide-toggle [color]="'primary'" (change)="changeDefaultAvatar()"> Custom Avatar</mat-slide-toggle>
-    <button mat-raised-button [color]="'primary'" [disabled]="registrationForm.invalid" (click)="submitForm()">Register</button>
+    <button mat-raised-button [color]="'primary'" [disabled]="registrationForm.invalid" (click)="registerUser()">
+      Register
+    </button>
   </div>
 </div>
 </section>

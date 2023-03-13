@@ -9,18 +9,21 @@ import {SnackbarComponent} from "../components/snackbar/snackbar.component";
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-   isLogin: boolean;
-  constructor( private authService: AuthService, private router: Router, private snackbar: MatSnackBar) {}
+  isLogin: boolean;
+
+  constructor(private authService: AuthService, public router: Router, public snackbar: MatSnackBar) {
+  }
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.authService.LoginStatus){
-     void state.url
+    if (this.authService.LoginStatus) {
+      void state.url
       return true
-    }else{
+    } else {
       this.snackbar.openFromComponent(SnackbarComponent, {
         duration: 5000,
-        data: {text: 'You are not login yet.', status: 'error' } ,
+        data: {text: 'You are not login yet.', status: 'error'},
         verticalPosition: 'top',
         horizontalPosition: "end"
       })
