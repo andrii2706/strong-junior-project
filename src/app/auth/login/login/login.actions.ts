@@ -1,5 +1,5 @@
 import {createAction, props} from "@ngrx/store";
-import {UserInteface} from "../../../shared/interfaces/user.inteface";
+import {userCreeds, UserInteface} from "../../../shared/interfaces/user.inteface";
 import {Game} from "../../../shared/interfaces/games.interface";
 
 
@@ -7,6 +7,7 @@ export const register = createAction(
   '[Register user] User Registration',
   props<{ user: UserInteface }>()
 );
+export const userCread = createAction('[Login user with cread]', props<{ params: userCreeds }>())
 export const login = createAction(
   '[Login page action] User Login',
   props<{ user: UserInteface }>()

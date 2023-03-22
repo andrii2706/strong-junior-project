@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {UserInteface} from "../interfaces/user.inteface";
+import {userCreeds, UserInteface} from "../interfaces/user.inteface";
 import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
@@ -36,9 +36,9 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('loggedIn') || this.loggedInStatus.toString());
   }
 
-  setUser(userInfo: UserInteface): Observable<UserInteface[]> {
+  setUser(userInfo: userCreeds): Observable<UserInteface[]> {
     this.changeLoginStatus(true);
-    const params = (userCreds: UserInteface) => new HttpParams({
+    const params = (userCreds: userCreeds) => new HttpParams({
         fromObject: {
           email: userCreds.email,
           password: userCreds.password
@@ -50,7 +50,7 @@ export class AuthService {
     });
   }
 
-  registerUser(userInfo: UserInteface): Observable<UserInteface> {
+  registerUser(userInfo: userCreeds): Observable<UserInteface> {
     return this.httpClient.post<UserInteface>(this.url, userInfo);
   }
 }

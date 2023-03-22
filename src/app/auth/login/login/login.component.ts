@@ -1,14 +1,9 @@
 import {Component,  OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../../shared/services/auth.service";
-import {noop, take, tap} from "rxjs";
 import {UserInteface} from "../../../shared/interfaces/user.inteface";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {SnackbarComponent} from "../../../shared/components/snackbar/snackbar.component";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../reducers";
-import {login} from "./login.actions";
-import {Router} from "@angular/router";
+import {userCread} from "./login.actions";
 
 @Component({
   selector: 'app-login',
@@ -20,9 +15,6 @@ export class LoginComponent implements OnInit {
   public userInfo: UserInteface[] = []
   public user!: UserInteface
   constructor(
-      private authService: AuthService,
-      public snackBar: MatSnackBar,
-      public router: Router,
       public store: Store<AppState>) {
   }
 
@@ -34,29 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.authService.setUser(this.loginForm.value).pipe(take(1),
-      tap(user => {
-        if (user.length !== 0) {
-          user.map(user => this.user = user)
-          const loginAction = login({user: this.user})
-          this.store.dispatch(loginAction)
-          this.snackBar.openFromComponent(SnackbarComponent, {
-            data: {text: 'Welcome to Games Store', status: 'success'},
-            verticalPosition: 'top',
-            horizontalPosition: 'center',
-            duration: 3000
-          })
-        } else {
-          this.snackBar.openFromComponent(SnackbarComponent, {
-            data: {text: 'Check Your Credentials', status: 'error'},
-            verticalPosition: "top",
-            horizontalPosition: "center",
-            duration: 3000
-          })
-        }
-      }), take(1)).subscribe(noop,
-      void this.router.navigateByUrl('/home')
-    )
+    this.store.dispatch(userCread({params: this.loginForm.value}))
   }
 
 }

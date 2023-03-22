@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {LoginActions} from "./actions-types";
-import {catchError, map, mergeMap, of, tap} from "rxjs";
+import {map, mergeMap, of, tap} from "rxjs";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../shared/services/auth.service";
 import {Store} from "@ngrx/store";
@@ -20,6 +20,41 @@ export class UserEffects {
     private router: Router,
     private authService: AuthService) {
   }
+
+  userCreed$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(LoginActions.userCread),
+        mergeMap(action => {
+          return this.authService.setUser(action.params).pipe(
+            map(user => {
+              console.log(user)
+              if (user.length !== 0) {
+                let userInfo: UserInteface
+                user.map(user => {
+                  userInfo = user
+                  this.store.dispatch(login({user: userInfo}))
+                })
+                this.snackBar.openFromComponent(SnackbarComponent, {
+                  data: {text: 'Welcome to Games Store', status: 'success'},
+                  verticalPosition: 'top',
+                  horizontalPosition: 'center',
+                  duration: 3000
+                })
+                void this.router.navigateByUrl('/home')
+              } else {
+                this.snackBar.openFromComponent(SnackbarComponent, {
+                  data: {text: 'Check Your Credentials', status: 'error'},
+                  verticalPosition: "top",
+                  horizontalPosition: "center",
+                  duration: 3000
+                })
+              }
+            })
+          )
+        })
+      ),
+    {dispatch: false}
+  )
 
   login$ = createEffect(() =>
       this.actions$.pipe(

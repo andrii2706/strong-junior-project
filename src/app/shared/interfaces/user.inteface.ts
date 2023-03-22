@@ -11,7 +11,7 @@ export interface UserInteface {
   games: Game[]
 }
 
-export interface LoginUser {
+export interface userCreeds {
   password: string,
   email: string,
 }
