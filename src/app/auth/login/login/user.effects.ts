@@ -8,6 +8,8 @@ import {Store} from "@ngrx/store";
 import {AppState} from "../../../reducers";
 import {SnackbarComponent} from "../../../shared/components/snackbar/snackbar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {login} from "./login.actions";
+import {UserInteface} from "../../../shared/interfaces/user.inteface";
 
 @Injectable()
 export class UserEffects {
@@ -22,7 +24,7 @@ export class UserEffects {
   login$ = createEffect(() =>
       this.actions$.pipe(
         ofType(LoginActions.login),
-        mergeMap(action => {
+        tap(action => {
           const userInfo = {
             firstName: action.user.firstName,
             lastName: action.user.lastName,
@@ -32,28 +34,6 @@ export class UserEffects {
             games: action.user.games
           }
           localStorage.setItem("user", JSON.stringify(userInfo))
-          return this.authService.setUser(action.user).pipe(map(data => {
-              if (data) {
-                void this.router.navigateByUrl('/home')
-                this.snackBar.openFromComponent(SnackbarComponent, {
-                  data: {text: 'Welcome to Games Store', status: 'success'},
-                  verticalPosition: 'top',
-                  horizontalPosition: 'center',
-                  duration: 3000
-                })
-              } else {
-                this.snackBar.openFromComponent(SnackbarComponent, {
-                  data: {text: 'Check Your Credentials', status: 'error'},
-                  verticalPosition: "top",
-                  horizontalPosition: "center",
-                  duration: 3000
-                })
-              }
-            }),
-            catchError(err => {
-              return of(err)
-            })
-          )
         }),
       ),
     {dispatch: false}

@@ -10,3 +10,8 @@ export interface UserInteface {
   avatar: string,
   games: Game[]
 }
+
+export interface LoginUser {
+  password: string,
+  email: string,
+}
