@@ -34,30 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-  const loginCredentials = Object.assign( {isLogged: true} , this.loginForm.value)
-    this.authService.setUser(loginCredentials).pipe(take(1),
-      tap(user => {
-      if(user.length !== 0){
-        user.map(user  => this.user = user)
-        const loginAction = login({user: this.user})
-        this.store.dispatch(loginAction)
-        this.snackBar.openFromComponent(SnackbarComponent, {
-          data: {text: 'Welcome to Games Store', status: 'success'},
-          verticalPosition: 'top',
-          horizontalPosition: 'center',
-          duration: 3000
-        })
-      }else {
-        this.snackBar.openFromComponent(SnackbarComponent, {
-          data: {text: 'Check Your Credentials', status: 'error'},
-          verticalPosition: "top",
-          horizontalPosition: "center",
-          duration: 3000
-        })
-      }
-      }) ,take(1)).subscribe(noop,
-      void this.router.navigateByUrl('/home')
-    )
+    this.store.dispatch(login({user: this.user}))
   }
 
 }

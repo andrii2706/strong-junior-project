@@ -2,12 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../shared/services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {noop, take, tap} from "rxjs";
-import {SnackbarComponent} from "../../shared/components/snackbar/snackbar.component";
 import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../reducers";
 import {register} from "../login/login/login.actions";
+import {SnackbarComponent} from "../../shared/components/snackbar/snackbar.component";
 
 @Component({
   selector: 'app-registration',
@@ -19,7 +18,6 @@ export class RegistrationComponent implements OnInit {
   customAvatar = false
 
   constructor(
-    private authService: AuthService,
     public store: Store<AppState>,
     public snackBar: MatSnackBar,
     public router: Router) {
@@ -45,29 +43,20 @@ export class RegistrationComponent implements OnInit {
   }
 
   registerUser() {
-    const user = Object.assign({games: [], isLogged: false}, this.registrationForm.value)
-    this.authService.registerUser(user).pipe(take(1),
-      tap(user => {
-          if (user) {
-            this.store.dispatch(register({user}));
-            this.authService.changeLoginStatus(true);
-            this.snackBar.openFromComponent(SnackbarComponent, {
-              data: {text: 'Welcome to Games Store now you can see your profile', status: 'success'},
-              verticalPosition: 'top',
-              horizontalPosition: 'center',
-              duration: 3000
-            })
-          } else {
-            this.snackBar.openFromComponent(SnackbarComponent, {
-              data: {text: 'Server not work', status: 'error'},
-              verticalPosition: "top",
-              horizontalPosition: "center"
-            })
-          }
-        }
-      )).subscribe(() => noop,
-      void this.router.navigateByUrl("home")
-    )
+    if (this.registrationForm.value.firstName !== '' &&
+      this.registrationForm.value.lastName !== '' &&
+      this.registrationForm.value.password !== '' &&
+      this.registrationForm.value.email !== '' &&
+      this.registrationForm.value.phoneNumber !== ''
+    ) {
+      const user = Object.assign({games: [], isLogged: false}, this.registrationForm.value)
+      this.store.dispatch(register({user}));
+    } else {
+      this.snackBar.openFromComponent(SnackbarComponent, {
+        duration: 3000,
+        data: {text: 'Fill your form please', status: 'error'}
+      })
+    }
   }
 
 }
