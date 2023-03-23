@@ -58,7 +58,6 @@ export class GameComponent extends ClearObservable implements OnInit {
   }
 
   buyAGame(game: Game) {
-
     const selectedGame = Object.assign({isBought: true}, game)
     this.store.dispatch(addGame({game: selectedGame}));
     this.store.pipe(map(state => state.auth.user.games.map(game => {

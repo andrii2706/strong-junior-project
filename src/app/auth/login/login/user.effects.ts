@@ -119,6 +119,11 @@ export class UserEffects {
           const user = JSON.parse(localStorage.getItem("user") || "null")
           user.games.push(action.game)
           localStorage.setItem("user", JSON.stringify(user));
+          this.authService.updateGames(user.games).pipe(
+            map(game => {
+              console.log(game)
+            })
+          )
         })
       )
     , {dispatch: false}

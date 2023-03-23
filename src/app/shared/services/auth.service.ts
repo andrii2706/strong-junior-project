@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {userCreeds, UserInteface} from "../interfaces/user.inteface";
 import {BehaviorSubject, Observable} from "rxjs";
+import {Game} from "../interfaces/games.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,10 @@ export class AuthService {
     return this.httpClient.get<UserInteface[]>(this.url, {
       params: params(userInfo),
     });
+  }
+
+  updateGames(games: Game[]): Observable<UserInteface> {
+    return this.httpClient.patch<UserInteface>(this.url, games)
   }
 
   registerUser(userInfo: userCreeds): Observable<UserInteface> {
