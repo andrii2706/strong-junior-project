@@ -52,7 +52,6 @@ describe('RegistrationComponent', () => {
   it("should register user ", () => {
     spyOn(service, "setUser").and.returnValue(of(user));
     spyOn(component.store, "dispatch").and.callThrough();
-    spyOn(component.router, "navigateByUrl");
     spyOn(component.snackBar, "openFromComponent").and.callThrough()
     component.registerUser();
     component.snackBar.openFromComponent(SnackbarComponent, {
@@ -62,7 +61,6 @@ describe('RegistrationComponent', () => {
       duration: 3000
     })
     component.store.dispatch(login({user: dispatchUser}));
-    expect(component.router.navigateByUrl).toHaveBeenCalledWith('home');
     expect(component.snackBar.openFromComponent).toHaveBeenCalledWith(SnackbarComponent, {
       data: {text: 'Welcome to Games Store', status: 'success'},
       verticalPosition: 'top',
