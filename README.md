@@ -11,6 +11,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 To start user you need to install all packages and using second terminal to start server.
 Start server command is `npm run server`.
 After that you need to wait some time and work with it.
+Navigate to `http://localhost:3000/`. Where you see that your server started.
 
 ## Build
 
