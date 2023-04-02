@@ -30,7 +30,7 @@ export class GameWishlistComponent extends ClearObservable {
   removeGames(game: Game) {
     this.dialog.open(ConfirmationModalComponent, {
       width: '500px',
-      data: game,
+      data: { game: game, isDeletedAllGames: false },
     });
   }
 }

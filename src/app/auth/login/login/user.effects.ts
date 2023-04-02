@@ -10,6 +10,7 @@ import { SnackbarComponent } from '../../../shared/components/snackbar/snackbar.
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { login } from './login.actions';
 import { UserInteface } from '../../../shared/interfaces/user.inteface';
+import { Game } from '../../../shared/interfaces/games.interface';
 
 @Injectable()
 export class UserEffects {
@@ -25,11 +26,11 @@ export class UserEffects {
     () =>
       this.actions$.pipe(
         ofType(LoginActions.userCread),
-        mergeMap((action) => {
+        mergeMap(action => {
           return this.authService.setUser(action.params).pipe(
-            map((user) => {
+            map(user => {
               if (user.length !== 0) {
-                user.map((user) => {
+                user.map(user => {
                   this.store.dispatch(login({ user }));
                 });
                 this.showSnackbar({
@@ -55,7 +56,7 @@ export class UserEffects {
     () =>
       this.actions$.pipe(
         ofType(LoginActions.login),
-        tap((action) => {
+        tap(action => {
           this.provideBrowserUpdate(action);
         })
       ),
@@ -66,9 +67,9 @@ export class UserEffects {
     () =>
       this.actions$.pipe(
         ofType(LoginActions.register),
-        mergeMap((action) => {
+        mergeMap(action => {
           return this.authService.registerUser(action.user).pipe(
-            map((user) => {
+            map(user => {
               if (user) {
                 this.authService.changeLoginStatus(true);
                 this.snackBar.openFromComponent(SnackbarComponent, {
@@ -94,18 +95,45 @@ export class UserEffects {
     () =>
       this.actions$.pipe(
         ofType(LoginActions.addGame),
-        tap((action) => {
+        tap(action => {
           const user = JSON.parse(localStorage.getItem('user') || 'null');
           user.games.push(action.game);
           localStorage.setItem('user', JSON.stringify(user));
           this.authService.updateGames(user.games).pipe(
-            map((game) => {
+            map(game => {
               game;
             })
           );
         })
       ),
     { dispatch: false }
+  );
+  removeGame$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(LoginActions.removeGame),
+        tap(action => {
+          const user = JSON.parse(localStorage.getItem('user') || 'null');
+          const objWithIdIndex = user.games.findIndex((game: Game) => game.id);
+          user.games.splice(objWithIdIndex, 1);
+          localStorage.setItem('user', JSON.stringify(user));
+        })
+      ),
+    { dispatch: false }
+  );
+  deleteAllGames$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(LoginActions.removeAllGames),
+        tap(action => {
+          const user = JSON.parse(localStorage.getItem('user') || 'null');
+          user.games = [];
+          localStorage.setItem('user', JSON.stringify(user));
+        })
+      ),
+    {
+      dispatch: false,
+    }
   );
   logout$ = createEffect(
     () =>

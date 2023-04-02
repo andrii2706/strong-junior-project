@@ -3,7 +3,7 @@ import {
   userCreeds,
   UserInteface,
 } from '../../../shared/interfaces/user.inteface';
-import { Game } from '../../../shared/interfaces/games.interface';
+import { Game, Games } from '../../../shared/interfaces/games.interface';
 
 export const register = createAction(
   '[Register user] User Registration',
@@ -26,3 +26,7 @@ export const addGame = createAction(
   props<{ game: Game }>()
 );
 export const removeGame = createAction('Remove game', props<{ game: Game }>());
+export const removeAllGames = createAction(
+  'Remove all games',
+  props<{ games: [] }>()
+);

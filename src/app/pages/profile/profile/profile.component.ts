@@ -7,6 +7,8 @@ import { ClearObservable } from '../../../shared/classes';
 import { AuthService } from '../../../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { logout } from '../../../auth/login/login/login.actions';
+import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-profile',
@@ -21,13 +23,14 @@ export class ProfileComponent extends ClearObservable implements OnInit {
   constructor(
     public store: Store<AppState>,
     private authService: AuthService,
+    private dialog: MatDialog,
     public router: Router
   ) {
     super();
   }
 
   ngOnInit() {
-    this.store.pipe(takeUntil(this.destroy$)).subscribe((state) => {
+    this.store.pipe(takeUntil(this.destroy$)).subscribe(state => {
       this.userInfo = state.auth.user;
       this.isLoading = false;
     });
@@ -41,5 +44,12 @@ export class ProfileComponent extends ClearObservable implements OnInit {
     this.authService.setLoginStatus(false);
     this.store.dispatch(logout({ user: null }));
     void this.router.navigateByUrl('');
+  }
+
+  deleteAllGames() {
+    this.dialog.open(ConfirmationModalComponent, {
+      width: '500px',
+      data: { game: [], isDeletedAllGames: true },
+    });
   }
 }

@@ -19,7 +19,11 @@
     </div>
     <div class="wishList">
       <div *ngIf="userInfo.games.length > 0">
-        <h2>User List of Games</h2>
+        <div class="deleteAllGames">
+          <h2>User List of Games</h2>
+          <button  mat-raised-button
+                   [color]="'primary'" (click)="deleteAllGames()"> Delete All Games</button>
+        </div>
         <div *ngFor="let game of userInfo.games">
           <app-game-wishlist [gameInfo]="game"></app-game-wishlist>
         </div>

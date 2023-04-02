@@ -47,5 +47,15 @@ export const authReducer = createReducer(
       ...state,
       user: user,
     };
+  }),
+  on(LoginActions.removeAllGames, state => {
+    const user = JSON.parse(JSON.stringify(state.user));
+    if (user.games) {
+      user.games = [];
+    }
+    return {
+      ...state,
+      user: user,
+    };
   })
 );
