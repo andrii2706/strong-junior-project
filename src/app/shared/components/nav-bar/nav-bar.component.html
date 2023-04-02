@@ -1,36 +1,41 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="isOpen ? 'dialog' : 'navigation'"
-      [mode]="isOpen ? 'over' : 'side'"
-      [opened]="isOpen === true">
-    <mat-toolbar>
-      Menu
-    </mat-toolbar>
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="isOpen ? 'dialog' : 'navigation'"
+    [mode]="isOpen ? 'over' : 'side'"
+    [opened]="isOpen === true">
+    <mat-toolbar> Menu </mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="home">Home page</a>
       <a mat-list-item routerLink="games">Games</a>
       <a mat-list-item *ngIf="isLogin$ === false" routerLink="">Login</a>
       <a mat-list-item *ngIf="isLogin$ === true" (click)="logOut()">Log Out</a>
-      <a mat-list-item target="_blank" href="https://github.com/andrii2706">Creator</a>
+      <a mat-list-item target="_blank" href="https://github.com/andrii2706"
+        >Creator</a
+      >
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar>
       <div class="block">
         <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-        <span>{{title}}</span>
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span>{{ title }}</span>
       </div>
       <div class="block">
         <a mat-icon-button routerLink="profile" *ngIf="isLogin$ === true">
           <mat-icon *ngIf="!userAvatar?.avatar">account_circle</mat-icon>
-          <img *ngIf="userAvatar?.avatar" [src]="userAvatar?.avatar" alt="avatar">
+          <img
+            *ngIf="userAvatar?.avatar"
+            [src]="userAvatar?.avatar"
+            alt="avatar" />
         </a>
       </div>
     </mat-toolbar>

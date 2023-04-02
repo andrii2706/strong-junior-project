@@ -1,5 +1,5 @@
-<app-loader *ngIf="isLoading || !gameDetails" ></app-loader>
-<section *ngIf="gameDetails !== undefined" >
+<app-loader *ngIf="isLoading || !gameDetails"></app-loader>
+<section *ngIf="gameDetails !== undefined">
   <div class="back-btn">
     <button mat-flat-button [color]="'primary'" (click)="backButton()">
       <mat-icon>arrow_back</mat-icon>
@@ -11,21 +11,24 @@
         <div class="metacritic-position" *ngIf="gameDetails.metacritic">
           <span [innerText]="gameDetails.metacritic"></span>
         </div>
-        <img src="{{gameDetails.background_image}}" alt="Image Poster" width="450px">
+        <img
+          src="{{ gameDetails.background_image }}"
+          alt="Image Poster"
+          width="450px" />
       </div>
       <div class="game-name">
-        <h1>{{gameDetails.name_original}}</h1>
+        <h1>{{ gameDetails.name_original }}</h1>
         <div class="game-rating">
           <div>
             <h2>Genres:</h2>
             <ul>
-              <li *ngFor="let genre of gameDetails.genres">{{genre.name}}</li>
+              <li *ngFor="let genre of gameDetails.genres">{{ genre.name }}</li>
             </ul>
           </div>
-          <p>Rating --- {{gameDetails.rating}}</p>
-          <p>Rating --- {{gameDetails.rating_top}}</p>
+          <p>Rating --- {{ gameDetails.rating }}</p>
+          <p>Rating --- {{ gameDetails.rating_top }}</p>
         </div>
-        <a href="{{gameDetails.website}}">Game WebSite </a>
+        <a href="{{ gameDetails.website }}">Game WebSite </a>
       </div>
     </div>
     <div class="games-description">
@@ -35,41 +38,61 @@
         <mat-divider></mat-divider>
         <div class="stores">
           <div *ngFor="let str of gameDetails.stores">
-            <a href="{{str.store.domain}}">{{str.store.name}}</a>
+            <a href="{{ str.store.domain }}">{{ str.store.name }}</a>
           </div>
         </div>
       </div>
       <div>
         <mat-tab-group class="tabs">
           <mat-tab>
-            <ng-template mat-tab-label><span class="tab-header">Tags</span></ng-template>
+            <ng-template mat-tab-label
+              ><span class="tab-header">Tags</span></ng-template
+            >
             <div *ngFor="let tag of gameDetails.tags" class="tags">
-              <img src="{{tag.image_background}}" alt="{{tag.name}}">
-              <h2>{{tag.name}}</h2>
-              <span>games on this tag --- {{tag.games_count}}</span>
+              <img src="{{ tag.image_background }}" alt="{{ tag.name }}" />
+              <h2>{{ tag.name }}</h2>
+              <span>games on this tag --- {{ tag.games_count }}</span>
             </div>
           </mat-tab>
           <mat-tab>
-            <ng-template mat-tab-label><span class="tab-header">Metacritic platforms</span></ng-template>
-            <div *ngFor="let metacriticPlatform of gameDetails.metacritic_platforms" class="videos">
-              <p>{{metacriticPlatform.platform.name}}</p>
-              <a href="{{metacriticPlatform.url}}" target="_blank">Link to metacritic</a>
-              <p>{{metacriticPlatform.metascore}}</p>
+            <ng-template mat-tab-label
+              ><span class="tab-header">Metacritic platforms</span></ng-template
+            >
+            <div
+              *ngFor="
+                let metacriticPlatform of gameDetails.metacritic_platforms
+              "
+              class="videos">
+              <p>{{ metacriticPlatform.platform.name }}</p>
+              <a href="{{ metacriticPlatform.url }}" target="_blank"
+                >Link to metacritic</a
+              >
+              <p>{{ metacriticPlatform.metascore }}</p>
             </div>
           </mat-tab>
           <mat-tab>
-            <ng-template mat-tab-label><span class="tab-header">Platforms</span></ng-template>
+            <ng-template mat-tab-label
+              ><span class="tab-header">Platforms</span></ng-template
+            >
             <div *ngFor="let pm of gameDetails.platforms" class="platforms">
-              <img src="{{pm.platform.image_background}}" alt="{{pm.platform.name}}">
-              <h2>{{pm.platform.name}}</h2>
-              <span>games on this platform --- {{pm.platform.games_count}}</span>
+              <img
+                src="{{ pm.platform.image_background }}"
+                alt="{{ pm.platform.name }}" />
+              <h2>{{ pm.platform.name }}</h2>
+              <span
+                >games on this platform --- {{ pm.platform.games_count }}</span
+              >
             </div>
           </mat-tab>
           <mat-tab>
-            <ng-template mat-tab-label><span class="tab-header">Developers</span></ng-template>
+            <ng-template mat-tab-label
+              ><span class="tab-header">Developers</span></ng-template
+            >
             <div *ngFor="let developer of gameDetails.developers">
-              <img src="{{developer.image_background}}" alt="{{developer.name}}">
-              <h2>{{developer.name}}</h2>
+              <img
+                src="{{ developer.image_background }}"
+                alt="{{ developer.name }}" />
+              <h2>{{ developer.name }}</h2>
             </div>
           </mat-tab>
         </mat-tab-group>

@@ -1,18 +1,20 @@
 <section *ngIf="!!userInfo">
   <div>
     <div class="profile-navigation">
-      <button mat-raised-button [color]="'primary'" (click)="logOut()">Log Out</button>
+      <button mat-raised-button [color]="'primary'" (click)="logOut()">
+        Log Out
+      </button>
     </div>
 
     <div class="user-info">
       <div>
-        <h2>{{userInfo.firstName}} {{userInfo.lastName}}</h2>
-        <p>{{userInfo.email}}</p>
-        <p>{{userInfo.phoneNumber}}</p>
+        <h2>{{ userInfo.firstName }} {{ userInfo.lastName }}</h2>
+        <p>{{ userInfo.email }}</p>
+        <p>{{ userInfo.phoneNumber }}</p>
       </div>
       <div class="avatar">
-        <img *ngIf="userInfo.avatar" [src]="userInfo.avatar" alt="avatar">
-       <mat-icon *ngIf="!userInfo.avatar">account_circle</mat-icon>
+        <img *ngIf="userInfo.avatar" [src]="userInfo.avatar" alt="avatar" />
+        <mat-icon *ngIf="!userInfo.avatar">account_circle</mat-icon>
       </div>
     </div>
     <div class="wishList">
@@ -23,8 +25,13 @@
         </div>
       </div>
       <div *ngIf="userInfo.games.length === 0">
-        <h2>Chose your game </h2>
-        <button mat-raised-button [color]="'primary'" (click)="redirectToGames()">Games</button>
+        <h2>Chose your game</h2>
+        <button
+          mat-raised-button
+          [color]="'primary'"
+          (click)="redirectToGames()">
+          Games
+        </button>
       </div>
     </div>
   </div>

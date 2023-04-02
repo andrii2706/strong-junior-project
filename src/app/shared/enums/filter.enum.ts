@@ -1,6 +1,6 @@
 export enum FilterByData {
-  LAST_RELEASED ='LAST_RELEASED',
-  LAST_WEEK = 'LAST_WEEK'
+  LAST_RELEASED = 'LAST_RELEASED',
+  LAST_WEEK = 'LAST_WEEK',
 }
 export enum FilterByOrder {
   released = 'released',
@@ -8,5 +8,5 @@ export enum FilterByOrder {
   created = 'created',
   updated = 'updated',
   name = 'name',
-  rating = 'rating'
+  rating = 'rating',
 }

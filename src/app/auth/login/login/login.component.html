@@ -3,8 +3,12 @@
     <form [formGroup]="loginForm" class="login-form">
       <mat-form-field>
         <mat-label>Email</mat-label>
-        <input formControlName="email" type="email" matInput autocomplete="false"
-               placeholder="Ex. pat@example.com">
+        <input
+          formControlName="email"
+          type="email"
+          matInput
+          autocomplete="false"
+          placeholder="Ex. pat@example.com" />
         <mat-error *ngIf="!loginForm.hasError('required')">
           Please enter a valid email address
         </mat-error>
@@ -12,8 +16,12 @@
       <app-show-and-hide-password>
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <input formControlName="password" type="password" matInput autocomplete="false"
-                 placeholder="Ex. pat@example.com">
+          <input
+            formControlName="password"
+            type="password"
+            matInput
+            autocomplete="false"
+            placeholder="Ex. pat@example.com" />
           <mat-error *ngIf="!loginForm.hasError('required')">
             Please enter a valid password
           </mat-error>
@@ -24,8 +32,16 @@
       <h2>If you are not logined please register</h2>
     </div>
     <div class="login-button">
-      <a mat-raised-button routerLink="registration" [color]="'primary'">Registration</a>
-      <button mat-flat-button color="primary" [disabled]="!loginForm.valid" (click)="login()">Login</button>
+      <a mat-raised-button routerLink="registration" [color]="'primary'"
+        >Registration</a
+      >
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="!loginForm.valid"
+        (click)="login()">
+        Login
+      </button>
     </div>
   </div>
 </section>

@@ -1,37 +1,49 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
-import {FilterParams} from "../../../../shared/interfaces/filter.interface";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import {
+  Developers,
+  DevelopersFilters,
+  FilterParams,
+  Genres,
+  GenresFilters,
+  Metacritics,
+  OrderByInfos,
+  PlatformsFilters,
+} from '../../../../shared/interfaces/filter.interface';
 import {
   developersFilter,
   genresFilter,
   metacriticNumbers,
   orderByInfos,
-  platformsFilter
-} from "../../constants/filter.constant";
-import * as moment from "moment";
-import {ClearObservable} from "../../../../shared/classes";
+  platformsFilter,
+} from '../../constants/filter.constant';
+import * as moment from 'moment';
+import { ClearObservable } from '../../../../shared/classes';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss']
+  styleUrls: ['./filter.component.scss'],
 })
 export class FilterComponent extends ClearObservable implements OnInit {
   filterForm: FormGroup;
-  dates: string = ''
-  genres: { genreName: string, slug: string }[] = genresFilter;
-  developers: { developersName: string, slug: string }[] = developersFilter;
-  platforms: { platformsName: string, slug: string }[] = platformsFilter;
-  orderByInfos: { name: string, slug: string }[] = orderByInfos;
-  metacritics: { name: string, slug: string }[] = metacriticNumbers;
+  dates: string = '';
+  genres: GenresFilters[] = genresFilter;
+  developers: DevelopersFilters[] = developersFilter;
+  platforms: PlatformsFilters[] = platformsFilter;
+  orderByInfos: OrderByInfos[] = orderByInfos;
+  metacritics: Metacritics[] = metacriticNumbers;
   @Output()
-  filter = new EventEmitter<FilterParams>()
+  filter = new EventEmitter<FilterParams>();
 
   constructor() {
     super();
   }
 
   ngOnInit(): void {
+    this.iniFilterForm();
+  }
+  private iniFilterForm() {
     this.filterForm = new FormGroup({
       search: new FormControl(''),
       genres: new FormControl(''),
@@ -39,15 +51,12 @@ export class FilterComponent extends ClearObservable implements OnInit {
       developers: new FormControl(''),
       ordering: new FormControl(''),
       metacritic: new FormControl(''),
-      dates: new FormControl('')
-    })
+      dates: new FormControl(''),
+    });
   }
-
   submitFilter() {
-    this.filterForm.value.dates = this.dates
-    this.filter.emit(
-      this.filterForm.value
-    )
+    this.filterForm.value.dates = this.dates;
+    this.filter.emit(this.filterForm.value);
   }
 
   lastGames() {
@@ -57,15 +66,16 @@ export class FilterComponent extends ClearObservable implements OnInit {
   }
 
   clearFilterForm() {
-    this.dates = ''
-    this.filterForm.patchValue({
+    this.dates = '';
+    const clearForm = {
       search: '',
       genres: '',
       platforms: '',
       developers: '',
       ordering: '',
       metacritic: '',
-      dates: ''
-    })
+      dates: '',
+    };
+    this.filterForm.patchValue(clearForm);
   }
 }

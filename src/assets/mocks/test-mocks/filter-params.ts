@@ -5,8 +5,8 @@ export const filterParamsEmpty = {
   metacritic: '',
   developers: '',
   dates: '',
-  genres: ''
-}
+  genres: '',
+};
 export const filterParamsWithData = {
   search: 'Hero',
   platforms: '',
@@ -14,5 +14,5 @@ export const filterParamsWithData = {
   metacritic: '',
   developers: '',
   dates: '',
-  genres: ''
-}
+  genres: '',
+};

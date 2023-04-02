@@ -7,7 +7,7 @@
 }
 
 .sidenav .mat-toolbar {
-  background: #1D1D1E;
+  background: #1d1d1e;
   color: beige;
 }
 
@@ -16,10 +16,10 @@
   top: 0;
   z-index: 1;
 }
-::ng-deep mat-toolbar{
+::ng-deep mat-toolbar {
   justify-content: space-between;
 }
-.block{
+.block {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,11 +34,9 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: #1D1D1E;
+  background: #1d1d1e;
   color: beige;
 }
-::ng-deep .mat-drawer{
-  background: #1D1D1E;
+::ng-deep .mat-drawer {
+  background: #1d1d1e;
 }
-
-

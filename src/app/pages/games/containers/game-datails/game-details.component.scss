@@ -1,9 +1,8 @@
-.position-game-datails{
+.position-game-datails {
   display: flex;
   justify-content: center;
-
 }
-.back-btn{
+.back-btn {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -22,7 +21,6 @@
   }
 }
 .game-details {
-
   .stores-header {
     display: flex;
     justify-content: center;
@@ -30,7 +28,7 @@
     padding-top: 40px;
 
     h2 {
-      color: #1D1D1E;
+      color: #1d1d1e;
       font-family: "Smooch Sans", sans-serif !important;
       font-size: 35px;
     }
@@ -46,10 +44,10 @@
       font-size: 15px;
       text-decoration: none;
       border-radius: 10px;
-      background: #1D1D1E;
-      border: 1px solid #1D1D1E;
+      background: #1d1d1e;
+      border: 1px solid #1d1d1e;
       padding: 10px;
-      color: #C4C4C4;
+      color: #c4c4c4;
       font-weight: 400;
       margin-right: 20px;
       transition: 800ms;
@@ -72,7 +70,7 @@
 
   a {
     font-size: 25px;
-    color: #1D1D1E;
+    color: #1d1d1e;
     text-decoration: none;
 
     &:hover {
@@ -84,8 +82,8 @@
     font-size: 24px;
     font-weight: 400;
     color: white;
-    background: #1D1D1E;
-    border: 1px solid #1D1D1E;
+    background: #1d1d1e;
+    border: 1px solid #1d1d1e;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -106,18 +104,18 @@
     align-items: center;
 
     > a {
-      &:hover{
-        color: #1D1D1E;
+      &:hover {
+        color: #1d1d1e;
       }
     }
 
-    .buy-btn{
-       margin-top: 20px;
+    .buy-btn {
+      margin-top: 20px;
       margin-bottom: 20px;
     }
 
     h1 {
-      color: #1D1D1E;
+      color: #1d1d1e;
       padding-bottom: 5px;
       font-family: "Smooch Sans", sans-serif !important;
       font-size: 30px;
@@ -129,7 +127,7 @@
     }
 
     .game-rating {
-      color: #1D1D1E;
+      color: #1d1d1e;
       font-size: 20px;
       margin: 25px;
     }
@@ -154,7 +152,7 @@
 }
 
 .games-description {
-  color: #1D1D1E;
+  color: #1d1d1e;
   font-size: 15px;
   letter-spacing: 1px;
   max-width: 1200px;
@@ -206,11 +204,11 @@
 
   .tabs {
     ::ng-deep .mat-ink-bar {
-      background: #1D1D1E !important;
+      background: #1d1d1e !important;
     }
 
     ::ng-deep .tab-header {
-      color: #1D1D1E !important;
+      color: #1d1d1e !important;
     }
 
     .tab-header {

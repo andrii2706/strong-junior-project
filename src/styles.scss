@@ -1,19 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html,
 body {
-  margin: 0; font-family: Roboto,
-"Helvetica Neue", sans-serif;
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 .pagination .ngx-pagination .current {
-  background: #C4C4C4;
+  background: #c4c4c4;
   border-radius: 15px;
   color: black;
 }
-.page-container{
+.page-container {
   width: 95%;
   font-size: 30px;
-  background: #C4C4C4;
+  background: #c4c4c4;
   margin: 25px;
   padding: 15px;
   border-radius: 10px;
@@ -35,12 +38,11 @@ body {
   }
 
   li > a:hover {
-    background: #C4C4C4;
+    background: #c4c4c4;
     border-radius: 15px;
     color: black;
   }
 }
-.mat-mdc-list-item .mdc-list-item__primary-text{
+.mat-mdc-list-item .mdc-list-item__primary-text {
   color: beige !important;
 }
-

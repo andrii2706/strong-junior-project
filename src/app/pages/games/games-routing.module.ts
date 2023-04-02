@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {GamesComponent} from "./games/games.component";
-import {GameDetailsComponent} from "./containers/game-datails/game-details.component";
+import { GamesComponent } from './games/games.component';
+import { GameDetailsComponent } from './containers/game-datails/game-details.component';
 
 const routes: Routes = [
   {
@@ -10,12 +10,12 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component:  GameDetailsComponent
-  }
+    component: GameDetailsComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class GamesRoutingModule { }
+export class GamesRoutingModule {}

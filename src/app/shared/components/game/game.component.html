@@ -1,17 +1,33 @@
 <mat-card *ngIf="game" class="game-card">
   <mat-card-header>
-    <mat-card-title>{{game.name}}</mat-card-title>
-    <mat-card-subtitle>{{game.released}}</mat-card-subtitle>
+    <mat-card-title>{{ game.name }}</mat-card-title>
+    <mat-card-subtitle>{{ game.released }}</mat-card-subtitle>
   </mat-card-header>
-  <img width="400px" height="225px" mat-card-image src="{{game.background_image | replaceNullImg}}" alt="{{game.slug}}">
-  <div *ngIf="game.metacritic" class="metacritic-position">{{game.metacritic}}</div>
+  <img
+    width="400px"
+    height="225px"
+    mat-card-image
+    src="{{ game.background_image | replaceNullImg }}"
+    alt="{{ game.slug }}" />
+  <div *ngIf="game.metacritic" class="metacritic-position">
+    {{ game.metacritic }}
+  </div>
   <mat-card-content>
     <div class="content-card">
-      <p>rating - {{game.rating}}</p>
-      <p>Rating Top - {{game.rating_top}}</p>
-      <button mat-raised-button class="goToDetails" [color]="'primary'" (click)="goToGameDetails()" >To game detail</button>
-      <button mat-raised-button [disabled]="userStatus === false || showLabel" [color]="'primary'"
-              (click)="buyAGame(game)">
+      <p>rating - {{ game.rating }}</p>
+      <p>Rating Top - {{ game.rating_top }}</p>
+      <button
+        mat-raised-button
+        class="goToDetails"
+        [color]="'primary'"
+        (click)="goToGameDetails()">
+        To game detail
+      </button>
+      <button
+        mat-raised-button
+        [disabled]="userStatus === false || showLabel"
+        [color]="'primary'"
+        (click)="buyAGame(game)">
         <mat-icon *ngIf="!showLabel">add_shopping_cart</mat-icon>
         <span *ngIf="!showLabel">Push to WishList</span>
         <span *ngIf="showLabel">Game Has been bought</span>
@@ -19,4 +35,3 @@
     </div>
   </mat-card-content>
 </mat-card>
-

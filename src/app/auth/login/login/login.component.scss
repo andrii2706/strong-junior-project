@@ -3,7 +3,7 @@
     width: 450px;
   }
 }
-.login-content{
+.login-content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,18 +11,18 @@
   height: 80vh;
 }
 
-.login-button{
+.login-button {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
-   button {
-     &:disabled{
-       background: #C4C4C4;
-       color: #1D1D1E;
-     }
-   }
+  button {
+    &:disabled {
+      background: #c4c4c4;
+      color: #1d1d1e;
+    }
+  }
 }
-.registration-notification{
+.registration-notification {
   color: beige;
 }

@@ -1,64 +1,93 @@
 <section>
-<div class="page-container">
-  <h2>Registration form</h2>
-  <form [formGroup]="registrationForm">
-    <mat-form-field>
-      <mat-label>Firstname</mat-label>
-      <input formControlName="firstName" type="text" matInput  autocomplete="false"
-             placeholder="Dominik">
-      <mat-error *ngIf="!registrationForm.hasError('required')">
-       Please fill the form
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Lastname</mat-label>
-      <input formControlName="lastName" type="text" matInput  autocomplete="false"
-             placeholder="Torreto">
-      <mat-error *ngIf="!registrationForm.hasError('required')">
-        Please fill the form
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>PhoneNumber</mat-label>
-      <span matPrefix>+380 &nbsp;</span>
-      <input formControlName="phoneNumber" type="tel" matInput  autocomplete="false"
-             placeholder="+3809876578">
-      <mat-error *ngIf="!registrationForm.hasError('required')">
-        Please fill the form
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input formControlName="email" type="email" matInput autocomplete="false"
-             placeholder="Ex. pat@example.com">
-      <mat-error *ngIf="!registrationForm.hasError('required')">
-        Please enter a valid email
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field *ngIf="customAvatar">
-      <mat-label>Avatar</mat-label>
-      <input formControlName="avatar" type="text" matInput autocomplete="false"
-             placeholder="Your Avatar">
-      <mat-error *ngIf="!registrationForm.hasError('required')">
-        Please enter a avatar
-      </mat-error>
-    </mat-form-field>
-    <app-show-and-hide-password>
+  <div class="page-container">
+    <h2>Registration form</h2>
+    <form [formGroup]="registrationForm">
       <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input formControlName="password" type="password" matInput autocomplete="false"
-        >
+        <mat-label>Firstname</mat-label>
+        <input
+          formControlName="firstName"
+          type="text"
+          matInput
+          autocomplete="false"
+          placeholder="Dominik" />
         <mat-error *ngIf="!registrationForm.hasError('required')">
-          Please enter a valid password
+          Please fill the form
         </mat-error>
       </mat-form-field>
-    </app-show-and-hide-password>
-  </form>
-  <div class="submit-btn">
-    <mat-slide-toggle [color]="'primary'" (change)="changeDefaultAvatar()"> Custom Avatar</mat-slide-toggle>
-    <button mat-raised-button [color]="'primary'" [disabled]="registrationForm.invalid" (click)="registerUser()">
-      Register
-    </button>
+      <mat-form-field>
+        <mat-label>Lastname</mat-label>
+        <input
+          formControlName="lastName"
+          type="text"
+          matInput
+          autocomplete="false"
+          placeholder="Torreto" />
+        <mat-error *ngIf="!registrationForm.hasError('required')">
+          Please fill the form
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>PhoneNumber</mat-label>
+        <span matPrefix>+380 &nbsp;</span>
+        <input
+          formControlName="phoneNumber"
+          type="tel"
+          matInput
+          autocomplete="false"
+          placeholder="+3809876578" />
+        <mat-error *ngIf="!registrationForm.hasError('required')">
+          Please fill the form
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+          formControlName="email"
+          type="email"
+          matInput
+          autocomplete="false"
+          placeholder="Ex. pat@example.com" />
+        <mat-error *ngIf="!registrationForm.hasError('required')">
+          Please enter a valid email
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field *ngIf="customAvatar">
+        <mat-label>Avatar</mat-label>
+        <input
+          formControlName="avatar"
+          type="text"
+          matInput
+          autocomplete="false"
+          placeholder="Your Avatar" />
+        <mat-error *ngIf="!registrationForm.hasError('required')">
+          Please enter a avatar
+        </mat-error>
+      </mat-form-field>
+      <app-show-and-hide-password>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            formControlName="password"
+            type="password"
+            matInput
+            autocomplete="false" />
+          <mat-error *ngIf="!registrationForm.hasError('required')">
+            Please enter a valid password
+          </mat-error>
+        </mat-form-field>
+      </app-show-and-hide-password>
+    </form>
+    <div class="submit-btn">
+      <mat-slide-toggle [color]="'primary'" (change)="changeDefaultAvatar()">
+        Custom Avatar</mat-slide-toggle
+      >
+      <button
+        mat-raised-button
+        [color]="'primary'"
+        [disabled]="registrationForm.invalid"
+        (click)="registerUser()">
+        Register
+      </button>
+    </div>
   </div>
-</div>
 </section>
