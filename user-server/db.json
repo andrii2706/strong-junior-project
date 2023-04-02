@@ -1,4 +1,15 @@
 {
   "users": [
+    {
+      "games": [],
+      "isLogged": false,
+      "firstName": "andrii",
+      "lastName": "paslavskyi",
+      "avatar": "",
+      "password": "11111111",
+      "email": "andrii@gmail.com",
+      "phoneNumber": "3498954845",
+      "id": 1
+    }
   ]
 }

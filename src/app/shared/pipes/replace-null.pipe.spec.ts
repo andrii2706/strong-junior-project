@@ -1,4 +1,4 @@
-import {ReplaceNullPipe} from './replace-null.pipe';
+import { ReplaceNullPipe } from './replace-null.pipe';
 
 describe('ReplaceNullPipe', () => {
   it('create an instance', () => {

@@ -1,20 +1,24 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_SNACK_BAR_DATA, MatSnackBarRef} from "@angular/material/snack-bar";
+import { Component, Inject, OnInit } from '@angular/core';
+import {
+  MAT_SNACK_BAR_DATA,
+  MatSnackBarRef,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-snackbar',
   templateUrl: './snackbar.component.html',
-  styleUrls: ['./snackbar.component.scss']
+  styleUrls: ['./snackbar.component.scss'],
 })
 export class SnackbarComponent implements OnInit {
+  public dataSnackbar: string;
 
-  public dataSnackbar: string
-
-  constructor(public matSnackBarRef: MatSnackBarRef<SnackbarComponent>, @Inject(MAT_SNACK_BAR_DATA) public data: { text: string, status: string }) {
-  }
+  constructor(
+    public matSnackBarRef: MatSnackBarRef<SnackbarComponent>,
+    @Inject(MAT_SNACK_BAR_DATA) public data: { text: string; status: string }
+  ) {}
 
   ngOnInit(): void {
-    this.matSnackBarRef._open()
-    this.dataSnackbar = this.data.text
+    this.matSnackBarRef._open();
+    this.dataSnackbar = this.data.text;
   }
 }

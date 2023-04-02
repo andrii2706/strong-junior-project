@@ -2,17 +2,30 @@
 <section *ngIf="games">
   <h2>Last released games</h2>
   <div class="filter-buttons">
-    <button mat-raised-button color="primary" (click)="lastGames()">Last released games</button>
-    <button mat-raised-button color="primary" (click)="lastWeekGames()">Last week released games</button>
-    <button mat-raised-button color="primary" (click)="goToAllGames()">See all Games</button>
+    <button mat-raised-button color="primary" (click)="lastGames()">
+      Last released games
+    </button>
+    <button mat-raised-button color="primary" (click)="lastWeekGames()">
+      Last week released games
+    </button>
+    <button mat-raised-button color="primary" (click)="goToAllGames()">
+      See all Games
+    </button>
   </div>
   <div class="home-content">
-    <app-game *ngFor="let game of games | paginate :{ itemsPerPage: 25, currentPage: page, totalItems: total }"
-              [gameInfo]="game"></app-game>
+    <app-game
+      *ngFor="
+        let game of games
+          | paginate
+            : { itemsPerPage: 25, currentPage: page, totalItems: total }
+      "
+      [gameInfo]="game"></app-game>
   </div>
   <div class="pagination">
     <div class="pagination-controllers">
-      <pagination-controls class="pagination" (pageChange)="navigateTo($event)"></pagination-controls>
+      <pagination-controls
+        class="pagination"
+        (pageChange)="navigateTo($event)"></pagination-controls>
     </div>
   </div>
 </section>

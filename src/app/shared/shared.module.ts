@@ -1,18 +1,17 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {HttpClientModule} from "@angular/common/http";
-import {NavBarComponent} from './components/nav-bar/nav-bar.component';
-import {AppMaterialModule} from "../app-material/app-material.module";
-import {RouterModule} from "@angular/router";
-import {SnackbarComponent} from './components/snackbar/snackbar.component';
-import {LoaderComponent} from './components/loader/loader.component';
-import {GameComponent} from "./components/game/game.component";
-import {ClearObservable} from './classes';
-import {GameWishlistComponent} from './components/game-wishlist/game-wishlist.component';
-import {ReplaceNullPipe} from './pipes/replace-null.pipe';
-import {ReplaceNullImgPipe} from './pipes/replace-null-img.pipe';
-import {ConfirmationModalComponent} from './components/confirmation-modal/confirmation-modal.component';
-
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { AppMaterialModule } from '../app-material/app-material.module';
+import { RouterModule } from '@angular/router';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { GameComponent } from './components/game/game.component';
+import { ClearObservable } from './classes';
+import { GameWishlistComponent } from './components/game-wishlist/game-wishlist.component';
+import { ReplaceNullPipe } from './pipes/replace-null.pipe';
+import { ReplaceNullImgPipe } from './pipes/replace-null-img.pipe';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,23 +23,16 @@ import {ConfirmationModalComponent} from './components/confirmation-modal/confir
     GameWishlistComponent,
     ReplaceNullPipe,
     ReplaceNullImgPipe,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
   ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    AppMaterialModule,
-    RouterModule,
-
-  ],
+  imports: [CommonModule, HttpClientModule, AppMaterialModule, RouterModule],
   exports: [
-
     NavBarComponent,
     LoaderComponent,
     GameComponent,
     GameWishlistComponent,
-    ReplaceNullImgPipe
+    ReplaceNullImgPipe,
   ],
-  providers: []
+  providers: [],
 })
-export class SharedModule { }
+export class SharedModule {}

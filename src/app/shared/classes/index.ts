@@ -1,1 +1,1 @@
-export * from './clear-observable'
+export * from './clear-observable';

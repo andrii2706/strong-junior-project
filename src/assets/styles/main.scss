@@ -1,15 +1,15 @@
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: Roboto,
-  "Helvetica Neue", sans-serif;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .pagination .ngx-pagination .current {
-  background: #C4C4C4;
+  background: #c4c4c4;
   border-radius: 15px;
   color: black;
 }
@@ -17,7 +17,7 @@ body {
 .page-container {
   width: 95%;
   font-size: 30px;
-  background: #C4C4C4;
+  background: #c4c4c4;
   margin: 25px;
   padding: 15px;
   border-radius: 10px;
@@ -40,7 +40,7 @@ body {
   }
 
   li > a:hover {
-    background: #C4C4C4;
+    background: #c4c4c4;
     border-radius: 15px;
     color: black;
   }
@@ -49,4 +49,3 @@ body {
 .mat-mdc-list-item .mdc-list-item__primary-text {
   color: beige !important;
 }
-

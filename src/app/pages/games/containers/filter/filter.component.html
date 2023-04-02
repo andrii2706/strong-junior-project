@@ -1,48 +1,87 @@
 <section class="filter-form">
   <form [formGroup]="filterForm">
-    <mat-form-field >
+    <mat-form-field>
       <mat-label>Developers</mat-label>
-      <mat-select formControlName="developers" placeholder="Developers" [value]="''">
-        <mat-option [value]="developer.slug" *ngFor="let developer of developers" >
-          {{developer.developersName}}
+      <mat-select
+        formControlName="developers"
+        placeholder="Developers"
+        [value]="''">
+        <mat-option
+          [value]="developer.slug"
+          *ngFor="let developer of developers">
+          {{ developer.developersName }}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Genres</mat-label>
       <mat-select formControlName="genres" placeholder="Genres" [value]="''">
-        <mat-option [value]="genre.slug" *ngFor="let genre of genres">{{genre.genreName}}</mat-option>
+        <mat-option [value]="genre.slug" *ngFor="let genre of genres">{{
+          genre.genreName
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Platforms</mat-label>
-      <mat-select formControlName="platforms" placeholder="Platforms" [value]="''">
-        <mat-option [value]="platform.slug" *ngFor="let platform of platforms">{{platform.platformsName}}</mat-option>
+      <mat-select
+        formControlName="platforms"
+        placeholder="Platforms"
+        [value]="''">
+        <mat-option
+          [value]="platform.slug"
+          *ngFor="let platform of platforms"
+          >{{ platform.platformsName }}</mat-option
+        >
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Order By:</mat-label>
-      <mat-select formControlName="ordering" placeholder="Order By" [value]="''">
-        <mat-option [value]="orderByInfo.slug"
-                    *ngFor="let orderByInfo of orderByInfos">{{orderByInfo.name}}</mat-option>
+      <mat-select
+        formControlName="ordering"
+        placeholder="Order By"
+        [value]="''">
+        <mat-option
+          [value]="orderByInfo.slug"
+          *ngFor="let orderByInfo of orderByInfos"
+          >{{ orderByInfo.name }}</mat-option
+        >
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Metacritic:</mat-label>
-      <mat-select formControlName="metacritic" placeholder="Metacritic" [value]="''">
-        <mat-option [value]="metacritic.slug" *ngFor="let metacritic of metacritics">{{metacritic.name}}</mat-option>
+      <mat-select
+        formControlName="metacritic"
+        placeholder="Metacritic"
+        [value]="''">
+        <mat-option
+          [value]="metacritic.slug"
+          *ngFor="let metacritic of metacritics"
+          >{{ metacritic.name }}</mat-option
+        >
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Search</mat-label>
-      <input formControlName="search" type="text" matInput autocomplete="false">
+      <input
+        formControlName="search"
+        type="text"
+        matInput
+        autocomplete="false" />
     </mat-form-field>
-    <button mat-button mat-flat-button [color]="'primary'" (click)="lastGames()">Last released games</button>
+    <button
+      mat-button
+      mat-flat-button
+      [color]="'primary'"
+      (click)="lastGames()">
+      Last released games
+    </button>
   </form>
   <div>
     <button mat-icon-button (click)="clearFilterForm()">
       <mat-icon>delete</mat-icon>
     </button>
   </div>
-  <button (click)="submitFilter()" mat-icon-button><mat-icon>search</mat-icon></button>
+  <button (click)="submitFilter()" mat-icon-button>
+    <mat-icon>search</mat-icon>
+  </button>
 </section>

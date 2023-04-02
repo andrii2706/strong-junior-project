@@ -1,3 +1,3 @@
-import * as LoginActions from "./login.actions";
+import * as LoginActions from './login.actions';
 
-export {LoginActions}
+export { LoginActions };
