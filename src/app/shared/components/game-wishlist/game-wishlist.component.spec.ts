@@ -42,7 +42,7 @@ describe('GameWishlistComponent', () => {
     const openDialogSpy = spyOn(component.dialog, 'open');
     const fakeDialogConfig = {
       width: '500px',
-      data: gameMockData,
+      data: { game: gameMockData, isDeletedAllGames: false },
     };
     component.removeGames(gameMockData);
     expect(openDialogSpy).toHaveBeenCalledWith(

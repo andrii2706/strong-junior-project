@@ -52,7 +52,7 @@ describe('ConfirmationModalComponent', () => {
   it('should remove game from wishList', () => {
     const storeSpy = spyOn(component.store, 'dispatch').and.callThrough();
     component.confirmDeleting();
-    component.data = game;
+    component.data.game = game;
     fixture.detectChanges();
     store.dispatch(removeGame({ game: game }));
     expect(storeSpy).toHaveBeenCalledWith(removeGame({ game: game }));

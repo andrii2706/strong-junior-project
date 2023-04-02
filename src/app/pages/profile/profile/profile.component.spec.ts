@@ -9,6 +9,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
 import { logout } from '../../../auth/login/login/login.actions';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -19,7 +20,11 @@ describe('ProfileComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ProfileComponent],
-      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([])],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule.withRoutes([]),
+        MatDialogModule,
+      ],
       providers: [provideMockStore({ initialState })],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
