@@ -42,7 +42,7 @@
         <mat-divider></mat-divider>
         <div class="stores">
           <div *ngFor="let str of gameDetails.stores">
-            <a [matTooltip]="str.store.name" href="{{ str.store.domain }}">{{
+            <a [matTooltip]="str.store.name" target=”_blank” href="https://{{ str.store.domain }}">{{
               str.store.name
             }}</a>
           </div>
