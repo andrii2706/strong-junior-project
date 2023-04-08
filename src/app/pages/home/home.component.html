@@ -2,13 +2,25 @@
 <section *ngIf="games">
   <h2>Last released games</h2>
   <div class="filter-buttons">
-    <button mat-raised-button color="primary" (click)="lastGames()">
+    <button
+      matTooltip="Last released games"
+      mat-raised-button
+      color="primary"
+      (click)="lastGames()">
       Last released games
     </button>
-    <button mat-raised-button color="primary" (click)="lastWeekGames()">
+    <button
+      matTooltip="Last week released games"
+      mat-raised-button
+      color="primary"
+      (click)="lastWeekGames()">
       Last week released games
     </button>
-    <button mat-raised-button color="primary" (click)="goToAllGames()">
+    <button
+      matTooltip="See all Games"
+      mat-raised-button
+      color="primary"
+      (click)="goToAllGames()">
       See all Games
     </button>
   </div>

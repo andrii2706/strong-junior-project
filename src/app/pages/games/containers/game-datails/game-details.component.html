@@ -1,7 +1,11 @@
 <app-loader *ngIf="isLoading || !gameDetails"></app-loader>
 <section *ngIf="gameDetails !== undefined">
   <div class="back-btn">
-    <button mat-flat-button [color]="'primary'" (click)="backButton()">
+    <button
+      matTooltip="Previous page"
+      mat-flat-button
+      [color]="'primary'"
+      (click)="backButton()">
       <mat-icon>arrow_back</mat-icon>
     </button>
   </div>
@@ -38,7 +42,9 @@
         <mat-divider></mat-divider>
         <div class="stores">
           <div *ngFor="let str of gameDetails.stores">
-            <a href="{{ str.store.domain }}">{{ str.store.name }}</a>
+            <a [matTooltip]="str.store.name" href="{{ str.store.domain }}">{{
+              str.store.name
+            }}</a>
           </div>
         </div>
       </div>
@@ -64,7 +70,10 @@
               "
               class="videos">
               <p>{{ metacriticPlatform.platform.name }}</p>
-              <a href="{{ metacriticPlatform.url }}" target="_blank"
+              <a
+                matTooltip="Link to metacritic"
+                href="{{ metacriticPlatform.url }}"
+                target="_blank"
                 >Link to metacritic</a
               >
               <p>{{ metacriticPlatform.metascore }}</p>

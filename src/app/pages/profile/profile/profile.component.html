@@ -1,7 +1,11 @@
 <section *ngIf="!!userInfo">
   <div>
     <div class="profile-navigation">
-      <button mat-raised-button [color]="'primary'" (click)="logOut()">
+      <button
+        matTooltip="Log Out"
+        mat-raised-button
+        [color]="'primary'"
+        (click)="logOut()">
         Log Out
       </button>
     </div>
@@ -21,8 +25,13 @@
       <div *ngIf="userInfo.games.length > 0">
         <div class="deleteAllGames">
           <h2>User List of Games</h2>
-          <button  mat-raised-button
-                   [color]="'primary'" (click)="deleteAllGames()"> Delete All Games</button>
+          <button
+            matTooltip="Delete all Games"
+            mat-raised-button
+            [color]="'primary'"
+            (click)="deleteAllGames()">
+            Delete All Games
+          </button>
         </div>
         <div *ngFor="let game of userInfo.games">
           <app-game-wishlist [gameInfo]="game"></app-game-wishlist>
@@ -31,6 +40,7 @@
       <div *ngIf="userInfo.games.length === 0">
         <h2>Chose your game</h2>
         <button
+          matTooltip="Chose Games"
           mat-raised-button
           [color]="'primary'"
           (click)="redirectToGames()">

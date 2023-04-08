@@ -8,11 +8,27 @@
     [opened]="isOpen === true">
     <mat-toolbar> Menu </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="home">Home page</a>
-      <a mat-list-item routerLink="games">Games</a>
-      <a mat-list-item *ngIf="isLogin$ === false" routerLink="">Login</a>
-      <a mat-list-item *ngIf="isLogin$ === true" (click)="logOut()">Log Out</a>
-      <a mat-list-item target="_blank" href="https://github.com/andrii2706"
+      <a mat-list-item matTooltip="Home" routerLink="home">Home page</a>
+      <a mat-list-item matTooltip="Games" routerLink="games">Games</a>
+      <a
+        mat-list-item
+        matTooltip="login"
+        *ngIf="isLogin$ === false"
+        routerLink=""
+        >Login</a
+      >
+      <a
+        mat-list-item
+        matTooltip="Log Out"
+        *ngIf="isLogin$ === true"
+        (click)="logOut()"
+        >Log Out</a
+      >
+      <a
+        mat-list-item
+        matTooltip="Creator"
+        target="_blank"
+        href="https://github.com/andrii2706"
         >Creator</a
       >
     </mat-nav-list>
@@ -30,9 +46,20 @@
         <span>{{ title }}</span>
       </div>
       <div class="block">
-        <a mat-icon-button routerLink="profile" *ngIf="isLogin$ === true">
-          <mat-icon *ngIf="!userAvatar?.avatar">account_circle</mat-icon>
+        <a
+          mat-icon-button
+          matTooltip="Profile"
+          routerLink="profile"
+          *ngIf="isLogin$ === true">
+          <mat-icon
+            [matBadge]="userAvatar?.games?.length"
+            [matBadgeHidden]="userAvatar?.games?.length === 0"
+            *ngIf="!userAvatar?.avatar"
+            >account_circle</mat-icon
+          >
           <img
+            [matBadge]="userAvatar?.games?.length"
+            [matBadgeHidden]="userAvatar?.games?.length === 0"
             *ngIf="userAvatar?.avatar"
             [src]="userAvatar?.avatar"
             alt="avatar" />

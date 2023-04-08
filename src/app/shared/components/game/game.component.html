@@ -18,12 +18,14 @@
       <p>Rating Top - {{ game.rating_top }}</p>
       <button
         mat-raised-button
+        matTooltip="See game Details"
         class="goToDetails"
         [color]="'primary'"
         (click)="goToGameDetails()">
         To game detail
       </button>
       <button
+        matTooltip="Add Game To WishList"
         mat-raised-button
         [disabled]="userStatus === false || showLabel"
         [color]="'primary'"

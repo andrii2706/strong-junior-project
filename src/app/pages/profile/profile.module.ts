@@ -6,6 +6,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from '../../shared/shared.module';
+import { AppMaterialModule } from '../../app-material/app-material.module';
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -15,6 +16,7 @@ import { SharedModule } from '../../shared/shared.module';
     MatIconModule,
     MatButtonModule,
     SharedModule,
+    AppMaterialModule,
   ],
 })
 export class ProfileModule {}

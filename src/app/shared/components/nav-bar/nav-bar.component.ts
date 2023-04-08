@@ -1,4 +1,4 @@
-import { Component, DoCheck } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { ClearObservable } from '../../classes';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -12,7 +12,10 @@ import { UserInteface } from '../../interfaces/user.inteface';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss'],
 })
-export class NavBarComponent extends ClearObservable implements DoCheck {
+export class NavBarComponent
+  extends ClearObservable
+  implements DoCheck, OnInit
+{
   isOpen: boolean;
 
   title = 'Strong Junior project';
@@ -32,6 +35,11 @@ export class NavBarComponent extends ClearObservable implements DoCheck {
     this.isLogin$ = this.authService.LoginStatus;
     this.userAvatar = JSON.parse(localStorage.getItem('user') || 'null');
   }
+  ngOnInit() {
+    this.userGames();
+  }
+
+  userGames() {}
 
   logOut() {
     this.isLogin$ = false;

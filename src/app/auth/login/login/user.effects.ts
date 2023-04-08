@@ -116,6 +116,7 @@ export class UserEffects {
           const user = JSON.parse(localStorage.getItem('user') || 'null');
           const objWithIdIndex = user.games.findIndex((game: Game) => game.id);
           user.games.splice(objWithIdIndex, 1);
+          this.showSnackbar({ text: 'Game Deleted', status: 'success' });
           localStorage.setItem('user', JSON.stringify(user));
         })
       ),
@@ -129,6 +130,7 @@ export class UserEffects {
           const user = JSON.parse(localStorage.getItem('user') || 'null');
           user.games = [];
           localStorage.setItem('user', JSON.stringify(user));
+          this.showSnackbar({ text: 'Games Deleted', status: 'success' });
         })
       ),
     {
