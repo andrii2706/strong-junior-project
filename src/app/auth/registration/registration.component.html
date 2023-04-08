@@ -63,19 +63,20 @@
           Please enter a avatar
         </mat-error>
       </mat-form-field>
-      <app-show-and-hide-password>
-        <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input
-            formControlName="password"
-            type="password"
-            matInput
-            autocomplete="false" />
-          <mat-error *ngIf="!registrationForm.hasError('required')">
-            Please enter a valid password
-          </mat-error>
-        </mat-form-field>
-      </app-show-and-hide-password>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          formControlName="password"
+          [type]="showPassword ? 'text' : 'password'"
+          type="password"
+          matInput
+          autocomplete="false" />
+        <mat-error *ngIf="!registrationForm.hasError('required')">
+          Please enter a valid password
+        </mat-error>
+        <mat-icon matSuffix (click)="showHidePassword()" class="hide-option" *ngIf="showPassword">cancel</mat-icon>
+        <mat-icon matSuffix (click)="showHidePassword()" class="show-option" *ngIf="!showPassword">remove_red_eye</mat-icon>
+      </mat-form-field>
     </form>
     <div class="submit-btn">
       <mat-slide-toggle [color]="'primary'" (change)="changeDefaultAvatar()">

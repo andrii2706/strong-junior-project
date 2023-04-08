@@ -14,10 +14,15 @@ export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
   public userInfo: UserInteface[] = [];
   public user!: UserInteface;
+  showPassword: boolean;
   constructor(public store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.initLoginForm();
+  }
+
+  showHidePassword() {
+    this.showPassword = !this.showPassword;
   }
 
   login() {

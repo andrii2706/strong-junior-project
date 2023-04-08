@@ -13,26 +13,26 @@
           Please enter a valid email address
         </mat-error>
       </mat-form-field>
-      <app-show-and-hide-password>
-        <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input
-            formControlName="password"
-            type="password"
-            matInput
-            autocomplete="false"
-            placeholder="Ex. pat@example.com" />
-          <mat-error *ngIf="!loginForm.hasError('required')">
-            Please enter a valid password
-          </mat-error>
-        </mat-form-field>
-      </app-show-and-hide-password>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          formControlName="password"
+          [type]="showPassword ? 'text' : 'password'"
+          matInput
+          autocomplete="false"
+          placeholder="Ex. pat@example.com" />
+        <mat-error *ngIf="!loginForm.hasError('required')">
+          Please enter a valid password
+        </mat-error>
+        <mat-icon matSuffix (click)="showHidePassword()" class="hide-option" *ngIf="showPassword">cancel</mat-icon>
+        <mat-icon matSuffix (click)="showHidePassword()" class="show-option" *ngIf="!showPassword">remove_red_eye</mat-icon>
+      </mat-form-field>
     </form>
     <div class="registration-notification">
-      <h2>If you are not logined please register</h2>
+      <h2>If you are not logged please register</h2>
     </div>
     <div class="login-button">
-      <a matTooltip="Registration" mat-raised-button routerLink="registration" [color]="'primary'"
+      <a matTooltip="Registration" mat-raised-button routerLink="registration" color="primary"
         >Registration</a
       >
       <button

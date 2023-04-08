@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../shared/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -16,6 +15,7 @@ import { SnackbarComponent } from '../../shared/components/snackbar/snackbar.com
 export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   customAvatar = false;
+  showPassword: boolean;
 
   constructor(
     public store: Store<AppState>,
@@ -25,6 +25,9 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.registrationFormBuild();
+  }
+  showHidePassword() {
+    this.showPassword = !this.showPassword;
   }
 
   changeDefaultAvatar() {

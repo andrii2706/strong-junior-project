@@ -1,4 +1,6 @@
 .login-form {
+  display: flex;
+  flex-direction: column;
   ::ng-deep mat-form-field {
     width: 450px;
   }
