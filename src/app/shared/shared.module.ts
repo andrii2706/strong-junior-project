@@ -12,6 +12,7 @@ import { GameWishlistComponent } from './components/game-wishlist/game-wishlist.
 import { ReplaceNullPipe } from './pipes/replace-null.pipe';
 import { ReplaceNullImgPipe } from './pipes/replace-null-img.pipe';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { ShowAndHidePasswordDirective } from './directive/show-and-hide-password.directive';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
     ReplaceNullPipe,
     ReplaceNullImgPipe,
     ConfirmationModalComponent,
+    ShowAndHidePasswordDirective,
   ],
   imports: [CommonModule, HttpClientModule, AppMaterialModule, RouterModule],
   exports: [
@@ -32,6 +34,7 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
     GameComponent,
     GameWishlistComponent,
     ReplaceNullImgPipe,
+    ShowAndHidePasswordDirective,
   ],
   providers: [],
 })

@@ -8,11 +8,24 @@
     [opened]="isOpen === true">
     <mat-toolbar> Menu </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item matTooltip="Home" routerLink="home">Home page</a>
-      <a mat-list-item matTooltip="Games" routerLink="games">Games</a>
+      <a
+        mat-list-item
+        matTooltipPosition="right"
+        matTooltip="Home"
+        routerLink="home"
+        >Home page</a
+      >
+      <a
+        mat-list-item
+        matTooltipPosition="right"
+        matTooltip="Games"
+        routerLink="games"
+        >Games</a
+      >
       <a
         mat-list-item
         matTooltip="login"
+        matTooltipPosition="right"
         *ngIf="isLogin$ === false"
         routerLink=""
         >Login</a
@@ -20,6 +33,7 @@
       <a
         mat-list-item
         matTooltip="Log Out"
+        matTooltipPosition="right"
         *ngIf="isLogin$ === true"
         (click)="logOut()"
         >Log Out</a
@@ -27,6 +41,7 @@
       <a
         mat-list-item
         matTooltip="Creator"
+        matTooltipPosition="right"
         target="_blank"
         href="https://github.com/andrii2706"
         >Creator</a

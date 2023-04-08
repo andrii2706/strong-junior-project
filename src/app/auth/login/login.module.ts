@@ -5,6 +5,7 @@ import { AppMaterialModule } from '../../app-material/app-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginRoutingModule } from './login-routing.module';
 import { ShowAndHidePasswordComponent } from '../../shared/components/show-and-hide-password/show-and-hide-password.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [LoginComponent, ShowAndHidePasswordComponent],
@@ -14,6 +15,7 @@ import { ShowAndHidePasswordComponent } from '../../shared/components/show-and-h
     LoginRoutingModule,
     AppMaterialModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
 })
 export class LoginModule {}

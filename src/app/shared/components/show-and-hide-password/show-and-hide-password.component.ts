@@ -1,4 +1,4 @@
-import { Component, ContentChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatInput } from '@angular/material/input';
 import { ClearObservable } from '../../classes';
 
@@ -13,7 +13,7 @@ export class ShowAndHidePasswordComponent extends ClearObservable {
   }
 
   showPassword = false;
-  @ContentChild(MatInput) input: MatInput;
+  @ViewChild(MatInput) input: MatInput;
 
   toggleShow() {
     this.showPassword = !this.showPassword;
