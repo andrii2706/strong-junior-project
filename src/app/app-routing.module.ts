@@ -6,26 +6,26 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./pages/home/home.module').then((m) => m.HomeModule),
+      import('./pages/home/home.module').then(m => m.HomeModule),
     title: 'Home',
   },
   {
     path: 'games',
     loadChildren: () =>
-      import('./pages/games/games.module').then((m) => m.GamesModule),
+      import('./pages/games/games.module').then(m => m.GamesModule),
     title: 'Games',
     canActivate: [AuthGuard],
   },
   {
     path: '',
     loadChildren: () =>
-      import('./auth/login/login.module').then((m) => m.LoginModule),
+      import('./auth/login/login.module').then(m => m.LoginModule),
     title: 'Login',
   },
   {
     path: 'profile',
     loadChildren: () =>
-      import('./pages/profile/profile.module').then((m) => m.ProfileModule),
+      import('./pages/profile/profile.module').then(m => m.ProfileModule),
     title: 'Profile',
     canActivate: [AuthGuard],
   },
@@ -33,9 +33,15 @@ const routes: Routes = [
     path: 'registration',
     loadChildren: () =>
       import('./auth/registration/registration/registration.module').then(
-        (m) => m.RegistrationModule
+        m => m.RegistrationModule
       ),
     title: 'Registration',
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./pages/admin/admin.module').then(m => m.AdminModule),
+    title: 'Admin Profile',
   },
 ];
 
