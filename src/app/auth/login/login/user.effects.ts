@@ -165,6 +165,7 @@ export class UserEffects {
       phoneNumber: actionUserInfo.user.phoneNumber,
       avatar: actionUserInfo.user.avatar,
       games: actionUserInfo.user.games,
+      userRole: actionUserInfo.user.userRole,
     };
     localStorage.setItem('user', JSON.stringify(userInfo));
   }

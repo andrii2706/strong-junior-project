@@ -33,6 +33,11 @@ export class AuthService {
       localStorage.getItem('loggedIn') || this.loggedInStatus.toString()
     );
   }
+  get userRole(): UserInteface {
+    return JSON.parse(
+      localStorage.getItem('user') || this.loggedInStatus.toString()
+    );
+  }
 
   UserStatus() {
     return JSON.parse(

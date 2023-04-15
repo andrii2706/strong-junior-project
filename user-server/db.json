@@ -2,14 +2,25 @@
   "users": [
     {
       "games": [],
-      "isLogged": false,
       "firstName": "andrii",
       "lastName": "paslavskyi",
       "avatar": "",
       "password": "11111111",
       "email": "andrii@gmail.com",
       "phoneNumber": "3498954845",
+      "userRole": "user",
       "id": 1
+    },
+    {
+      "games": [],
+      "firstName": "Admin",
+      "lastName": "----",
+      "avatar": "",
+      "password": "adminAdmin",
+      "email": "admin@gmail.com",
+      "phoneNumber": "3498954845",
+      "userRole": "admin",
+      "id": 2
     }
   ]
 }

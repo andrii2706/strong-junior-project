@@ -8,6 +8,7 @@ export interface UserInteface {
   password: string;
   isLogged?: boolean;
   avatar: string;
+  userRole: string;
   games: Game[];
 }
 
