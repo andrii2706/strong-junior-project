@@ -104,6 +104,18 @@
       }
     }
   },
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "app",
+      "style": "scss",
+      "changeDetection": "OnPush"
+    },
+    "@ngrx/schematics:component": {
+      "prefix": "app",
+      "style": "scss",
+      "changeDetection": "OnPush"
+    }
+  },
   "cli": {
     "schematicCollections": ["@angular-eslint/schematics"],
     "analytics": "87cab6b3-896e-4869-8de7-234ec846f06f"
