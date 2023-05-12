@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ClearObservable } from '../../../shared/classes';
+import { title } from '../constants/admin.constants';
 
 @Component({
   selector: 'app-admin',
@@ -10,6 +11,10 @@ import { ClearObservable } from '../../../shared/classes';
 export class AdminComponent extends ClearObservable {
   addNewGameForm: boolean;
   updateGameForm: boolean;
+  updateUserInfo: boolean;
+
+  adminTitle = title;
+
   constructor() {
     super();
   }
@@ -17,6 +22,7 @@ export class AdminComponent extends ClearObservable {
   removeDisable() {
     this.addNewGameForm = false;
     this.updateGameForm = false;
+    this.updateUserInfo = false;
   }
 
   addGame() {
@@ -24,5 +30,8 @@ export class AdminComponent extends ClearObservable {
   }
   updateGame() {
     this.updateGameForm = !this.updateGameForm;
+  }
+  updateUser() {
+    this.updateUserInfo = !this.updateUserInfo;
   }
 }

@@ -3,3 +3,18 @@
   justify-content: start;
   align-items: center;
 }
+.admin-container{
+  padding: 35px;
+}
+
+.admin-btn {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  button{
+    &:nth-child(even){
+      margin-right: 15px;
+      margin-left: 15px;
+    }
+  }
+}

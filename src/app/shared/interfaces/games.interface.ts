@@ -61,7 +61,7 @@ export interface GameDetails {
     }
   ];
   released: string;
-  tba: false;
+  tba: boolean;
   updated: string;
   background_image: string;
   background_image_additional: string;
