@@ -69,15 +69,18 @@
           <mat-icon
             [matBadge]="userAvatar?.games?.length"
             [matBadgeHidden]="userAvatar?.games?.length === 0"
-            *ngIf="!userAvatar?.avatar"
+            *ngIf="!userAvatar?.avatar && userAvatar?.userRole === 'user'"
             >account_circle</mat-icon
           >
           <img
             [matBadge]="userAvatar?.games?.length"
             [matBadgeHidden]="userAvatar?.games?.length === 0"
-            *ngIf="userAvatar?.avatar"
+            *ngIf="userAvatar?.avatar && userAvatar?.userRole === 'user'"
             [src]="userAvatar?.avatar"
             alt="avatar" />
+          <mat-icon *ngIf="userAvatar?.userRole === 'admin'"
+            >admin_panel_settings
+          </mat-icon>
         </a>
       </div>
     </mat-toolbar>

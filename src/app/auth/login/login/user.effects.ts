@@ -168,5 +168,6 @@ export class UserEffects {
       userRole: actionUserInfo.user.userRole,
     };
     localStorage.setItem('user', JSON.stringify(userInfo));
+    localStorage.setItem('userRole', JSON.stringify(userInfo.userRole));
   }
 }

@@ -32,7 +32,11 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (this.authService.LoginStatus) {
-      void state.url;
+      if (this.authService.userRole.userRole === 'admin') {
+        void this.router.navigateByUrl('admin');
+      } else {
+        void state.url;
+      }
       return true;
     } else {
       this.snackbar.openFromComponent(SnackbarComponent, {
