@@ -1,13 +1,12 @@
 export const environment = {
   firebase: {
-    projectId: 'games-app-angular-project',
-    appId: '1:47406338973:web:9c728362f3209292549574',
-    databaseURL: 'https://games-app-angular-project-default-rtdb.firebaseio.com',
-    storageBucket: 'games-app-angular-project.appspot.com',
-    locationId: 'us-central',
-    apiKey: 'AIzaSyAkbRGnqbjCQMEU375NwVzy8rC36nXQi6g',
-    authDomain: 'games-app-angular-project.firebaseapp.com',
-    messagingSenderId: '47406338973',
+    projectId: 'games-app-angular',
+    appId: '1:324958973014:web:d6905c6b1574f97ef2dff7',
+    storageBucket: 'games-app-angular.appspot.com',
+    apiKey: 'AIzaSyDpQYbI64HUqyezTJDOFbXL4DVIvOCWLq8',
+    authDomain: 'games-app-angular.firebaseapp.com',
+    messagingSenderId: '324958973014',
+    measurementId: 'G-G1E45CSKN5',
   },
   production: false,
 };
