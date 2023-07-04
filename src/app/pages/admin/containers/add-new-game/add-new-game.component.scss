@@ -1,0 +1,20 @@
+.add-new-game-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  width: 100%;
+  > mat-form-field {
+    width: 100%;
+  }
+  .name-block{
+    width: 100%;
+    > mat-form-field {
+      &:first-child {
+        margin-right: 10px;
+      }
+      width: 50%;
+    }
+  }
+}

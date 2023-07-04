@@ -1,51 +1,17 @@
-html,
-body {
-  height: 100%;
-}
 
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-.pagination .ngx-pagination .current {
-  background: #c4c4c4;
-  border-radius: 15px;
-  color: black;
-}
-
-.page-container {
-  width: 95%;
-  font-size: 30px;
-  background: #c4c4c4;
-  margin: 25px;
-  padding: 15px;
-  border-radius: 10px;
+.flex-direction-columns{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: 80vh;
 }
-
-.pagination .ngx-pagination {
-  font-size: 15px;
-
-  li {
-    margin-right: 10px;
-  }
-
-  a {
-    color: white !important;
-  }
-
-  li > a:hover {
-    background: #c4c4c4;
-    border-radius: 15px;
-    color: black;
-  }
+.flex-block{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.mat-mdc-list-item .mdc-list-item__primary-text {
-  color: beige !important;
+.flex-block-between{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

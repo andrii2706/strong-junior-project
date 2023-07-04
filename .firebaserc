@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "games-app-angular": {
+      "hosting": {
+        "strong-junior-project": [
+          "games-app-angular"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "games-app-angular"
+  }
+}

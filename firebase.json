@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "strong-junior-project",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
