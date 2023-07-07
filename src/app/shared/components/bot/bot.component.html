@@ -1,1 +1,25 @@
-<p>bot works!</p>
+<section class="bot-dialog-window">
+  <div>
+    <h2 mat-dialog-title>Hello I am your bot</h2>
+    <div mat-dialog-content class="chat">
+      <div class="place-of-messages"></div>
+      <div class="chat-input">
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="input your question or ask about some think" />
+          <!--        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">-->
+          <!--          <mat-icon>close</mat-icon>-->
+          <!--        </button>-->
+        </mat-form-field>
+      </div>
+    </div>
+    <div>
+      <button mat-flat-button matTooltip="Close" color="primary">Close</button>
+      <button mat-flat-button matTooltip="Stop" color="primary">
+        Stop bot
+      </button>
+    </div>
+  </div>
+</section>

@@ -53,7 +53,7 @@ export class NavBarComponent
 
   bot() {
     this.matDialog.open(BotComponent, {
-      width: '250px',
+      width: '700px',
     });
   }
 }

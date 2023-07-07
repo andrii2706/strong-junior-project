@@ -42,7 +42,10 @@
         <mat-icon matListItemIcon>person_outline</mat-icon>
         <h3 mat-line *ngIf="isOpen">Log Out</h3>
       </mat-list-item>
-      <mat-list-item (click)="bot()"> <mat-icon matListItemIcon>tag_faces</mat-icon>  <h3 mat-line *ngIf="isOpen">Bot</h3></mat-list-item>
+      <mat-list-item (click)="bot()">
+        <mat-icon matListItemIcon>tag_faces</mat-icon>
+        <h3 mat-line *ngIf="isOpen">Bot</h3></mat-list-item
+      >
     </mat-nav-list>
   </mat-drawer>
   <mat-toolbar>
@@ -77,4 +80,3 @@
     <ng-content></ng-content>
   </div>
 </mat-drawer-container>
-<app-bot></app-bot>

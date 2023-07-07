@@ -1,0 +1,18 @@
+.place-of-messages {
+  width: 650px;
+  height: 400px;
+  background: rgba(127, 127, 127, 0.6);
+  border: 1px solid black;
+}
+.chat{
+  display: flex;
+  justify-content: center;
+   align-items: center;
+  flex-direction: column;
+}
+.chat-input{
+  mat-form-field {
+    margin-top: 10px;
+    width: 650px;
+  }
+}
