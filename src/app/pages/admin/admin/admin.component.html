@@ -3,7 +3,13 @@
     <h1>{{ adminTitle }}</h1>
   </div>
   <div class="admin-btn">
-    <button (click)="removeDisable()">removeDisable</button>
+    <button
+      mat-raised-button
+      color="primary"
+      mat-button
+      (click)="removeDisable()">
+      removeDisable
+    </button>
     <button
       mat-raised-button
       color="primary"

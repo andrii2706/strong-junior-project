@@ -12,6 +12,7 @@ import { GameWishlistComponent } from './components/game-wishlist/game-wishlist.
 import { ReplaceNullPipe } from './pipes/replace-null.pipe';
 import { ReplaceNullImgPipe } from './pipes/replace-null-img.pipe';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { BotComponent } from './components/bot/bot.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
     ReplaceNullPipe,
     ReplaceNullImgPipe,
     ConfirmationModalComponent,
+    BotComponent,
   ],
   imports: [CommonModule, HttpClientModule, AppMaterialModule, RouterModule],
   exports: [

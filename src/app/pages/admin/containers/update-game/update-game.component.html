@@ -1,1 +1,85 @@
-<p>update-game works!</p>
+<section class="update-game-section">
+  <h2 class="update-new-game-title">Update Game from Store</h2>
+  <form class="update-new-game-form">
+    <div class="flex-block name-block">
+      <mat-form-field>
+        <mat-label>Game Name</mat-label>
+        <input
+          type="string"
+          matInput
+          autocomplete="false"
+          placeholder="The Witcher 3 Wild Hunt" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Game Slug Name</mat-label>
+        <input
+          type="string"
+          matInput
+          autocomplete="false"
+          placeholder="The Witcher 3 Wild Hunt" />
+      </mat-form-field>
+    </div>
+    <mat-form-field>
+      <mat-label>Games Description</mat-label>
+      <textarea type="string" matInput autocomplete="false"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Developers</mat-label>
+      <input
+        type="developers"
+        matInput
+        autocomplete="false"
+        placeholder="CD Project Red" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Metacritic rating</mat-label>
+      <input type="email" matInput autocomplete="false" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Metacritic Platforms</mat-label>
+      <input type="email" matInput autocomplete="false" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Release Data</mat-label>
+      <input
+        type="email"
+        matInput
+        autocomplete="false"
+        placeholder="Ex. pat@example.com" /> </mat-form-field
+    ><mat-form-field>
+      <mat-label>Rating</mat-label>
+      <input
+        type="number"
+        matInput
+        autocomplete="false"
+        placeholder="93" /> </mat-form-field
+    ><mat-form-field>
+      <mat-label>Rating top</mat-label>
+      <input
+        type="number"
+        matInput
+        autocomplete="false"
+        placeholder="4.98" /> </mat-form-field
+    ><mat-form-field>
+      <mat-label>Genres</mat-label>
+      <input
+        type="string"
+        matInput
+        autocomplete="false"
+        placeholder="Action" /> </mat-form-field
+    ><mat-form-field>
+      <mat-label>Store</mat-label>
+      <input
+        type="string"
+        matInput
+        autocomplete="false"
+        placeholder="Steam" /> </mat-form-field
+    ><mat-form-field>
+      <mat-label>Tag</mat-label>
+      <input type="string" matInput autocomplete="false" />
+    </mat-form-field>
+    <button mat-flat-button matTooltip="Update Game" color="primary">
+      Update Game
+    </button>
+  </form>
+</section>

@@ -6,6 +6,8 @@ import { logout } from '../../../auth/login/login/login.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../reducers';
 import { UserInteface } from '../../interfaces/user.inteface';
+import { MatDialog } from '@angular/material/dialog';
+import { BotComponent } from '../bot/bot.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -26,7 +28,8 @@ export class NavBarComponent
   constructor(
     private authService: AuthService,
     public router: Router,
-    public store: Store<AppState>
+    public store: Store<AppState>,
+    private matDialog: MatDialog
   ) {
     super();
   }
@@ -46,5 +49,11 @@ export class NavBarComponent
     this.store.dispatch(logout({ user: null }));
     this.authService.setLoginStatus(false);
     void this.router.navigateByUrl('');
+  }
+
+  bot() {
+    this.matDialog.open(BotComponent, {
+      width: '250px',
+    });
   }
 }

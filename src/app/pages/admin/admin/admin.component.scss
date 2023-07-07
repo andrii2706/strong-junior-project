@@ -1,6 +1,6 @@
 .admin-header{
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 .admin-container{
@@ -9,7 +9,7 @@
 
 .admin-btn {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   button{
     &:nth-child(even){
