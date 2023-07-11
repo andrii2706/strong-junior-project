@@ -1,8 +1,16 @@
+.bot-dialog-window{
+  padding: 20px;
+  background: #1d1d1e;
+  &_title{
+    color: beige;
+  }
+}
 .place-of-messages {
   width: 650px;
   height: 400px;
   background: rgba(127, 127, 127, 0.6);
   border: 1px solid black;
+  box-shadow: 10px 5px 100px 10px #1d1d1e;
 }
 .chat{
   display: flex;
