@@ -13,6 +13,7 @@ import { ReplaceNullPipe } from './pipes/replace-null.pipe';
 import { ReplaceNullImgPipe } from './pipes/replace-null-img.pipe';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { BotComponent } from './components/bot/bot.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,13 @@ import { BotComponent } from './components/bot/bot.component';
     ConfirmationModalComponent,
     BotComponent,
   ],
-  imports: [CommonModule, HttpClientModule, AppMaterialModule, RouterModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    AppMaterialModule,
+    RouterModule,
+    ReactiveFormsModule,
+  ],
   exports: [
     NavBarComponent,
     LoaderComponent,

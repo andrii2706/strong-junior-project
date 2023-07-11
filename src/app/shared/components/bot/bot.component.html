@@ -6,19 +6,28 @@
     <div mat-dialog-content class="chat">
       <div class="place-of-messages"></div>
       <div class="chat-input">
-        <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="input your question or ask about some think" />
-          <!--        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">-->
-          <!--          <mat-icon>close</mat-icon>-->
-          <!--        </button>-->
-        </mat-form-field>
+        <form [formGroup]="botForm">
+          <mat-form-field>
+            <input
+              formControlName="conversation"
+              matInput
+              type="text"
+              placeholder="input your question or ask about some think" />
+            <button matSuffix mat-icon-button (click)="sendMessageToBot()">
+              <mat-icon>send</mat-icon>
+            </button>
+          </mat-form-field>
+        </form>
       </div>
     </div>
-    <div class="flex-block-end">
-      <button mat-flat-button matTooltip="Close" color="primary">Close</button>
+    <div class="flex-block-end button-block">
+      <button
+        mat-flat-button
+        matTooltip="Close"
+        color="primary"
+        (click)="closeBot()">
+        Close
+      </button>
       <button mat-flat-button matTooltip="Stop" color="primary">
         Stop bot
       </button>
