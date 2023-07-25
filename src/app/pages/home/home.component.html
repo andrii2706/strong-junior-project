@@ -1,6 +1,7 @@
 <app-loader *ngIf="isLoading"></app-loader>
 <section *ngIf="games">
   <h2>Last released games</h2>
+  <button (click)="testFireBase()">Test FireBase</button>
   <div class="filter-buttons">
     <button
       matTooltip="Last released games"

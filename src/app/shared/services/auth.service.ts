@@ -3,6 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { userCreeds, UserInteface } from '../interfaces/user.inteface';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Game } from '../interfaces/games.interface';
+import { GoogleAuthProvider } from 'firebase/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +16,22 @@ export class AuthService {
     sessionStorage.getItem('loggedIn') || 'false'
   );
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, public afAuth: AngularFireAuth) {}
+
+  AuthLogin(provider: any) {
+    return this.afAuth
+      .signInWithPopup(provider)
+      .then(result => {
+        console.log('You have been successfully logged in!');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  GoogleAuth() {
+    return this.AuthLogin(new GoogleAuthProvider());
+  }
 
   userService$ = new BehaviorSubject(this.UserStatus);
 

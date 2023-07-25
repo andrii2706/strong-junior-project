@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarComponent } from '../../shared/components/snackbar/snackbar.component';
 import { ClearObservable } from '../../shared/classes';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ export class HomeComponent extends ClearObservable implements OnInit {
 
   constructor(
     private gamesService: GamesService,
+    private authService: AuthService,
     public router: Router,
     private snackBar: MatSnackBar
   ) {
@@ -48,7 +50,7 @@ export class HomeComponent extends ClearObservable implements OnInit {
           this.isLoading = false;
         })
       )
-      .subscribe((games) => {
+      .subscribe(games => {
         this.total = games.count;
         this.games = games.results;
         this.isLoading = false;
@@ -75,7 +77,7 @@ export class HomeComponent extends ClearObservable implements OnInit {
           this.isLoading = false;
         })
       )
-      .subscribe((games) => {
+      .subscribe(games => {
         this.total = games.count;
         this.games = games.results;
         this.isLoading = false;
@@ -99,12 +101,12 @@ export class HomeComponent extends ClearObservable implements OnInit {
         })
       )
       .subscribe(
-        (games) => {
+        games => {
           this.total = games.count;
           this.games = games.results;
           this.isLoading = false;
         },
-        (error) => {
+        error => {
           this.isLoading = false;
           this.snackBar.openFromComponent(SnackbarComponent, {
             data: error.messageerror,
@@ -118,5 +120,10 @@ export class HomeComponent extends ClearObservable implements OnInit {
 
   goToAllGames() {
     void this.router.navigateByUrl('/games');
+  }
+
+  testFireBase() {
+    console.log('test with firebase');
+    this.authService.GoogleAuth();
   }
 }

@@ -15,17 +15,23 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { authReducer } from './auth/login/login/reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './auth/login/login/user.effects';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideDatabase,getDatabase } from '@angular/fire/database';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { provideFunctions,getFunctions } from '@angular/fire/functions';
-import { provideMessaging,getMessaging } from '@angular/fire/messaging';
-import { providePerformance,getPerformance } from '@angular/fire/performance';
-import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import {
+  ScreenTrackingService,
+  UserTrackingService,
+} from '@angular/fire/analytics';
+import { AngularFireModule } from '@angular/fire/compat';
+
+const fireCreds = {
+  projectId: 'games-app-angular',
+  appId: '1:324958973014:web:d6905c6b1574f97ef2dff7',
+  storageBucket: 'games-app-angular.appspot.com',
+  apiKey: 'AIzaSyDpQYbI64HUqyezTJDOFbXL4DVIvOCWLq8',
+  authDomain: 'games-app-angular.firebaseapp.com',
+  messagingSenderId: '324958973014',
+  measurementId: 'G-G1E45CSKN5',
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,20 +50,9 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     NgxPaginationModule,
     EffectsModule.forRoot([]),
     EffectsModule.forFeature([UserEffects]),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAnalytics(() => getAnalytics()),
-    provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore()),
-    provideFunctions(() => getFunctions()),
-    provideMessaging(() => getMessaging()),
-    providePerformance(() => getPerformance()),
-    provideRemoteConfig(() => getRemoteConfig()),
-    provideStorage(() => getStorage()),
+    AngularFireModule.initializeApp(fireCreds),
   ],
-  providers: [
-    ScreenTrackingService,UserTrackingService
-  ],
+  providers: [ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
