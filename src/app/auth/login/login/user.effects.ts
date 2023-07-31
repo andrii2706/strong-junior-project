@@ -9,7 +9,6 @@ import { AppState } from '../../../reducers';
 import { SnackbarComponent } from '../../../shared/components/snackbar/snackbar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { login } from './login.actions';
-import { UserInteface } from '../../../shared/interfaces/user.inteface';
 import { Game } from '../../../shared/interfaces/games.interface';
 
 @Injectable()

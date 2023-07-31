@@ -22,16 +22,11 @@ import {
   UserTrackingService,
 } from '@angular/fire/analytics';
 import { AngularFireModule } from '@angular/fire/compat';
-
-const fireCreds = {
-  projectId: 'games-app-angular',
-  appId: '1:324958973014:web:d6905c6b1574f97ef2dff7',
-  storageBucket: 'games-app-angular.appspot.com',
-  apiKey: 'AIzaSyDpQYbI64HUqyezTJDOFbXL4DVIvOCWLq8',
-  authDomain: 'games-app-angular.firebaseapp.com',
-  messagingSenderId: '324958973014',
-  measurementId: 'G-G1E45CSKN5',
-};
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideMessaging, getMessaging } from '@angular/fire/messaging';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -50,7 +45,12 @@ const fireCreds = {
     NgxPaginationModule,
     EffectsModule.forRoot([]),
     EffectsModule.forFeature([UserEffects]),
-    AngularFireModule.initializeApp(fireCreds),
+    AngularFireModule.initializeApp(environment.firebase),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore()),
+    provideMessaging(() => getMessaging()),
+    provideStorage(() => getStorage()),
   ],
   providers: [ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent],

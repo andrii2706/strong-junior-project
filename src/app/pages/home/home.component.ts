@@ -124,6 +124,6 @@ export class HomeComponent extends ClearObservable implements OnInit {
 
   testFireBase() {
     console.log('test with firebase');
-    this.authService.GoogleAuth();
+    this.authService.AuthLogin('andrii@gmail.com', '1111111');
   }
 }

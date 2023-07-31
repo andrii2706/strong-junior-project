@@ -18,19 +18,16 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient, public afAuth: AngularFireAuth) {}
 
-  AuthLogin(provider: any) {
-    return this.afAuth
-      .signInWithPopup(provider)
-      .then(result => {
-        console.log('You have been successfully logged in!');
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
-  GoogleAuth() {
-    return this.AuthLogin(new GoogleAuthProvider());
+  AuthLogin(email: string, password: string) {
+    return this.afAuth.createUserWithEmailAndPassword(email, password).then(
+      userInfo => {
+        console.log(userInfo);
+        console.log('login works good');
+      },
+      err => {
+        console.error(err);
+      }
+    );
   }
 
   userService$ = new BehaviorSubject(this.UserStatus);
