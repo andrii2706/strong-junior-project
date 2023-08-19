@@ -5,6 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Game } from '../interfaces/games.interface';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { MatDialog } from '@angular/material/dialog';
+import { SnackbarComponent } from '../components/snackbar/snackbar.component';
 
 @Injectable({
   providedIn: 'root',
@@ -16,19 +18,41 @@ export class AuthService {
     sessionStorage.getItem('loggedIn') || 'false'
   );
 
-  constructor(private httpClient: HttpClient, public afAuth: AngularFireAuth) {}
+  constructor(
+    private httpClient: HttpClient,
+    public afAuth: AngularFireAuth,
+    public matDialog: MatDialog
+  ) {}
 
   AuthLogin(email: string, password: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password).then(
       userInfo => {
-        console.log(userInfo);
-        console.log('login works good');
+        console.log('hello');
+        // if (userInfo) {
+        //   this.matDialog.open(SnackbarComponent, {
+        //     width: '500px',
+        //     data: {
+        //       text: 'Welcome to Game store',
+        //       status: 'success',
+        //     },
+        //   });
+        // }
       },
       err => {
-        console.error(err);
+        console.log('hello err');
+        // if (err) {
+        //   this.matDialog.open(SnackbarComponent, {
+        //     width: '500px',
+        //     data: {
+        //       text: 'Problem with login',
+        //       status: 'error',
+        //     },
+        //   });
+        // }
       }
     );
   }
+  LoginWithGoogle() {}
 
   userService$ = new BehaviorSubject(this.UserStatus);
 
