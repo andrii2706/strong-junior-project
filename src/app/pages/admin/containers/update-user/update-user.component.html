@@ -1,10 +1,11 @@
 <section class="update-user-section">
   <h2 class="update-new-user-title">Update Game from Store</h2>
-  <form class="update-new-user-form">
+  <form class="update-new-user-form" [formGroup]="updateUserForm">
     <div class="flex-block name-block">
       <mat-form-field>
         <mat-label>First Name</mat-label>
         <input
+          formControlName="firstName"
           type="email"
           matInput
           autocomplete="false"
@@ -13,6 +14,7 @@
       <mat-form-field>
         <mat-label>Last Name</mat-label>
         <input
+          formControlName="lastName"
           type="email"
           matInput
           autocomplete="false"
@@ -20,16 +22,27 @@
       </mat-form-field>
     </div>
     <mat-form-field>
-      <mat-label>Email</mat-label>
+      <mat-label>PhoneNumber</mat-label>
       <input
+        formControlName="phoneNumber"
         type="email"
         matInput
         autocomplete="false"
         placeholder="The Witcher 3 Wild Hunt" />
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Phone number</mat-label>
+      <mat-label>email</mat-label>
       <input
+        formControlName="email"
+        type="email"
+        matInput
+        autocomplete="false"
+        placeholder="The Witcher 3 Wild Hunt" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        formControlName="password"
         type="email"
         matInput
         autocomplete="false"
@@ -38,12 +51,26 @@
     <mat-form-field>
       <mat-label>Avatar</mat-label>
       <input
+        formControlName="avatar"
         type="email"
         matInput
         autocomplete="false"
         placeholder="The Witcher 3 Wild Hunt" />
     </mat-form-field>
-    <button mat-flat-button matTooltip="Update User" color="primary">
+    <mat-form-field>
+      <mat-label>User Role</mat-label>
+      <input
+        formControlName="userRole"
+        type="email"
+        matInput
+        autocomplete="false"
+        placeholder="The Witcher 3 Wild Hunt" />
+    </mat-form-field>
+    <button
+      mat-flat-button
+      matTooltip="Update User"
+      color="primary"
+      (click)="saveUser()">
       Update User
     </button>
   </form>

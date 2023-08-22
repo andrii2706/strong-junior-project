@@ -1,29 +1,31 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ClearObservable } from 'src/app/shared/classes';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { UserInteface } from '../../../../shared/interfaces/user.inteface';
+import { user } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UsersComponent extends ClearObservable implements OnInit {
-  updateUserInfo: boolean;
+export class UsersComponent extends ClearObservable {
+  activeUserId: number | null = null;
+  updateUserInfo: boolean = false;
 
-  constructor(private authService : AuthService){
+  @Input() users: UserInteface[];
+
+  constructor(private authService: AuthService) {
     super();
   }
 
-  ngOnInit(): void {
-    this.authService.getAllUsers().pipe(takeUntil(this.destroy$)).subscribe(users => {
-      console.log(users);
-    });
+  updateUser(userId: number) {
+    if (this.activeUserId !== userId) {
+      this.activeUserId = userId;
+      this.updateUserInfo = true;
+    } else {
+      this.updateUserInfo = !this.updateUserInfo;
+    }
   }
-
-  updateUser() {
-    this.updateUserInfo = !this.updateUserInfo;
-  }
-
 }

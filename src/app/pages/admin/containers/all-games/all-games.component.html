@@ -1,1 +1,14 @@
-<p>all-games works!</p>
+<div>
+  <div></div>
+  <button
+    mat-raised-button
+    color="primary"
+    mat-button
+    matTooltip="Add new Games"
+    (click)="updateGame()">
+    <mat-icon>update</mat-icon> <span>Update Game</span>
+  </button>
+  <div *ngIf="updateGameForm">
+    <app-update-game></app-update-game>
+  </div>
+</div>

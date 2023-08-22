@@ -1,6 +1,7 @@
 import { Game } from './games.interface';
 
 export interface UserInteface {
+  id: number;
   firstName: string;
   lastName: string;
   phoneNumber?: string;
@@ -9,6 +10,7 @@ export interface UserInteface {
   isLogged?: boolean;
   avatar: string;
   userRole: string;
+  updateUserInfo: boolean;
   games: Game[];
 }
 
