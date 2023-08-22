@@ -1,0 +1,14 @@
+<div>
+    <div></div>
+    <button
+    mat-raised-button
+    color="primary"
+    mat-button
+    matTooltip="Add new Games"
+    (click)="updateUser()">
+    <mat-icon>update</mat-icon> <span>Update User</span>
+  </button>
+</div>
+<div *ngIf="updateUserInfo">
+    <app-update-user></app-update-user>
+</div>

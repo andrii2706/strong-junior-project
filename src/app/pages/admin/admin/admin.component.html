@@ -19,6 +19,9 @@
       (click)="addGame()">
       <mat-icon>add</mat-icon> <span>Add new Game</span>
     </button>
+  </div>
+  <div>
+    <app-all-games></app-all-games>
     <button
       mat-raised-button
       color="primary"
@@ -28,23 +31,17 @@
       (click)="updateGame()">
       <mat-icon>update</mat-icon> <span>Update Game</span>
     </button>
-    <button
-      mat-raised-button
-      color="primary"
-      mat-button
-      matTooltip="Add new Games"
-      [disabled]="updateUserInfo"
-      (click)="updateUser()">
-      <mat-icon>update</mat-icon> <span>Update User</span>
-    </button>
   </div>
+  <div>
+    <app-users>
+      
+    </app-users>
+  </div>
+
   <div *ngIf="addNewGameForm">
     <app-add-new-game></app-add-new-game>
   </div>
   <div *ngIf="updateGameForm">
     <app-update-game></app-update-game>
-  </div>
-  <div *ngIf="updateUserInfo">
-    <app-update-user></app-update-user>
   </div>
 </section>

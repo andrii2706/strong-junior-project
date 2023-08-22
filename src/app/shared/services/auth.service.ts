@@ -97,6 +97,10 @@ export class AuthService {
     });
   }
 
+  getAllUsers(): Observable<UserInteface[]>{
+    return this.httpClient.get<UserInteface[]>(this.url);
+  }
+
   updateGames(games: Game[]): Observable<UserInteface> {
     return this.httpClient.patch<UserInteface>(this.url, games);
   }

@@ -11,7 +11,6 @@ import { title } from '../constants/admin.constants';
 export class AdminComponent extends ClearObservable {
   addNewGameForm: boolean;
   updateGameForm: boolean;
-  updateUserInfo: boolean;
 
   adminTitle = title;
 
@@ -22,22 +21,14 @@ export class AdminComponent extends ClearObservable {
   removeDisable() {
     this.addNewGameForm = false;
     this.updateGameForm = false;
-    this.updateUserInfo = false;
   }
 
   addGame() {
     this.addNewGameForm = !this.addNewGameForm;
     this.updateGameForm = false;
-    this.updateUserInfo = false;
   }
   updateGame() {
     this.updateGameForm = !this.updateGameForm;
-    this.addNewGameForm = false;
-    this.updateUserInfo = false;
-  }
-  updateUser() {
-    this.updateUserInfo = !this.updateUserInfo;
-    this.updateGameForm = false;
     this.addNewGameForm = false;
   }
 }

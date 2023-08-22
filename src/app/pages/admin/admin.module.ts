@@ -7,9 +7,11 @@ import { AddNewGameComponent } from './containers/add-new-game/add-new-game.comp
 import { AppMaterialModule } from '../../app-material/app-material.module';
 import { UpdateGameComponent } from './containers/update-game/update-game.component';
 import { UpdateUserComponent } from './containers/update-user/update-user.component';
+import { UsersComponent } from './containers/users/users.component';
+import { AllGamesComponent } from './containers/all-games/all-games.component';
 
 @NgModule({
-  declarations: [AdminComponent, AddNewGameComponent, UpdateGameComponent, UpdateUserComponent],
+  declarations: [AdminComponent, AddNewGameComponent, UpdateGameComponent, UpdateUserComponent, UsersComponent, AllGamesComponent],
   imports: [CommonModule, AdminRoutingModule, AppMaterialModule],
 })
 export class AdminModule {}
