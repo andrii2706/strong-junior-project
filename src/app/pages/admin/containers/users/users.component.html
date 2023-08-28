@@ -1,20 +1,20 @@
 <div>
   <div *ngFor="let user of users">
-    <div>
+    <div class="userInfo">
       <img src="{{ user.avatar }}" alt="" />
       <h3>{{ user.firstName }} {{ user.lastName }}</h3>
-      <p>{{ user.phoneNumber }}</p>
-      <p>{{ user.email }}</p>
-      <p>{{ user.password }}</p>
+      <span class="userTitle">{{ user.phoneNumber }}</span>
+      <span class="userTitle">{{ user.email }}</span>
+      <span class="userTitle">{{ user.password }}</span>
+      <button
+        mat-raised-button
+        color="primary"
+        mat-button
+        matTooltip="Add new Games"
+        (click)="updateUser(user.id)">
+        <mat-icon>update</mat-icon> <span>Update User</span>
+      </button>
     </div>
-    <button
-      mat-raised-button
-      color="primary"
-      mat-button
-      matTooltip="Add new Games"
-      (click)="updateUser(user.id)">
-      <mat-icon>update</mat-icon> <span>Update User</span>
-    </button>
     <div *ngIf="updateUserInfo && activeUserId === user.id">
       <app-update-user [userInfo]="user"></app-update-user>
     </div>
