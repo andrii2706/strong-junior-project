@@ -1,5 +1,5 @@
 <section>
-  <div class="page-container">
+  <div class="page-container padding-20px">
     <h2>Registration form</h2>
     <form [formGroup]="registrationForm">
       <mat-form-field>
@@ -51,18 +51,6 @@
           Please enter a valid email
         </mat-error>
       </mat-form-field>
-      <mat-form-field *ngIf="customAvatar">
-        <mat-label>Avatar</mat-label>
-        <input
-          formControlName="avatar"
-          type="text"
-          matInput
-          autocomplete="false"
-          placeholder="Your Avatar" />
-        <mat-error *ngIf="!registrationForm.hasError('required')">
-          Please enter a avatar
-        </mat-error>
-      </mat-form-field>
       <mat-form-field>
         <mat-label>Password</mat-label>
         <input
@@ -74,14 +62,41 @@
         <mat-error *ngIf="!registrationForm.hasError('required')">
           Please enter a valid password
         </mat-error>
-        <mat-icon matSuffix (click)="showHidePassword()" class="hide-option" *ngIf="showPassword">cancel</mat-icon>
-        <mat-icon matSuffix (click)="showHidePassword()" class="show-option" *ngIf="!showPassword">remove_red_eye</mat-icon>
+        <mat-icon
+          matSuffix
+          (click)="showHidePassword()"
+          class="hide-option"
+          *ngIf="showPassword"
+          >cancel</mat-icon
+        >
+        <mat-icon
+          matSuffix
+          (click)="showHidePassword()"
+          class="show-option"
+          *ngIf="!showPassword"
+          >remove_red_eye</mat-icon
+        >
       </mat-form-field>
+      <div class="avatar-filed">
+        <div>
+          <input
+            type="file"
+            id="fileInput"
+            (change)="getFile($event)"
+            style="display: none" />
+          <label for="fileInput" class="user-avatar-input-field"
+            >Choose your avatar</label
+          >
+        </div>
+        <div>
+          <img *ngIf="showAvatar" [src]="userAvatar" alt="avatar" />
+          <span *ngIf="!showAvatar" class="avatar-file-name" id="fileName"
+            >Avatar not selected. Please choose your avatar!</span
+          >
+        </div>
+      </div>
     </form>
     <div class="submit-btn">
-      <mat-slide-toggle [color]="'primary'" (change)="changeDefaultAvatar()">
-        Custom Avatar</mat-slide-toggle
-      >
       <button
         mat-raised-button
         matTooltip="Register"

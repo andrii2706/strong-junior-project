@@ -1,6 +1,6 @@
 <div>
   <div *ngFor="let user of users">
-    <div class="userInfo">
+    <div class="userInfo" *ngIf="user.userRole !== 'admin'">
       <img src="{{ user.avatar }}" alt="" />
       <h3>{{ user.firstName }} {{ user.lastName }}</h3>
       <span class="userTitle">{{ user.phoneNumber }}</span>

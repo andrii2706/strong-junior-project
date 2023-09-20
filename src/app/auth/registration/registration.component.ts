@@ -14,8 +14,9 @@ import { SnackbarComponent } from '../../shared/components/snackbar/snackbar.com
 })
 export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
-  customAvatar = false;
   showPassword: boolean;
+  userAvatar: any;
+  showAvatar = false;
 
   constructor(
     public store: Store<AppState>,
@@ -30,15 +31,10 @@ export class RegistrationComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  changeDefaultAvatar() {
-    this.customAvatar = !this.customAvatar;
-  }
-
   private registrationFormBuild() {
     this.registrationForm = new FormGroup({
       firstName: new FormControl(''),
       lastName: new FormControl(''),
-      avatar: new FormControl({ value: '', disabled: this.customAvatar }),
       password: new FormControl('', Validators.minLength(8)),
       email: new FormControl('', Validators.email),
       phoneNumber: new FormControl(''),
@@ -54,7 +50,7 @@ export class RegistrationComponent implements OnInit {
       this.registrationForm.value.phoneNumber !== ''
     ) {
       const user = Object.assign(
-        { games: [], isLogged: false },
+        { games: [], isLogged: false, avatar: this.userAvatar },
         this.registrationForm.value
       );
       this.store.dispatch(register({ user }));
@@ -64,5 +60,15 @@ export class RegistrationComponent implements OnInit {
         data: { text: 'Fill your form please', status: 'error' },
       });
     }
+  }
+
+  getFile(event: any) {
+    this.userAvatar = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (event: any) => {
+      this.userAvatar = event.target.result;
+    };
+    this.showAvatar = !this.showAvatar;
   }
 }

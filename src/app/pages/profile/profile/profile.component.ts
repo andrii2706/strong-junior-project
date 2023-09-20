@@ -34,6 +34,13 @@ export class ProfileComponent extends ClearObservable implements OnInit {
       this.userInfo = state.auth.user;
       this.isLoading = false;
     });
+    if (this.userInfo?.avatar instanceof Blob) {
+      const reader = new FileReader();
+      reader.readAsDataURL(this.userInfo.avatar);
+      reader.onload = (event: any) => {
+        this.userInfo.avatar = event.target.result;
+      };
+    }
   }
 
   redirectToGames() {

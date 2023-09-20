@@ -8,7 +8,7 @@ export interface UserInteface {
   email: string;
   password: string;
   isLogged?: boolean;
-  avatar: string;
+  avatar: Blob;
   userRole: string;
   updateUserInfo: boolean;
   games: Game[];

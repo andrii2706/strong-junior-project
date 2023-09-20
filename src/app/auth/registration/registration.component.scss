@@ -1,3 +1,6 @@
+.padding-20px{
+  padding: 20px;
+}
 form {
   width: 100%;
   display: flex;
@@ -8,11 +11,42 @@ form {
   ::ng-deep mat-form-field {
     width: 70%;
   }
+  .avatar-filed{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    :nth-child(1){
+      margin-right: 30px;
+    }
+  }
 }
 
 .submit-btn {
   width: 75%;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
+}
+input[type="file"] {
+  display: none;
+}
+
+.user-avatar-input-field {
+  background-color: #673ab7;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.avatar-file-name {
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+input[type="file"] + .user-avatar-input-field + .avatar-file-name {
+  display: inline-block;
 }

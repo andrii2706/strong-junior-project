@@ -24,6 +24,7 @@ export class NavBarComponent
 
   isLogin$: boolean;
   userAvatar: UserInteface | null;
+  userReadAvatar: Blob;
 
   constructor(
     private authService: AuthService,
@@ -37,12 +38,18 @@ export class NavBarComponent
   ngDoCheck() {
     this.isLogin$ = this.authService.LoginStatus;
     this.userAvatar = JSON.parse(localStorage.getItem('user') || 'null');
+    if (this.userAvatar && typeof this.userAvatar.avatar === 'string') {
+      const blob = new Blob([this.userAvatar.avatar], { type: 'image/jpeg' });
+      this.userAvatar.avatar = blob;
+      const reader = new FileReader();
+      reader.readAsDataURL(this.userAvatar?.avatar);
+      reader.onload = (event: any) => {
+        this.userReadAvatar = event.target.result;
+        console.log(this.userReadAvatar);
+      };
+    }
   }
-  ngOnInit() {
-    this.userGames();
-  }
-
-  userGames() {}
+  ngOnInit() {}
 
   logOut() {
     this.isLogin$ = false;

@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { ClearObservable } from 'src/app/shared/classes';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserInteface } from '../../../../shared/interfaces/user.inteface';
@@ -10,7 +15,7 @@ import { user } from '@angular/fire/auth';
   styleUrls: ['./users.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UsersComponent extends ClearObservable {
+export class UsersComponent extends ClearObservable implements OnInit {
   activeUserId: number | null = null;
   updateUserInfo: boolean = false;
 
@@ -18,6 +23,16 @@ export class UsersComponent extends ClearObservable {
 
   constructor(private authService: AuthService) {
     super();
+  }
+
+  ngOnInit() {
+    this.users.map(user => {
+      const reader = new FileReader();
+      reader.readAsDataURL(user.avatar);
+      reader.onload = (event: any) => {
+        user.avatar = event.target.result;
+      };
+    });
   }
 
   updateUser(userId: number) {
