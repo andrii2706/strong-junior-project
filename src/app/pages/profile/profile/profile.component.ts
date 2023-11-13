@@ -6,7 +6,7 @@ import { Observable, takeUntil } from 'rxjs';
 import { ClearObservable } from '../../../shared/classes';
 import { AuthService } from '../../../shared/services/auth.service';
 import { Router } from '@angular/router';
-import { logout } from '../../../auth/login/login/login.actions';
+import { logout } from '../../../shared/store/login.actions';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 

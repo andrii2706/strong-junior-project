@@ -8,7 +8,7 @@ import { GameForMock } from '../../../../assets/mocks/test-mocks/game';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
-import { logout } from '../../../auth/login/login/login.actions';
+import { logout } from '../../../shared/store/login.actions';
 import { MatDialogModule } from '@angular/material/dialog';
 
 describe('ProfileComponent', () => {

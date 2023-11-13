@@ -5,7 +5,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { userMockData } from '../assets/mocks/test-mocks/user';
 import { UserInteface } from './shared/interfaces/user.inteface';
-import { login } from './auth/login/login/login.actions';
+import { login } from './shared/store/login.actions';
 
 describe('AppComponent', () => {
   let app: AppComponent;

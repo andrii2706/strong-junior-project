@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../reducers';
-import { register } from '../login/login/login.actions';
+import { register } from '../../shared/store/login.actions';
 import { SnackbarComponent } from '../../shared/components/snackbar/snackbar.component';
 
 @Component({

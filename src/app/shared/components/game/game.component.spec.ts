@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReplaceNullImgPipe } from '../../pipes/replace-null-img.pipe';
 import { userWithGames } from '../../../../assets/mocks/test-mocks/user';
-import { addGame } from '../../../auth/login/login/login.actions';
+import { addGame } from '../../store/login.actions';
 
 describe('GameComponent', () => {
   let component: GameComponent;

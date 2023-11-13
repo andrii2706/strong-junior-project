@@ -12,9 +12,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { SharedModule } from './shared/shared.module';
 import { GamesModule } from './pages/games/games.module';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { authReducer } from './auth/login/login/reducer';
+import { authReducer } from './shared/store/reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from './auth/login/login/user.effects';
+import { UserEffects } from './shared/store/user.effects';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import {

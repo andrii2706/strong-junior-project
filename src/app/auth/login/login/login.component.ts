@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserInteface } from '../../../shared/interfaces/user.inteface';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../reducers';
-import { userCread } from './login.actions';
+import { userCread } from '../../../shared/store/login.actions';
 
 @Component({
   selector: 'app-login',

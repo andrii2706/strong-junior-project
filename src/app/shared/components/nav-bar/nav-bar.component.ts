@@ -2,12 +2,13 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { ClearObservable } from '../../classes';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { logout } from '../../../auth/login/login/login.actions';
+import { logout } from '../../store/login.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../reducers';
 import { UserInteface } from '../../interfaces/user.inteface';
 import { MatDialog } from '@angular/material/dialog';
 import { BotComponent } from '../bot/bot.component';
+import { filter, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-nav-bar',
@@ -23,8 +24,7 @@ export class NavBarComponent
   title = 'Strong Junior project';
 
   isLogin$: boolean;
-  userAvatar: UserInteface | null;
-  userReadAvatar: Blob;
+  userAvatar: UserInteface;
 
   constructor(
     private authService: AuthService,
@@ -37,19 +37,19 @@ export class NavBarComponent
 
   ngDoCheck() {
     this.isLogin$ = this.authService.LoginStatus;
-    this.userAvatar = JSON.parse(localStorage.getItem('user') || 'null');
-    if (this.userAvatar && typeof this.userAvatar.avatar === 'string') {
-      const blob = new Blob([this.userAvatar.avatar], { type: 'image/jpeg' });
-      this.userAvatar.avatar = blob;
-      const reader = new FileReader();
-      reader.readAsDataURL(this.userAvatar?.avatar);
-      reader.onload = (event: any) => {
-        this.userReadAvatar = event.target.result;
-        console.log(this.userReadAvatar);
-      };
-    }
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.pipe(takeUntil(this.destroy$)).subscribe(state => {
+      this.userAvatar = state.auth.user;
+      if (this.userAvatar?.avatar instanceof Blob) {
+        const reader = new FileReader();
+        reader.readAsDataURL(this.userAvatar.avatar);
+        reader.onload = (event: any) => {
+          this.userAvatar.avatar = event.target.result;
+        };
+      }
+    });
+  }
 
   logOut() {
     this.isLogin$ = false;

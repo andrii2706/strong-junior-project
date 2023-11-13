@@ -12,7 +12,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HomeComponent } from '../../pages/home/home.component';
 import { of } from 'rxjs';
 import { SnackbarComponent } from '../../shared/components/snackbar/snackbar.component';
-import { login } from '../login/login/login.actions';
+import { login } from '../../shared/store/login.actions';
 import { loginUser, userMockData } from '../../../assets/mocks/test-mocks/user';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 

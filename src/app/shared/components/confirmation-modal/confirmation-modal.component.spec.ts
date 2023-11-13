@@ -12,7 +12,7 @@ import {
 } from '@angular/material/dialog';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs';
-import { removeGame } from '../../../auth/login/login/login.actions';
+import { removeGame } from '../../store/login.actions';
 
 describe('ConfirmationModalComponent', () => {
   let component: ConfirmationModalComponent;

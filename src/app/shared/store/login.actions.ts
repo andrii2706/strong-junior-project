@@ -1,9 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import {
-  userCreeds,
-  UserInteface,
-} from '../../../shared/interfaces/user.inteface';
-import { Game, Games } from '../../../shared/interfaces/games.interface';
+import { userCreeds, UserInteface } from '../interfaces/user.inteface';
+import { Game, Games } from '../interfaces/games.interface';
 
 export const register = createAction(
   '[Register user] User Registration',

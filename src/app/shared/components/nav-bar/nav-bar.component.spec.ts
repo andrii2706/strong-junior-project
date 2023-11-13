@@ -15,7 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Game } from '../../interfaces/games.interface';
 import { GameForMock } from '../../../../assets/mocks/test-mocks/game';
-import { logout } from '../../../auth/login/login/login.actions';
+import { logout } from '../../store/login.actions';
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;

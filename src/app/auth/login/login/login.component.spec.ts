@@ -13,7 +13,7 @@ import {
   userMockData,
 } from '../../../../assets/mocks/test-mocks/user';
 import { of } from 'rxjs';
-import { login } from './login.actions';
+import { login } from '../../../shared/store/login.actions';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SnackbarComponent } from '../../../shared/components/snackbar/snackbar.component';
 

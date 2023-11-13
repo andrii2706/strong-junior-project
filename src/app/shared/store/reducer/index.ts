@@ -1,7 +1,7 @@
-import { UserInteface } from '../../../../shared/interfaces/user.inteface';
+import { UserInteface } from '../../interfaces/user.inteface';
 import { createReducer, on } from '@ngrx/store';
 import { LoginActions } from '../actions-types';
-import { Game } from '../../../../shared/interfaces/games.interface';
+import { Game } from '../../interfaces/games.interface';
 
 export interface AuthState {
   user: UserInteface | null | undefined;

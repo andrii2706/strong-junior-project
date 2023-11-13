@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClearObservable } from './shared/classes';
 import { Store } from '@ngrx/store';
 import { AppState } from './reducers';
-import { login } from './auth/login/login/login.actions';
+import { login } from './shared/store/login.actions';
 import { UserInteface } from './shared/interfaces/user.inteface';
 
 @Component({

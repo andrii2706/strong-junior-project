@@ -4,10 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Game } from '../../interfaces/games.interface';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../reducers';
-import {
-  removeAllGames,
-  removeGame,
-} from '../../../auth/login/login/login.actions';
+import { removeAllGames, removeGame } from '../../store/login.actions';
 
 interface DeleteDialog {
   game: Game;

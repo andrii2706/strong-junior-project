@@ -3,13 +3,13 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { LoginActions } from './actions-types';
 import { map, mergeMap, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../shared/services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../reducers';
-import { SnackbarComponent } from '../../../shared/components/snackbar/snackbar.component';
+import { AppState } from '../../reducers';
+import { SnackbarComponent } from '../components/snackbar/snackbar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { login } from './login.actions';
-import { Game } from '../../../shared/interfaces/games.interface';
+import { Game } from '../interfaces/games.interface';
 
 @Injectable()
 export class UserEffects {

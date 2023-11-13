@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Game } from '../../interfaces/games.interface';
 import { ActivatedRoute, Router } from '@angular/router';
-import { addGame } from '../../../auth/login/login/login.actions';
+import { addGame } from '../../store/login.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../reducers';
 import { AuthService } from '../../services/auth.service';
@@ -40,12 +40,14 @@ export class GameComponent extends ClearObservable implements OnInit {
 
   ngOnInit() {
     this.getUserStatus();
-    this.store.subscribe((state) => {
-      const index = state.auth.user.games.findIndex(
-        (game) => game.id === this.game.id
-      );
-      if (index !== -1) {
-        this.showLabel = true;
+    this.store.subscribe(state => {
+      if (state.auth.user.games) {
+        const index = state.auth.user.games.findIndex(
+          game => game.id === this.game.id
+        );
+        if (index !== -1) {
+          this.showLabel = true;
+        }
       }
     });
   }
@@ -69,8 +71,8 @@ export class GameComponent extends ClearObservable implements OnInit {
     const selectedGame = Object.assign({ isBought: true }, game);
     this.store.dispatch(addGame({ game: selectedGame }));
     this.store.pipe(
-      map((state) =>
-        state.auth.user.games.map((game) => {
+      map(state =>
+        state.auth.user.games.map(game => {
           if (game.isBought === true) {
             this.showLabel = true;
           }
