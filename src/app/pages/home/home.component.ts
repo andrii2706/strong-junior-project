@@ -121,9 +121,4 @@ export class HomeComponent extends ClearObservable implements OnInit {
   goToAllGames() {
     void this.router.navigateByUrl('/games');
   }
-
-  testFireBase() {
-    console.log('test with firebase');
-    this.authService.AuthLogin('andrii@gmail.com', '1111111');
-  }
 }
