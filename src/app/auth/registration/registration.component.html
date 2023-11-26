@@ -1,110 +1,182 @@
 <section>
   <div class="page-container padding-20px">
-    <h2>Registration form</h2>
-    <form [formGroup]="registrationForm">
-      <mat-form-field>
-        <mat-label>Firstname</mat-label>
-        <input
-          formControlName="firstName"
-          type="text"
-          matInput
-          autocomplete="false"
-          placeholder="Dominik" />
-        <mat-error *ngIf="!registrationForm.hasError('required')">
-          Please fill the form
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Lastname</mat-label>
-        <input
-          formControlName="lastName"
-          type="text"
-          matInput
-          autocomplete="false"
-          placeholder="Torreto" />
-        <mat-error *ngIf="!registrationForm.hasError('required')">
-          Please fill the form
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>PhoneNumber</mat-label>
-        <span matPrefix>+380 &nbsp;</span>
-        <input
-          formControlName="phoneNumber"
-          type="tel"
-          matInput
-          autocomplete="false"
-          placeholder="+3809876578" />
-        <mat-error *ngIf="!registrationForm.hasError('required')">
-          Please fill the form
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input
-          formControlName="email"
-          type="email"
-          matInput
-          autocomplete="false"
-          placeholder="Ex. pat@example.com" />
-        <mat-error *ngIf="!registrationForm.hasError('required')">
-          Please enter a valid email
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input
-          formControlName="password"
-          [type]="showPassword ? 'text' : 'password'"
-          type="password"
-          matInput
-          autocomplete="false" />
-        <mat-error *ngIf="!registrationForm.hasError('required')">
-          Please enter a valid password
-        </mat-error>
-        <mat-icon
-          matSuffix
-          (click)="showHidePassword()"
-          class="hide-option"
-          *ngIf="showPassword"
-          >cancel</mat-icon
-        >
-        <mat-icon
-          matSuffix
-          (click)="showHidePassword()"
-          class="show-option"
-          *ngIf="!showPassword"
-          >remove_red_eye</mat-icon
-        >
-      </mat-form-field>
-      <div class="avatar-filed">
-        <div>
-          <input
-            type="file"
-            id="fileInput"
-            (change)="getFile($event)"
-            style="display: none" />
-          <label for="fileInput" class="user-avatar-input-field"
-            >Choose your avatar</label
-          >
-        </div>
-        <div>
-          <img *ngIf="showAvatar" [src]="userAvatar" alt="avatar" />
-          <span *ngIf="!showAvatar" class="avatar-file-name" id="fileName"
-            >Avatar not selected. Please choose your avatar!</span
-          >
-        </div>
+    <div class="flex-direction-columns">
+      <h2>Registration form</h2>
+      <div class="register-buttons">
+        <button
+          mat-raised-button
+          matTooltip="Register with FireBase"
+          color="primary"
+          (click)="registerWithFireBaseForm()">
+          Register with FireBase
+        </button>
+        <button
+          mat-raised-button
+          matTooltip="Register with our Backend"
+          color="primary"
+          (click)="registerWithOutBackend()">
+          Register with our Backend
+        </button>
       </div>
-    </form>
-    <div class="submit-btn">
-      <button
-        mat-raised-button
-        matTooltip="Register"
-        [color]="'primary'"
-        [disabled]="registrationForm.invalid"
-        (click)="registerUser()">
-        Register
-      </button>
+    </div>
+    <div *ngIf="registerWithFireBase" class="padding-20px">
+      <form>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input
+            formControlName="email"
+            type="email"
+            matInput
+            autocomplete="false"
+            placeholder="Ex. pat@example.com" />
+          <mat-error *ngIf="!registrationForm.hasError('required')">
+            Please enter a valid email
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            formControlName="password"
+            [type]="showPassword ? 'text' : 'password'"
+            type="password"
+            matInput
+            autocomplete="false" />
+          <mat-error *ngIf="!registrationForm.hasError('required')">
+            Please enter a valid password
+          </mat-error>
+          <mat-icon
+            matSuffix
+            (click)="showHidePassword()"
+            class="hide-option"
+            *ngIf="showPassword"
+            >cancel</mat-icon
+          >
+          <mat-icon
+            matSuffix
+            (click)="showHidePassword()"
+            class="show-option"
+            *ngIf="!showPassword"
+            >remove_red_eye</mat-icon
+          >
+        </mat-form-field>
+      </form>
+      <div class="submit-btn">
+        <button
+          mat-raised-button
+          matTooltip="Register"
+          [color]="'primary'"
+          [disabled]="registrationForm.invalid"
+          (click)="registerUser()">
+          Register
+        </button>
+      </div>
+    </div>
+    <div *ngIf="registerWithCustomBackend">
+      <form [formGroup]="registrationForm">
+        <mat-form-field>
+          <mat-label>Firstname</mat-label>
+          <input
+            formControlName="firstName"
+            type="text"
+            matInput
+            autocomplete="false"
+            placeholder="Dominik" />
+          <mat-error *ngIf="!registrationForm.hasError('required')">
+            Please fill the form
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Lastname</mat-label>
+          <input
+            formControlName="lastName"
+            type="text"
+            matInput
+            autocomplete="false"
+            placeholder="Torreto" />
+          <mat-error *ngIf="!registrationForm.hasError('required')">
+            Please fill the form
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>PhoneNumber</mat-label>
+          <span matPrefix>+380 &nbsp;</span>
+          <input
+            formControlName="phoneNumber"
+            type="tel"
+            matInput
+            autocomplete="false"
+            placeholder="+3809876578" />
+          <mat-error *ngIf="!registrationForm.hasError('required')">
+            Please fill the form
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input
+            formControlName="email"
+            type="email"
+            matInput
+            autocomplete="false"
+            placeholder="Ex. pat@example.com" />
+          <mat-error *ngIf="!registrationForm.hasError('required')">
+            Please enter a valid email
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            formControlName="password"
+            [type]="showPassword ? 'text' : 'password'"
+            type="password"
+            matInput
+            autocomplete="false" />
+          <mat-error *ngIf="!registrationForm.hasError('required')">
+            Please enter a valid password
+          </mat-error>
+          <mat-icon
+            matSuffix
+            (click)="showHidePassword()"
+            class="hide-option"
+            *ngIf="showPassword"
+            >cancel</mat-icon
+          >
+          <mat-icon
+            matSuffix
+            (click)="showHidePassword()"
+            class="show-option"
+            *ngIf="!showPassword"
+            >remove_red_eye</mat-icon
+          >
+        </mat-form-field>
+        <div class="avatar-filed">
+          <div>
+            <input
+              type="file"
+              id="fileInput"
+              (change)="getFile($event)"
+              style="display: none" />
+            <label for="fileInput" class="user-avatar-input-field"
+              >Choose your avatar</label
+            >
+          </div>
+          <div>
+            <img *ngIf="showAvatar" [src]="userAvatar" alt="avatar" />
+            <span *ngIf="!showAvatar" class="avatar-file-name" id="fileName"
+              >Avatar not selected. Please choose your avatar!</span
+            >
+          </div>
+        </div>
+      </form>
+      <div class="submit-btn">
+        <button
+          mat-raised-button
+          matTooltip="Register"
+          [color]="'primary'"
+          [disabled]="registrationForm.invalid"
+          (click)="registerUser()">
+          Register
+        </button>
+      </div>
     </div>
   </div>
 </section>

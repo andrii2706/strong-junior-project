@@ -60,28 +60,24 @@
         Login
       </button>
       <button
-        mat-flat-button
         matTooltip="Login"
-        color="primary"
+        mat-icon-button
+        class="icon-btn"
         [disabled]="!loginForm.valid"
         (click)="testFireBase()">
-        Login with Firebase
+        <img
+          src="../../../../assets/icons/1175544_firebase_google_icon.svg"
+          alt="FireBase Icon" />
       </button>
       <button
-        mat-flat-button
+        mat-icon-button
         matTooltip="Login"
-        color="primary"
-        [disabled]="!loginForm.valid"
-        (click)="loginWithAppleId()">
-        Login with Apple
-      </button>
-      <button
-        mat-flat-button
-        matTooltip="Login"
-        color="primary"
+        class="icon-btn"
         [disabled]="!loginForm.valid"
         (click)="loginWithGoogle()">
-        Login with Google
+        <img
+          src="../../../../assets/icons/icons8-google.svg"
+          alt="Google Icon" />
       </button>
     </div>
   </div>

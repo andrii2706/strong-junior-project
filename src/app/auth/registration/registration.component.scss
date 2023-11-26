@@ -50,3 +50,14 @@ input[type="file"] {
 input[type="file"] + .user-avatar-input-field + .avatar-file-name {
   display: inline-block;
 }
+
+.register-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center ;
+  > button {
+    &:nth-child(n+1){
+      margin-left: 10px;
+    }
+  }
+}

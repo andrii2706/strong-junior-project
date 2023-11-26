@@ -14,9 +14,12 @@ import { SnackbarComponent } from '../../shared/components/snackbar/snackbar.com
 })
 export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
+  registerFormFireBase: FormGroup;
+  registerWithFireBase: boolean;
   showPassword: boolean;
   userAvatar: any;
   showAvatar = false;
+  registerWithCustomBackend: boolean;
 
   constructor(
     public store: Store<AppState>,
@@ -26,6 +29,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.registrationFormBuild();
+    this.registerFormFireBaseBuild();
   }
   showHidePassword() {
     this.showPassword = !this.showPassword;
@@ -38,6 +42,13 @@ export class RegistrationComponent implements OnInit {
       password: new FormControl('', Validators.minLength(8)),
       email: new FormControl('', Validators.email),
       phoneNumber: new FormControl(''),
+    });
+  }
+
+  private registerFormFireBaseBuild() {
+    this.registerFormFireBase = new FormGroup({
+      email: new FormControl(''),
+      password: new FormControl(''),
     });
   }
 
@@ -70,5 +81,13 @@ export class RegistrationComponent implements OnInit {
       this.userAvatar = event.target.result;
     };
     this.showAvatar = !this.showAvatar;
+  }
+  registerWithFireBaseForm() {
+    this.registerWithFireBase = !this.registerWithFireBase;
+    this.registerWithCustomBackend = false;
+  }
+  registerWithOutBackend() {
+    this.registerWithCustomBackend = !this.registerWithCustomBackend;
+    this.registerWithFireBase = false;
   }
 }
