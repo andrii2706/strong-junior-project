@@ -56,9 +56,6 @@ export class LoginComponent implements OnInit {
     //   },
     // });
   }
-  loginWithAppleId() {
-    this.authService.LoginWithAppleId();
-  }
   loginWithGoogle() {
     this.authService.LoginWithGoogle();
   }

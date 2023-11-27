@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { LoginActions } from './actions-types';
-import { map, mergeMap, of, tap } from 'rxjs';
+import { map, mergeMap, of, pipe, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Store } from '@ngrx/store';
@@ -90,6 +90,7 @@ export class UserEffects {
       ),
     { dispatch: false }
   );
+
   addGames = createEffect(
     () =>
       this.actions$.pipe(

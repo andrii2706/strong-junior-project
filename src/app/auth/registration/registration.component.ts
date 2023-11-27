@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../reducers';
 import { register } from '../../shared/store/login.actions';
 import { SnackbarComponent } from '../../shared/components/snackbar/snackbar.component';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -24,6 +25,7 @@ export class RegistrationComponent implements OnInit {
   constructor(
     public store: Store<AppState>,
     public snackBar: MatSnackBar,
+    private authService: AuthService,
     public router: Router
   ) {}
 
@@ -71,6 +73,12 @@ export class RegistrationComponent implements OnInit {
         data: { text: 'Fill your form please', status: 'error' },
       });
     }
+  }
+  registerUserWithFireBase() {
+    this.authService.registerUserWithFireBase(
+      this.registerFormFireBase.value.email,
+      this.registerFormFireBase.value.password
+    );
   }
 
   getFile(event: any) {

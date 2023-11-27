@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { userCreeds, UserInteface } from '../interfaces/user.inteface';
+import {
+  FireBaseUser,
+  userCreeds,
+  UserInteface,
+} from '../interfaces/user.inteface';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Game } from '../interfaces/games.interface';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatDialog } from '@angular/material/dialog';
 import { SnackbarComponent } from '../components/snackbar/snackbar.component';
 import { Router } from '@angular/router';
-import { GoogleAuthProvider, OAuthProvider } from '@angular/fire/auth';
+import { GoogleAuthProvider } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -26,12 +30,16 @@ export class AuthService {
     public matDialog: MatDialog
   ) {}
 
-  userLoggingWithFireBase$ = new BehaviorSubject(false);
-  userLoggingWithFireBase = this.userLoggingWithFireBase$.asObservable();
+  private userLoggingWithFireBase$ = new BehaviorSubject<FireBaseUser | null>(
+    null
+  );
 
-  // proceedUserLoggingWithFireBase(state: boolean) {
-  //   this.userLoggingWithFireBase.next(state);
-  // }
+  getUserLogginWithFireBase(): Observable<FireBaseUser | null> {
+    return this.userLoggingWithFireBase$.asObservable();
+  }
+  proceedUserLoggingWithFireBase(state: FireBaseUser | null) {
+    this.userLoggingWithFireBase$.next(state);
+  }
 
   setLoginStatus(value: boolean) {
     this.loggedInStatus = value;
@@ -86,33 +94,29 @@ export class AuthService {
   LoginWithGoogle() {
     return this.afAuth.signInWithPopup(new GoogleAuthProvider()).then(
       userInfo => {
-        console.log(userInfo);
+        this.proceedUserLoggingWithFireBase(userInfo.user);
       },
       error => {
-        console.log(error);
+        if (error) {
+          this.proceedUserLoggingWithFireBase(null);
+        }
       }
     );
   }
-  LoginWithAppleId() {
-    return this.afAuth.signInWithPopup(new OAuthProvider('apple.com')).then(
+
+  registerUserWithFireBase(email: string, password: string) {
+    return this.afAuth.createUserWithEmailAndPassword(email, password).then(
       userInfo => {
-        console.log(userInfo);
+        console.log(userInfo.user);
+        this.proceedUserLoggingWithFireBase(userInfo.user);
       },
       error => {
-        console.log(error);
+        if (error) {
+          this.proceedUserLoggingWithFireBase(null);
+        }
       }
     );
   }
-  // LoginWithGameId() {
-  //   return this.afAuth.signInWithPopup().then(
-  //     userInfo => {
-  //       console.log(userInfo);
-  //     },
-  //     error => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
 
   setUser(userInfo: userCreeds): Observable<UserInteface[]> {
     this.changeLoginStatus(true);
