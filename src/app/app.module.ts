@@ -15,7 +15,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { authReducer } from './shared/store/reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './shared/store/user.effects';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import {
   ScreenTrackingService,
@@ -25,8 +24,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { provideMessaging, getMessaging } from '@angular/fire/messaging';
-import { provideStorage, getStorage } from '@angular/fire/storage';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 
 @NgModule({
   declarations: [AppComponent],
@@ -49,8 +47,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
-    provideMessaging(() => getMessaging()),
-    provideStorage(() => getStorage()),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
   ],
   providers: [ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent],

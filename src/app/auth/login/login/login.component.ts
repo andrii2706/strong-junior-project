@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../reducers';
 import { userCread } from '../../../shared/store/login.actions';
 import { AuthService } from '../../../shared/services/auth.service';
-import { SnackbarComponent } from '../../../shared/components/snackbar/snackbar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
   showPassword: boolean;
   constructor(
     public store: Store<AppState>,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,17 +45,16 @@ export class LoginComponent implements OnInit {
     });
   }
   testFireBase() {
-    this.authService.AuthLogin(
-      this.loginForm.value.email,
-      this.loginForm.value.password
-    );
-    // this.matDialog.open(SnackbarComponent, {
-    //   width: '500px',
-    //   data: {
-    //     text: 'Welcome to Game store',
-    //     status: 'success',
-    //   },
-    // });
+    this.authService
+      .AuthLogin(this.loginForm.value.email, this.loginForm.value.password)
+      .then(() => {
+        this.router.navigateByUrl('/home');
+      })
+      .catch(err => {
+        if (err) {
+          this.router.navigateByUrl('');
+        }
+      });
   }
   loginWithGoogle() {
     this.authService.LoginWithGoogle();

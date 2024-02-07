@@ -4,6 +4,10 @@ import { Store } from '@ngrx/store';
 import { AppState } from './reducers';
 import { login } from './shared/store/login.actions';
 import { UserInteface } from './shared/interfaces/user.inteface';
+import firebase from 'firebase/compat';
+import User = firebase.User;
+import { getUserCreeds, getUserInfo } from './shared/store/selectors';
+import { AuthService } from './shared/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +16,10 @@ import { UserInteface } from './shared/interfaces/user.inteface';
 })
 export class AppComponent extends ClearObservable implements OnInit {
   title = 'strong-junior-project';
-  userProfile: UserInteface;
+  userProfile: User | null;
+  userInfoFromStore = this.store.select(getUserInfo);
 
-  constructor(public store: Store<AppState>) {
+  constructor(public store: Store<AppState>, private authService: AuthService) {
     super();
   }
 
@@ -23,8 +28,8 @@ export class AppComponent extends ClearObservable implements OnInit {
   }
 
   preventBrowserReload() {
-    this.userProfile = JSON.parse(localStorage.getItem('user') || 'null');
-    if (this.userProfile)
-      this.store.dispatch(login({ user: this.userProfile }));
+    this.store.select(getUserCreeds).subscribe(userCreed => {
+      this.authService.AuthLogin(userCreed.email, userCreed.password);
+    });
   }
 }

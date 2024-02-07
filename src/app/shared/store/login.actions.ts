@@ -1,10 +1,12 @@
 import { createAction, props } from '@ngrx/store';
-import { userCreeds, UserInteface } from '../interfaces/user.inteface';
-import { Game, Games } from '../interfaces/games.interface';
+import { userCreeds } from '../interfaces/user.inteface';
+import { Game } from '../interfaces/games.interface';
+import firebase from 'firebase/compat';
+import User = firebase.User;
 
 export const register = createAction(
   '[Register user] User Registration',
-  props<{ user: UserInteface }>()
+  props<{ user: User | null }>()
 );
 export const userCread = createAction(
   '[Login user with cread]',
@@ -12,7 +14,7 @@ export const userCread = createAction(
 );
 export const login = createAction(
   '[Login page action] User Login',
-  props<{ user: UserInteface }>()
+  props<{ user: User | null }>()
 );
 export const logout = createAction(
   '[Logout]- kill user from store and localStorage',

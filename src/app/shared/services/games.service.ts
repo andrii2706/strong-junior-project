@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { GameDetails, Games } from '../interfaces/games.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { FilterParams } from '../interfaces/filter.interface';
+import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class GamesService {
   games = '/games';
   key = '85d9905e7cd7443c8983e54b4733abf5';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private fireStore: Firestore) {}
 
   getLastReleasedGames(page: number, dates: string): Observable<Games> {
     const query = (dates: string) =>
@@ -70,6 +71,40 @@ export class GamesService {
     });
     return this.httpClient.get<GameDetails>(`${this.url}${this.games}/${id}`, {
       params: paramsForGameBtId,
+    });
+  }
+
+  async addUserGame(
+    userId: string,
+    slug: string,
+    name: string,
+    isBought: boolean,
+    name_original: string,
+    description: string,
+    released: string,
+    background_image: string,
+    tba: boolean,
+    rating: number,
+    rating_top: number,
+    metacritic: number
+  ) {
+    await addDoc(collection(this.fireStore, 'game'), {
+      userId: userId,
+      games: [
+        {
+          slug,
+          name,
+          isBought,
+          name_original,
+          description,
+          released,
+          background_image,
+          tba,
+          rating,
+          rating_top,
+          metacritic,
+        },
+      ],
     });
   }
 }

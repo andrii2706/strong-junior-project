@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {
   FireBaseUser,
   userCreeds,
   UserInteface,
 } from '../interfaces/user.inteface';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Game } from '../interfaces/games.interface';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { MatDialog } from '@angular/material/dialog';
-import { SnackbarComponent } from '../components/snackbar/snackbar.component';
-import { Router } from '@angular/router';
-import { GoogleAuthProvider } from '@angular/fire/auth';
+import { GoogleAuthProvider, UserInfo } from '@angular/fire/auth';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../reducers';
+import { Firestore } from '@angular/fire/firestore';
+import firebase from 'firebase/compat';
+import User = firebase.User;
 
 @Injectable({
   providedIn: 'root',
@@ -25,20 +26,18 @@ export class AuthService {
 
   constructor(
     private httpClient: HttpClient,
-    private router: Router,
+    private store: Store<AppState>,
     public afAuth: AngularFireAuth,
-    public matDialog: MatDialog
+    private fireStore: Firestore
   ) {}
 
-  private userLoggingWithFireBase$ = new BehaviorSubject<FireBaseUser | null>(
-    null
-  );
+  userLoggingWithFireBase = new BehaviorSubject<FireBaseUser | null>(null);
+  private userLoggingWithFireBase$: Observable<FireBaseUser | null> =
+    this.userLoggingWithFireBase.asObservable();
 
-  getUserLogginWithFireBase(): Observable<FireBaseUser | null> {
-    return this.userLoggingWithFireBase$.asObservable();
-  }
   proceedUserLoggingWithFireBase(state: FireBaseUser | null) {
-    this.userLoggingWithFireBase$.next(state);
+    console.log(state);
+    this.userLoggingWithFireBase.next(state);
   }
 
   setLoginStatus(value: boolean) {
@@ -46,9 +45,10 @@ export class AuthService {
     localStorage.setItem('loggedIn', 'false');
   }
 
-  changeLoginStatus(status: boolean) {
+  changeLoginStatus(status: boolean, userInfo: UserInfo | null) {
     this.loggedInStatus = status;
     localStorage.setItem('loggedIn', `${this.loggedInStatus}`);
+    localStorage.setItem('user', JSON.stringify({ ...userInfo, games: [] }));
   }
 
   get LoginStatus(): boolean {
@@ -61,36 +61,25 @@ export class AuthService {
       localStorage.getItem('user') || this.loggedInStatus.toString()
     );
   }
-  setUserRole(): void {
-    localStorage.setItem('userRole', 'user');
-  }
 
-  UserStatus() {
-    return JSON.parse(
-      localStorage.getItem('loggedIn') || this.loggedInStatus.toString()
-    );
-  }
   AuthLogin(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password).then(
       userInfo => {
-        void this.router.navigateByUrl('/home');
-        this.changeLoginStatus(true);
-        this.setUser({ email, password });
-        this.setUserRole();
+        const userFromFireBase = userInfo.user;
+        this.changeLoginStatus(true, userFromFireBase);
+        this.store.dispatch({
+          type: '[Login user with cread]',
+          payload: { user: { ...userFromFireBase, games: [] } },
+        });
       },
       err => {
         if (err) {
-          this.matDialog.open(SnackbarComponent, {
-            width: '500px',
-            data: {
-              text: 'Problem with login',
-              status: 'error',
-            },
-          });
+          console.error('Error');
         }
       }
     );
   }
+
   LoginWithGoogle() {
     return this.afAuth.signInWithPopup(new GoogleAuthProvider()).then(
       userInfo => {
@@ -118,29 +107,5 @@ export class AuthService {
     );
   }
 
-  setUser(userInfo: userCreeds): Observable<UserInteface[]> {
-    this.changeLoginStatus(true);
-    const params = (userCreds: userCreeds) =>
-      new HttpParams({
-        fromObject: {
-          email: userCreds.email,
-          password: userCreds.password,
-        },
-      });
-    return this.httpClient.get<UserInteface[]>(this.url, {
-      params: params(userInfo),
-    });
-  }
-
-  getAllUsers(): Observable<UserInteface[]> {
-    return this.httpClient.get<UserInteface[]>(this.url);
-  }
-
-  updateGames(games: Game[]): Observable<UserInteface> {
-    return this.httpClient.patch<UserInteface>(this.url, games);
-  }
-
-  registerUser(userInfo: userCreeds): Observable<UserInteface> {
-    return this.httpClient.post<UserInteface>(this.url, userInfo);
-  }
+  getAllUsers() {}
 }

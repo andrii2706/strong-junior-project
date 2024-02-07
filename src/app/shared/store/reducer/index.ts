@@ -2,9 +2,11 @@ import { UserInteface } from '../../interfaces/user.inteface';
 import { createReducer, on } from '@ngrx/store';
 import { LoginActions } from '../actions-types';
 import { Game } from '../../interfaces/games.interface';
+import firebase from 'firebase/compat';
+import User = firebase.User;
 
 export interface AuthState {
-  user: UserInteface | null | undefined;
+  user: User | null;
 }
 export const initialAuthState: AuthState = {
   user: null,

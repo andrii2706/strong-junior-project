@@ -44,14 +44,7 @@ export class AdminComponent extends ClearObservable implements OnInit {
     this.usersInfo = !this.usersInfo;
   }
 
-  getAllUsers() {
-    this.authService
-      .getAllUsers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(users => {
-        this.users = users;
-      });
-  }
+  getAllUsers() {}
   getAllGames() {
     this.gamesService
       .getAllGames(0)

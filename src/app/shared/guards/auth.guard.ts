@@ -32,7 +32,6 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (this.authService.LoginStatus) {
-      void state.url;
       return true;
     } else {
       this.snackbar.openFromComponent(SnackbarComponent, {

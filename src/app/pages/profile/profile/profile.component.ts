@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { logout } from '../../../shared/store/login.actions';
 import { ConfirmationModalComponent } from '../../../shared/components/confirmation-modal/confirmation-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { getUserInfo } from '../../../shared/store/selectors';
 
 @Component({
   selector: 'app-profile',
@@ -28,10 +29,11 @@ export class ProfileComponent extends ClearObservable implements OnInit {
   ) {
     super();
   }
+  user$ = this.store.select(getUserInfo);
 
   ngOnInit() {
-    this.store.pipe(takeUntil(this.destroy$)).subscribe(state => {
-      this.userInfo = state.auth.user;
+    this.user$.pipe(takeUntil(this.destroy$)).subscribe(state => {
+      this.userInfo = state;
       this.isLoading = false;
     });
     if (this.userInfo?.avatar instanceof Blob) {

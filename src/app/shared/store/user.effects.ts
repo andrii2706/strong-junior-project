@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { LoginActions } from './actions-types';
-import { map, mergeMap, of, pipe, tap } from 'rxjs';
+import { map, mergeMap, of, pipe, take, takeUntil, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../reducers';
 import { SnackbarComponent } from '../components/snackbar/snackbar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { login } from './login.actions';
 import { Game } from '../interfaces/games.interface';
+import { GamesService } from '../services/games.service';
+import { getUserInfo } from './selectors';
 
 @Injectable()
 export class UserEffects {
@@ -18,38 +19,9 @@ export class UserEffects {
     private store: Store<AppState>,
     private snackBar: MatSnackBar,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private gamesService: GamesService
   ) {}
-
-  userCreed$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(LoginActions.userCread),
-        mergeMap(action => {
-          return this.authService.setUser(action.params).pipe(
-            map(user => {
-              if (user.length !== 0) {
-                user.map(user => {
-                  this.store.dispatch(login({ user }));
-                });
-                this.showSnackbar({
-                  text: 'Welcome to Games Store',
-                  status: 'success',
-                });
-                void this.router.navigateByUrl('/home');
-              } else {
-                this.showSnackbar({
-                  text: 'Check Your Credentials',
-                  status: 'error',
-                });
-              }
-            })
-          );
-          this.provideBrowserUpdate(action);
-        })
-      ),
-    { dispatch: false }
-  );
 
   login$ = createEffect(
     () =>
@@ -57,35 +29,10 @@ export class UserEffects {
         ofType(LoginActions.login),
         tap(action => {
           this.provideBrowserUpdate(action);
-        })
-      ),
-    { dispatch: false }
-  );
-
-  registration$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(LoginActions.register),
-        mergeMap(action => {
-          return this.authService.registerUser(action.user).pipe(
-            map(user => {
-              if (user) {
-                this.authService.changeLoginStatus(true);
-                this.snackBar.openFromComponent(SnackbarComponent, {
-                  data: {
-                    text: 'Welcome to Games Store now you can see your profile',
-                    status: 'success',
-                  },
-                  verticalPosition: 'top',
-                  horizontalPosition: 'center',
-                  duration: 3000,
-                });
-                void this.router.navigateByUrl('/home');
-              } else {
-                this.showSnackbar({ text: 'Server not work', status: 'error' });
-              }
-            })
-          );
+          void this.router.navigateByUrl('/home');
+          this.store.select(getUserInfo).subscribe(userInfo => {
+            localStorage.setItem('user', JSON.stringify(userInfo));
+          });
         })
       ),
     { dispatch: false }
@@ -99,11 +46,8 @@ export class UserEffects {
           const user = JSON.parse(localStorage.getItem('user') || 'null');
           user.games.push(action.game);
           localStorage.setItem('user', JSON.stringify(user));
-          this.authService.updateGames(user.games).pipe(
-            map(game => {
-              game;
-            })
-          );
+
+          // this.gamesService.addUserGame(  , action.game.slug, action.game.name, action.game.isBought, action.game.name_original, action.game.description, action.game.released, action.game.background_image, action.game.tba, action.game.rating, action.game.rating_top, action.game.metacritic)
         })
       ),
     { dispatch: false }
