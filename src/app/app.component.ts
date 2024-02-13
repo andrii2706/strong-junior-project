@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ClearObservable } from './shared/classes';
 import { Store } from '@ngrx/store';
 import { AppState } from './reducers';
@@ -23,13 +23,22 @@ export class AppComponent extends ClearObservable implements OnInit {
     super();
   }
 
+  @HostListener('window:beforeunload', ['$event'])
+  beforeunloadHandler(event: any) {
+    event.preventDefault();
+    localStorage.setItem('close tab', 'Your data will be lost!');
+    localStorage.clear();
+    return false;
+  }
   ngOnInit() {
     this.preventBrowserReload();
   }
 
   preventBrowserReload() {
     this.store.select(getUserCreeds).subscribe(userCreed => {
-      this.authService.AuthLogin(userCreed.email, userCreed.password);
+      if (userCreed) {
+        this.authService.AuthLogin(userCreed.email, userCreed.password);
+      }
     });
   }
 }
