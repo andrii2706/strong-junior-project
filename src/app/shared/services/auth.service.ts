@@ -45,7 +45,7 @@ export class AuthService {
     localStorage.setItem('loggedIn', 'false');
   }
 
-  changeLoginStatus(status: boolean, userInfo: UserInfo | null) {
+  changeLoginStatus(status: boolean, userInfo: any) {
     this.loggedInStatus = status;
     localStorage.setItem('loggedIn', `${this.loggedInStatus}`);
     localStorage.setItem('user', JSON.stringify({ ...userInfo, games: [] }));
@@ -65,11 +65,11 @@ export class AuthService {
   AuthLogin(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password).then(
       userInfo => {
-        const userFromFireBase = userInfo.user;
+        const userFromFireBase = userInfo.user?.multiFactor;
         this.changeLoginStatus(true, userFromFireBase);
         this.store.dispatch({
           type: '[Login user with cread]',
-          payload: { user: { ...userFromFireBase, games: [] } },
+          userFromFireBase,
         });
       },
       err => {
@@ -78,6 +78,19 @@ export class AuthService {
         }
       }
     );
+  }
+  loginUserWithToken(token: string) {
+    this.afAuth
+      .signInWithCustomToken(token)
+      .then(userCredential => {
+        this.store.dispatch({ type: '[Hello ReLogin User]', userCredential });
+      })
+      .catch(error => {
+        // Виникла помилка при вході користувача
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.error('Помилка при вході:', errorMessage);
+      });
   }
 
   LoginWithGoogle() {

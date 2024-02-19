@@ -17,7 +17,7 @@ import { getUserInfo } from '../../../shared/store/selectors';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent extends ClearObservable implements OnInit {
-  userInfo: UserInteface;
+  userInfo: any;
   isStorageEmpty$: Observable<boolean>;
   isLoading: boolean;
 
@@ -32,7 +32,10 @@ export class ProfileComponent extends ClearObservable implements OnInit {
   user$ = this.store.select(getUserInfo);
 
   ngOnInit() {
-    this.user$.pipe(takeUntil(this.destroy$)).subscribe(state => {
+    // const userInfo = JSON.parse(localStorage.getItem('user') | null);
+    // console.log(userInfo);
+    this.store.pipe(takeUntil(this.destroy$)).subscribe(state => {
+      console.log(state.auth.user);
       this.userInfo = state;
       this.isLoading = false;
     });

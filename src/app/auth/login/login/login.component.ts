@@ -32,19 +32,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.store.dispatch(userCread({ params: this.loginForm.value }));
-  }
-
-  private initLoginForm() {
-    this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-      ]),
-    });
-  }
-  testFireBase() {
     this.authService
       .AuthLogin(this.loginForm.value.email, this.loginForm.value.password)
       .then(() => {
@@ -56,6 +43,17 @@ export class LoginComponent implements OnInit {
         }
       });
   }
+
+  private initLoginForm() {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+    });
+  }
+
   loginWithGoogle() {
     this.authService.LoginWithGoogle();
   }

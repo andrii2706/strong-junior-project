@@ -1,7 +1,7 @@
-import { createFeatureSelector, createSelector, State } from '@ngrx/store';
-import { UserInteface } from '../interfaces/user.inteface';
+import { User } from '@angular/fire/auth/firebase';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-export const userInfoSelector = createFeatureSelector<UserInteface>('userInfo');
+export const userInfoSelector = createFeatureSelector<User | null>('userInfo');
 export const userCreedSelector = createFeatureSelector<{
   email: string;
   password: string;
@@ -9,7 +9,7 @@ export const userCreedSelector = createFeatureSelector<{
 
 export const getUserInfo = createSelector(
   userInfoSelector,
-  (state: UserInteface) => state
+  (state: any) => state
 );
 export const getUserCreeds = createSelector(
   userCreedSelector,

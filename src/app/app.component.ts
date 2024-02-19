@@ -23,22 +23,17 @@ export class AppComponent extends ClearObservable implements OnInit {
     super();
   }
 
-  @HostListener('window:beforeunload', ['$event'])
-  beforeunloadHandler(event: any) {
-    event.preventDefault();
-    localStorage.setItem('close tab', 'Your data will be lost!');
-    localStorage.clear();
-    return false;
-  }
   ngOnInit() {
     this.preventBrowserReload();
   }
 
   preventBrowserReload() {
-    this.store.select(getUserCreeds).subscribe(userCreed => {
-      if (userCreed) {
-        this.authService.AuthLogin(userCreed.email, userCreed.password);
-      }
-    });
+    const userCreed = JSON.parse(localStorage.getItem('user') || 'null');
+    if (userCreed) {
+      this.store.dispatch({
+        type: '[Prevent User Info]',
+        userCreed,
+      });
+    }
   }
 }
